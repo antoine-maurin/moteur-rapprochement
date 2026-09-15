@@ -1,0 +1,962 @@
+{
+ "_lisez_moi": "SORTIES DU MOTEUR figées pour les surfaces de démonstration. Produit par tools/produit_artefacts_ui.py sur FX_001 V1.2, au point DIMS-v2. Ce fichier ne contient AUCUNE métrique de qualité : précision, rappel et F1 sont mesurés par un scoreur independant et publies dans banc_ub6.json. Ici, on ne publie que ce que le moteur a DÉCIDÉ, jamais ce que vaut sa décision.",
+ "_note_empreinte": "empreinte de la matière mesurée. La durée de build, le commit de production et la version de l'interpréteur sont exclus du sceau — ils identifient l'exécution qui a produit ce fichier, pas ce qui y est mesuré — mais restent publiés ici, et le commit comme la version sont affichés par la surface. L'empreinte ne dépend donc d'aucun environnement : elle se recalcule à l'identique sur n'importe quelle installation. Recalculable par tools/empreinte_artefact.py.",
+ "cas_heros": {
+  "correspondance": {
+   "champs_ecrits_differemment": [
+    "nom",
+    "date_naissance",
+    "telephone"
+   ],
+   "champs_par_niveau": {
+    "ACCORD_FORT": [
+     "nom",
+     "prenom",
+     "date_naissance",
+     "adresse",
+     "code_postal",
+     "ville",
+     "telephone"
+    ],
+    "ACCORD_PARTIEL": [],
+    "DESACCORD": [],
+    "INDETERMINE_MANQUANT": [
+     "email"
+    ]
+   },
+   "composantes": {
+    "accord_adresse": "ACCORD_FORT",
+    "accord_code_postal": "ACCORD_FORT",
+    "accord_date_naissance": "ACCORD_FORT",
+    "accord_email": "INDETERMINE_MANQUANT",
+    "accord_nom": "ACCORD_FORT",
+    "accord_prenom": "ACCORD_FORT",
+    "accord_telephone": "ACCORD_FORT",
+    "accord_ville": "ACCORD_FORT"
+   },
+   "n_composantes_informatives": 7,
+   "poids_match": 33.494773591,
+   "poids_par_champ": {
+    "adresse": 3.64762882985265,
+    "code_postal": 2.0217215758650218,
+    "date_naissance": 11.659937158956899,
+    "email": 0.0,
+    "nom": 0.11391630797721657,
+    "prenom": 4.108498313842789,
+    "telephone": 10.541378169871589,
+    "ville": 1.4016932347630964
+   },
+   "record_a": {
+    "adresse": "16 rue Nationale",
+    "code_postal": "75010",
+    "date_naissance": "26-02-1990",
+    "email": "nathalie.richard@gmail.com",
+    "nom": "Richard",
+    "prenom": "Nathalie",
+    "record_id": "REC_00024",
+    "source_id": "SRC_C",
+    "telephone": "0888013192",
+    "ville": "Paris"
+   },
+   "record_b": {
+    "adresse": "16 rue Nationale",
+    "code_postal": "75010",
+    "date_naissance": "26/02/1990",
+    "email": null,
+    "nom": "Richrid",
+    "prenom": "Nathalie",
+    "record_id": "REC_00025",
+    "source_id": "SRC_A",
+    "telephone": "08 88 01 31 92",
+    "ville": "Paris"
+   },
+   "verdict": "MATCH"
+  },
+  "entite": {
+   "enregistrement_dore": {
+    "adresse": "16 rue Nationale",
+    "code_postal": "75010",
+    "date_naissance": "26-02-1990",
+    "email": "nathalie.richard@gmail.com",
+    "nom": "Richard",
+    "origines": {
+     "adresse": "REC_00024",
+     "code_postal": "REC_00024",
+     "date_naissance": "REC_00024",
+     "email": "REC_00024",
+     "nom": "REC_00024",
+     "prenom": "REC_00024",
+     "telephone": "REC_00024",
+     "ville": "REC_00024"
+    },
+    "prenom": "Nathalie",
+    "record_ids_sources": [
+     "REC_00024",
+     "REC_00025"
+    ],
+    "telephone": "0888013192",
+    "ville": "Paris"
+   },
+   "membres": [
+    "REC_00024",
+    "REC_00025"
+   ],
+   "records": [
+    {
+     "adresse": "16 rue Nationale",
+     "code_postal": "75010",
+     "date_naissance": "26-02-1990",
+     "email": "nathalie.richard@gmail.com",
+     "nom": "Richard",
+     "prenom": "Nathalie",
+     "record_id": "REC_00024",
+     "source_id": "SRC_C",
+     "telephone": "0888013192",
+     "ville": "Paris"
+    },
+    {
+     "adresse": "16 rue Nationale",
+     "code_postal": "75010",
+     "date_naissance": "26/02/1990",
+     "email": null,
+     "nom": "Richrid",
+     "prenom": "Nathalie",
+     "record_id": "REC_00025",
+     "source_id": "SRC_A",
+     "telephone": "08 88 01 31 92",
+     "ville": "Paris"
+    }
+   ]
+  },
+  "regle_de_selection": "parmi les MATCH dont l'entité a une FICHE DE RÉFÉRENCE CANONIQUE (chaque valeur retenue par la fusion est égale à la valeur de l'enregistrement d'origine de l'entité vraie du pack, celui qu'aucune corruption de doublon n'a touché ; aucune graphie corrompue ne peut donc figurer en fiche de référence) : d'abord ceux dont le nom ou le prénom est écrit différemment des deux côtés, puis maximum d'accords (forts + partiels), puis minimum de désaccords, puis maximum de champs écrits différemment ; départage par identifiants. Le résultat est rejoué à chaque exécution, jamais recopié, et la règle est re-vérifiée par un oracle qui relit le pack pour son compte."
+ },
+ "empreinte_contenu": "9539aa80541823fdcccaae3916b14a2aa07b644b91a0b54ae7ce4c01bf49488c",
+ "extrait_demonstration": {
+  "paire_zone_grise_au_run_complet": [
+   "REC_00004",
+   "REC_00099"
+  ],
+  "paires_zone_grise_dans_l_extrait": [
+   [
+    "REC_00231",
+    "REC_00232"
+   ]
+  ],
+  "record_ids": [
+   "REC_00004",
+   "REC_00024",
+   "REC_00025",
+   "REC_00099",
+   "REC_00231",
+   "REC_00232"
+  ],
+  "records": [
+   {
+    "adresse": "12 place Bellecour",
+    "code_postal": "33018",
+    "date_naissance": "1977-02-23",
+    "email": null,
+    "nom": "Lefebvre",
+    "prenom": "Catherine",
+    "record_id": "REC_00004",
+    "source_id": "SRC_C",
+    "telephone": "03 90 24 49 21",
+    "ville": "Bordeaux"
+   },
+   {
+    "adresse": "16 rue Nationale",
+    "code_postal": "75010",
+    "date_naissance": "26-02-1990",
+    "email": "nathalie.richard@gmail.com",
+    "nom": "Richard",
+    "prenom": "Nathalie",
+    "record_id": "REC_00024",
+    "source_id": "SRC_C",
+    "telephone": "0888013192",
+    "ville": "Paris"
+   },
+   {
+    "adresse": "16 rue Nationale",
+    "code_postal": "75010",
+    "date_naissance": "26/02/1990",
+    "email": null,
+    "nom": "Richrid",
+    "prenom": "Nathalie",
+    "record_id": "REC_00025",
+    "source_id": "SRC_A",
+    "telephone": "08 88 01 31 92",
+    "ville": "Paris"
+   },
+   {
+    "adresse": "11 r. Nationale",
+    "code_postal": "75020",
+    "date_naissance": null,
+    "email": "catherine.lefebvre@example.fr",
+    "nom": "Lefebvre",
+    "prenom": "Catherine",
+    "record_id": "REC_00099",
+    "source_id": "SRC_A",
+    "telephone": "02 68 77 50 36",
+    "ville": "Paris"
+   },
+   {
+    "adresse": "82 impasse des Acacias",
+    "code_postal": "31002",
+    "date_naissance": "28/03/1962",
+    "email": null,
+    "nom": "Richard",
+    "prenom": "Isabelle",
+    "record_id": "REC_00231",
+    "source_id": "SRC_C",
+    "telephone": "0476258182",
+    "ville": "Toulouse"
+   },
+   {
+    "adresse": "boulevard de la République",
+    "code_postal": "75010",
+    "date_naissance": "1962-03-28",
+    "email": null,
+    "nom": "Richard",
+    "prenom": "Isa",
+    "record_id": "REC_00232",
+    "source_id": "SRC_A",
+    "telephone": "04 76 25 81 82",
+    "ville": "Paris"
+   }
+  ],
+  "regle_de_selection": "entité du cas héros, plus la première paire en zone grise DONT LE NOM CONCORDE (le doute y est lisible ; à défaut, l'ordre canonique) et la première paire de MATCH extérieure, qui donnent ensemble les trois verdicts sans repli de l'estimation ET SANS QU'AUCUN NON_MATCH DE L'EXTRAIT NE SÉPARE DEUX FICHES DE LA MÊME ENTITÉ VRAIE — une surface qui affiche « ce sont deux personnes différentes » ne doit pas le dire de la même personne ; le taux d'erreur, lui, reste publié en Vitrine et en Salle des machines. La file « à vérifier » du même artefact reste, elle, dans l'ordre canonique et non filtrée.",
+  "verdicts_de_l_extrait": {
+   "MATCH": 1,
+   "NON_MATCH": 5,
+   "ZONE_GRISE": 1
+  }
+ },
+ "file_a_verifier": {
+  "_lisez_moi": "Échantillon de la file « à vérifier » : les paires sur lesquelles le moteur s'abstient. Le TOTAL est publié à côté ; l'échantillon ne le remplace pas.",
+  "n_publiees": 8,
+  "n_total": 301,
+  "paires": [
+   {
+    "champs_ecrits_differemment": [
+     "nom",
+     "prenom",
+     "adresse"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "code_postal",
+      "ville"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "nom",
+      "prenom",
+      "adresse"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "date_naissance",
+      "email",
+      "telephone"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "DESACCORD",
+     "accord_code_postal": "ACCORD_FORT",
+     "accord_date_naissance": "INDETERMINE_MANQUANT",
+     "accord_email": "INDETERMINE_MANQUANT",
+     "accord_nom": "DESACCORD",
+     "accord_prenom": "DESACCORD",
+     "accord_telephone": "INDETERMINE_MANQUANT",
+     "accord_ville": "ACCORD_FORT"
+    },
+    "n_composantes_informatives": 5,
+    "poids_match": -2.442957809,
+    "poids_par_champ": {
+     "adresse": -1.4455122443018693,
+     "code_postal": 2.0217215758650218,
+     "date_naissance": 0.0,
+     "email": 0.0,
+     "nom": -0.2651318136880844,
+     "prenom": -4.155728561783974,
+     "telephone": 0.0,
+     "ville": 1.4016932347630964
+    },
+    "record_a": {
+     "adresse": "place Bellecour",
+     "code_postal": "44020",
+     "date_naissance": "18/06/1981",
+     "email": null,
+     "nom": "Fournier",
+     "prenom": "Ahmed",
+     "record_id": "REC_00002",
+     "source_id": "SRC_A",
+     "telephone": null,
+     "ville": "Nantes"
+    },
+    "record_b": {
+     "adresse": "3 chemin des Vignes",
+     "code_postal": "44020",
+     "date_naissance": null,
+     "email": null,
+     "nom": "Dubois",
+     "prenom": "Fatima",
+     "record_id": "REC_00467",
+     "source_id": "SRC_A",
+     "telephone": "07 94 97 60 42",
+     "ville": "Nantes"
+    },
+    "verdict": "ZONE_GRISE"
+   },
+   {
+    "champs_ecrits_differemment": [
+     "adresse",
+     "code_postal",
+     "ville",
+     "telephone"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "nom",
+      "prenom"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "adresse",
+      "code_postal",
+      "ville",
+      "telephone"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "date_naissance",
+      "email"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "DESACCORD",
+     "accord_code_postal": "DESACCORD",
+     "accord_date_naissance": "INDETERMINE_MANQUANT",
+     "accord_email": "INDETERMINE_MANQUANT",
+     "accord_nom": "ACCORD_FORT",
+     "accord_prenom": "ACCORD_FORT",
+     "accord_telephone": "DESACCORD",
+     "accord_ville": "DESACCORD"
+    },
+    "n_composantes_informatives": 6,
+    "poids_match": -1.404887473,
+    "poids_par_champ": {
+     "adresse": -1.4455122443018693,
+     "code_postal": -1.4535334126117834,
+     "date_naissance": 0.0,
+     "email": 0.0,
+     "nom": 0.11391630797721657,
+     "prenom": 4.108498313842789,
+     "telephone": -1.2984480528104667,
+     "ville": -1.429808385555161
+    },
+    "record_a": {
+     "adresse": "12 place Bellecour",
+     "code_postal": "33018",
+     "date_naissance": "1977-02-23",
+     "email": null,
+     "nom": "Lefebvre",
+     "prenom": "Catherine",
+     "record_id": "REC_00004",
+     "source_id": "SRC_C",
+     "telephone": "03 90 24 49 21",
+     "ville": "Bordeaux"
+    },
+    "record_b": {
+     "adresse": "11 r. Nationale",
+     "code_postal": "75020",
+     "date_naissance": null,
+     "email": "catherine.lefebvre@example.fr",
+     "nom": "Lefebvre",
+     "prenom": "Catherine",
+     "record_id": "REC_00099",
+     "source_id": "SRC_A",
+     "telephone": "02 68 77 50 36",
+     "ville": "Paris"
+    },
+    "verdict": "ZONE_GRISE"
+   },
+   {
+    "champs_ecrits_differemment": [
+     "adresse",
+     "code_postal",
+     "ville"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "nom",
+      "prenom"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "adresse",
+      "code_postal",
+      "ville"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "date_naissance",
+      "email",
+      "telephone"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "DESACCORD",
+     "accord_code_postal": "DESACCORD",
+     "accord_date_naissance": "INDETERMINE_MANQUANT",
+     "accord_email": "INDETERMINE_MANQUANT",
+     "accord_nom": "ACCORD_FORT",
+     "accord_prenom": "ACCORD_FORT",
+     "accord_telephone": "INDETERMINE_MANQUANT",
+     "accord_ville": "DESACCORD"
+    },
+    "n_composantes_informatives": 5,
+    "poids_match": -0.106439421,
+    "poids_par_champ": {
+     "adresse": -1.4455122443018693,
+     "code_postal": -1.4535334126117834,
+     "date_naissance": 0.0,
+     "email": 0.0,
+     "nom": 0.11391630797721657,
+     "prenom": 4.108498313842789,
+     "telephone": 0.0,
+     "ville": -1.429808385555161
+    },
+    "record_a": {
+     "adresse": "chemin des Vignes",
+     "code_postal": "31002",
+     "date_naissance": "1977-02-23",
+     "email": null,
+     "nom": "Lefebvre",
+     "prenom": "Catherine",
+     "record_id": "REC_00005",
+     "source_id": "SRC_A",
+     "telephone": null,
+     "ville": "Toulouse"
+    },
+    "record_b": {
+     "adresse": "11 r. Nationale",
+     "code_postal": "75020",
+     "date_naissance": null,
+     "email": "catherine.lefebvre@example.fr",
+     "nom": "Lefebvre",
+     "prenom": "Catherine",
+     "record_id": "REC_00099",
+     "source_id": "SRC_A",
+     "telephone": "02 68 77 50 36",
+     "ville": "Paris"
+    },
+    "verdict": "ZONE_GRISE"
+   },
+   {
+    "champs_ecrits_differemment": [
+     "nom",
+     "prenom",
+     "adresse"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "code_postal",
+      "ville"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "nom",
+      "prenom",
+      "adresse"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "date_naissance",
+      "email",
+      "telephone"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "DESACCORD",
+     "accord_code_postal": "ACCORD_FORT",
+     "accord_date_naissance": "INDETERMINE_MANQUANT",
+     "accord_email": "INDETERMINE_MANQUANT",
+     "accord_nom": "DESACCORD",
+     "accord_prenom": "DESACCORD",
+     "accord_telephone": "INDETERMINE_MANQUANT",
+     "accord_ville": "ACCORD_FORT"
+    },
+    "n_composantes_informatives": 5,
+    "poids_match": -2.442957809,
+    "poids_par_champ": {
+     "adresse": -1.4455122443018693,
+     "code_postal": 2.0217215758650218,
+     "date_naissance": 0.0,
+     "email": 0.0,
+     "nom": -0.2651318136880844,
+     "prenom": -4.155728561783974,
+     "telephone": 0.0,
+     "ville": 1.4016932347630964
+    },
+    "record_a": {
+     "adresse": "chemin des Vignes",
+     "code_postal": "31002",
+     "date_naissance": "1977-02-23",
+     "email": null,
+     "nom": "Lefebvre",
+     "prenom": "Catherine",
+     "record_id": "REC_00005",
+     "source_id": "SRC_A",
+     "telephone": null,
+     "ville": "Toulouse"
+    },
+    "record_b": {
+     "adresse": "51 impasse des Acacias",
+     "code_postal": "31002",
+     "date_naissance": null,
+     "email": null,
+     "nom": "Michel",
+     "prenom": "Lucas",
+     "record_id": "REC_00148",
+     "source_id": "SRC_C",
+     "telephone": "0459580887",
+     "ville": "Toulouse"
+    },
+    "verdict": "ZONE_GRISE"
+   },
+   {
+    "champs_ecrits_differemment": [
+     "nom",
+     "date_naissance",
+     "adresse"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "prenom",
+      "code_postal",
+      "ville"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "nom",
+      "date_naissance",
+      "adresse"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "email",
+      "telephone"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "DESACCORD",
+     "accord_code_postal": "ACCORD_FORT",
+     "accord_date_naissance": "DESACCORD",
+     "accord_email": "INDETERMINE_MANQUANT",
+     "accord_nom": "DESACCORD",
+     "accord_prenom": "ACCORD_FORT",
+     "accord_telephone": "INDETERMINE_MANQUANT",
+     "accord_ville": "ACCORD_FORT"
+    },
+    "n_composantes_informatives": 6,
+    "poids_match": 2.2582434,
+    "poids_par_champ": {
+     "adresse": -1.4455122443018693,
+     "code_postal": 2.0217215758650218,
+     "date_naissance": -3.563025666151747,
+     "email": 0.0,
+     "nom": -0.2651318136880844,
+     "prenom": 4.108498313842789,
+     "telephone": 0.0,
+     "ville": 1.4016932347630964
+    },
+    "record_a": {
+     "adresse": "chemin des Vignes",
+     "code_postal": "31002",
+     "date_naissance": "1977-02-23",
+     "email": null,
+     "nom": "Lefebvre",
+     "prenom": "Catherine",
+     "record_id": "REC_00005",
+     "source_id": "SRC_A",
+     "telephone": null,
+     "ville": "Toulouse"
+    },
+    "record_b": {
+     "adresse": "81 boulevard de la République",
+     "code_postal": "31002",
+     "date_naissance": "1965-03-08",
+     "email": "catherine.dubois@mail.fr",
+     "nom": "Dubois",
+     "prenom": "Catherine",
+     "record_id": "REC_00523",
+     "source_id": "SRC_A",
+     "telephone": "0708189140",
+     "ville": "Toulouse"
+    },
+    "verdict": "ZONE_GRISE"
+   },
+   {
+    "champs_ecrits_differemment": [
+     "date_naissance",
+     "adresse",
+     "code_postal",
+     "ville",
+     "telephone"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "nom",
+      "prenom",
+      "adresse"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "date_naissance",
+      "code_postal",
+      "ville",
+      "telephone"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "email"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "ACCORD_FORT",
+     "accord_code_postal": "DESACCORD",
+     "accord_date_naissance": "DESACCORD",
+     "accord_email": "INDETERMINE_MANQUANT",
+     "accord_nom": "ACCORD_FORT",
+     "accord_prenom": "ACCORD_FORT",
+     "accord_telephone": "DESACCORD",
+     "accord_ville": "DESACCORD"
+    },
+    "n_composantes_informatives": 7,
+    "poids_match": 0.125227935,
+    "poids_par_champ": {
+     "adresse": 3.64762882985265,
+     "code_postal": -1.4535334126117834,
+     "date_naissance": -3.563025666151747,
+     "email": 0.0,
+     "nom": 0.11391630797721657,
+     "prenom": 4.108498313842789,
+     "telephone": -1.2984480528104667,
+     "ville": -1.429808385555161
+    },
+    "record_a": {
+     "adresse": "74 impasse des Acacias",
+     "code_postal": "33005",
+     "date_naissance": "22-08-1950",
+     "email": null,
+     "nom": "Michel",
+     "prenom": "Sylvie",
+     "record_id": "REC_00008",
+     "source_id": "SRC_B",
+     "telephone": "0966740889",
+     "ville": "Bordeaux"
+    },
+    "record_b": {
+     "adresse": "impasse des Acacias",
+     "code_postal": "44019",
+     "date_naissance": "1990-07-05",
+     "email": "sylvie.michel@laposte.net",
+     "nom": "Michel",
+     "prenom": "Sylvie",
+     "record_id": "REC_00124",
+     "source_id": "SRC_B",
+     "telephone": "08 59 60 73 30",
+     "ville": "Nantes"
+    },
+    "verdict": "ZONE_GRISE"
+   },
+   {
+    "champs_ecrits_differemment": [
+     "prenom",
+     "adresse",
+     "code_postal",
+     "email"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "nom",
+      "adresse",
+      "ville"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "prenom",
+      "code_postal",
+      "email"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "date_naissance",
+      "telephone"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "ACCORD_FORT",
+     "accord_code_postal": "DESACCORD",
+     "accord_date_naissance": "INDETERMINE_MANQUANT",
+     "accord_email": "DESACCORD",
+     "accord_nom": "ACCORD_FORT",
+     "accord_prenom": "DESACCORD",
+     "accord_telephone": "INDETERMINE_MANQUANT",
+     "accord_ville": "ACCORD_FORT"
+    },
+    "n_composantes_informatives": 6,
+    "poids_match": -1.918526211,
+    "poids_par_champ": {
+     "adresse": 3.64762882985265,
+     "code_postal": -1.4535334126117834,
+     "date_naissance": 0.0,
+     "email": -1.4725026095896065,
+     "nom": 0.11391630797721657,
+     "prenom": -4.155728561783974,
+     "telephone": 0.0,
+     "ville": 1.4016932347630964
+    },
+    "record_a": {
+     "adresse": "30 impasse des Acacias",
+     "code_postal": "31018",
+     "date_naissance": "2/2/1966",
+     "email": "alexandre.girard@laposte.net",
+     "nom": "Girard",
+     "prenom": "Alexandre",
+     "record_id": "REC_00010",
+     "source_id": "SRC_A",
+     "telephone": "06 69 07 76 65",
+     "ville": "Toulouse"
+    },
+    "record_b": {
+     "adresse": "75 impasse des Acacias",
+     "code_postal": "31008",
+     "date_naissance": null,
+     "email": "ahmed.girard@orange.fr",
+     "nom": "Girard",
+     "prenom": "Ahmed",
+     "record_id": "REC_00511",
+     "source_id": "SRC_B",
+     "telephone": null,
+     "ville": "Toulouse"
+    },
+    "verdict": "ZONE_GRISE"
+   },
+   {
+    "champs_ecrits_differemment": [
+     "prenom",
+     "adresse",
+     "code_postal",
+     "email"
+    ],
+    "champs_par_niveau": {
+     "ACCORD_FORT": [
+      "nom",
+      "adresse",
+      "ville"
+     ],
+     "ACCORD_PARTIEL": [],
+     "DESACCORD": [
+      "prenom",
+      "code_postal",
+      "email"
+     ],
+     "INDETERMINE_MANQUANT": [
+      "date_naissance",
+      "telephone"
+     ]
+    },
+    "composantes": {
+     "accord_adresse": "ACCORD_FORT",
+     "accord_code_postal": "DESACCORD",
+     "accord_date_naissance": "INDETERMINE_MANQUANT",
+     "accord_email": "DESACCORD",
+     "accord_nom": "ACCORD_FORT",
+     "accord_prenom": "DESACCORD",
+     "accord_telephone": "INDETERMINE_MANQUANT",
+     "accord_ville": "ACCORD_FORT"
+    },
+    "n_composantes_informatives": 6,
+    "poids_match": -1.918526211,
+    "poids_par_champ": {
+     "adresse": 3.64762882985265,
+     "code_postal": -1.4535334126117834,
+     "date_naissance": 0.0,
+     "email": -1.4725026095896065,
+     "nom": 0.11391630797721657,
+     "prenom": -4.155728561783974,
+     "telephone": 0.0,
+     "ville": 1.4016932347630964
+    },
+    "record_a": {
+     "adresse": "30 impasse des Acacias",
+     "code_postal": "31018",
+     "date_naissance": "02/02/1966",
+     "email": "alexandre.girard@laposte.net",
+     "nom": "Girard",
+     "prenom": "Alexandre",
+     "record_id": "REC_00011",
+     "source_id": "SRC_B",
+     "telephone": null,
+     "ville": "Toulouse"
+    },
+    "record_b": {
+     "adresse": "75 impasse des Acacias",
+     "code_postal": "31008",
+     "date_naissance": null,
+     "email": "ahmed.girard@orange.fr",
+     "nom": "Girard",
+     "prenom": "Ahmed",
+     "record_id": "REC_00511",
+     "source_id": "SRC_B",
+     "telephone": null,
+     "ville": "Toulouse"
+    },
+    "verdict": "ZONE_GRISE"
+   }
+  ]
+ },
+ "population": {
+  "estimation": {
+   "champs_repli": [],
+   "convergence": true,
+   "echange_de_classes": false,
+   "graine": "U-B2::E-DEC::EM::seed-0001",
+   "iterations": 65,
+   "m": {
+    "adresse": {
+     "ACCORD_FORT": 0.6636867933020052,
+     "ACCORD_PARTIEL": 0.002053958015230645,
+     "DESACCORD": 0.33425924868276424
+    },
+    "code_postal": {
+     "ACCORD_FORT": 0.6797282206088907,
+     "ACCORD_PARTIEL": 0.03550568139259037,
+     "DESACCORD": 0.284766097998519
+    },
+    "date_naissance": {
+     "ACCORD_FORT": 0.9127225957108884,
+     "ACCORD_PARTIEL": 0.003013484764451507,
+     "DESACCORD": 0.08426391952466007
+    },
+    "email": {
+     "ACCORD_FORT": 0.6447304233267755,
+     "ACCORD_PARTIEL": 0.004474909148964243,
+     "DESACCORD": 0.3507946675242603
+    },
+    "nom": {
+     "ACCORD_FORT": 0.8689705648824787,
+     "ACCORD_PARTIEL": 0.0018719587862546336,
+     "DESACCORD": 0.12915747633126679
+    },
+    "prenom": {
+     "ACCORD_FORT": 0.8817524287517211,
+     "ACCORD_PARTIEL": 0.06759481437951419,
+     "DESACCORD": 0.05065275686876465
+    },
+    "telephone": {
+     "ACCORD_FORT": 0.5900686771519993,
+     "ACCORD_PARTIEL": 0.003602286050625183,
+     "DESACCORD": 0.4063290367973755
+    },
+    "ville": {
+     "ACCORD_FORT": 0.7295315211121765,
+     "ACCORD_PARTIEL": 0.001810060282668862,
+     "DESACCORD": 0.2686584186051547
+    }
+   },
+   "motif_repli": null,
+   "n_paires": 5932,
+   "p": 0.04631387286890913,
+   "provenance_priors": "a priori conventionnels du modele de Fellegi-Sunter (forme attendue d'un champ discriminant), NON mesures et NON calibres sur ce jeu de donnees ; usage strictement limite au repli, toujours signale par repli=True et motif_repli",
+   "repli": false,
+   "u": {
+    "adresse": {
+     "ACCORD_FORT": 0.05295628184005987,
+     "ACCORD_PARTIEL": 0.036656865346404666,
+     "DESACCORD": 0.9103868528135355
+    },
+    "code_postal": {
+     "ACCORD_FORT": 0.16739268050462908,
+     "ACCORD_PARTIEL": 0.05269560921614943,
+     "DESACCORD": 0.7799117102792216
+    },
+    "date_naissance": {
+     "ACCORD_FORT": 0.0002820642009466169,
+     "ACCORD_PARTIEL": 0.0038098527293547392,
+     "DESACCORD": 0.9959080830696987
+    },
+    "email": {
+     "ACCORD_FORT": 0.026318920894004685,
+     "ACCORD_PARTIEL": 0.00021586468228385942,
+     "DESACCORD": 0.9734652144237115
+    },
+    "nom": {
+     "ACCORD_FORT": 0.8029949978463502,
+     "ACCORD_PARTIEL": 0.04179054180710352,
+     "DESACCORD": 0.1552144603465463
+    },
+    "prenom": {
+     "ACCORD_FORT": 0.05111700910410416,
+     "ACCORD_PARTIEL": 0.04606118816510387,
+     "DESACCORD": 0.902821802730792
+    },
+    "telephone": {
+     "ACCORD_FORT": 0.0003959419673413559,
+     "ACCORD_PARTIEL": 0.00018029717833028337,
+     "DESACCORD": 0.9994237608543285
+    },
+    "ville": {
+     "ACCORD_FORT": 0.27611649570300745,
+     "ACCORD_PARTIEL": 8.835848498091088e-05,
+     "DESACCORD": 0.7237951458120115
+    }
+   }
+  },
+  "n_entites": 312,
+  "n_paires_candidates": 5932,
+  "n_records": 537,
+  "repartition_verdicts": {
+   "MATCH": 275,
+   "NON_MATCH": 5356,
+   "ZONE_GRISE": 301
+  }
+ },
+ "provenance": {
+  "champs_compares": [
+   "nom",
+   "prenom",
+   "date_naissance",
+   "adresse",
+   "code_postal",
+   "ville",
+   "email",
+   "telephone"
+  ],
+  "commit": "a160b968490c2bb042c4bdd689d977bf73fa6f90",
+  "fixture": {
+   "chemin_relatif_repo": "fixtures/FIXTURE_PACK_GT_V1_2.json",
+   "content_sha256": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2"
+  },
+  "graine_em": "U-B2::E-DEC::EM::seed-0001",
+  "passes_blocking": [
+   "CP",
+   "PREF"
+  ],
+  "point_de_fonctionnement": {
+   "derive_a_l_execution": false,
+   "nom": "DIMS-v2",
+   "provenance": {
+    "budget_vise": 300,
+    "chemin": "artifacts/dimensions.json",
+    "content_sha256_fixture": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2",
+    "empreinte_population": null,
+    "empreinte_table_de_poids": null,
+    "fixture": "fixtures/FIXTURE_PACK_GT_V1_2.json",
+    "gap": "calibration différée",
+    "methode": "bande emboitee la plus proche du budget, ordonnee par distance a la frontiere ; a egalite d'ecart, la plus petite bande",
+    "origine": "artefact",
+    "provisoire": true,
+    "taille_zone_grise_declaree": 301
+   },
+   "t_lambda": -2.681884167,
+   "t_mu": 2.650183265
+  },
+  "version_python": "3.12.14"
+ }
+}

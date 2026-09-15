@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+# Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+# Tous droits réservés / All rights reserved.
+# Composant du démonstrateur « moteur-rapprochement ».
+# Reproduction, modification ou redistribution interdites sans autorisation écrite.
+
+# Dépendances du RUNTIME des surfaces (C7 offline).
+#
+# La liste est courte, et c'est une propriété : le moteur (`src/engine/`) et la chaîne
+# (`src/pipeline/`) n'importent que la bibliothèque standard. Rien de ce qui décide n'a de
+# dépendance tierce ; les trois paquets ci-dessous ne servent qu'à SERVIR des pages.
+#
+# Ne PAS ajouter splink / duckdb / scikit-learn ici : ils appartiennent au banc, qui
+# tourne au build et jamais dans le démonstrateur. Les faire entrer dans l'image ferait
+# dépendre la surface de l'outil auquel elle se compare.
+#
+# Versions épinglées sur celles du `.venv` du build, seules éprouvées par la suite de tests.
+starlette==1.6.0
+uvicorn==0.52.4
+jinja2==3.1.6

@@ -1,0 +1,115 @@
+{
+ "_lisez_moi": "Provenance des fontes auto-hébergées. Relancer tools/recupere_fontes.py doit redonner ces empreintes : un binaire sans provenance n'est pas auditable.",
+ "fontes": [
+  {
+   "chemin": "src/surfaces/statique/fontes/space-grotesk-latin-ext.woff2",
+   "famille": "Space Grotesk",
+   "graisses": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "octets": 18940,
+   "sha256": "952dddb45d2f96f71cbf3b7f510b24379afc3c89ea02fcf89d377b45d62c0166",
+   "source": "https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb94C-s0.woff2",
+   "sous_ensemble": "latin-ext"
+  },
+  {
+   "chemin": "src/surfaces/statique/fontes/space-grotesk-latin.woff2",
+   "famille": "Space Grotesk",
+   "graisses": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "octets": 22288,
+   "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d",
+   "source": "https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2",
+   "sous_ensemble": "latin"
+  },
+  {
+   "chemin": "src/surfaces/statique/fontes/inter-latin-ext.woff2",
+   "famille": "Inter",
+   "graisses": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "octets": 85068,
+   "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+   "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2",
+   "sous_ensemble": "latin-ext"
+  },
+  {
+   "chemin": "src/surfaces/statique/fontes/inter-latin.woff2",
+   "famille": "Inter",
+   "graisses": [
+    400,
+    500,
+    600,
+    700
+   ],
+   "octets": 48256,
+   "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+   "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2",
+   "sous_ensemble": "latin"
+  },
+  {
+   "chemin": "src/surfaces/statique/fontes/jetbrains-mono-latin-ext.woff2",
+   "famille": "JetBrains Mono",
+   "graisses": [
+    400,
+    500
+   ],
+   "octets": 11624,
+   "sha256": "db5ff4db83e580426280e9337a58dc57d3a83784a1b03ad80914651594441d52",
+   "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwhsk.woff2",
+   "sous_ensemble": "latin-ext"
+  },
+  {
+   "chemin": "src/surfaces/statique/fontes/jetbrains-mono-latin.woff2",
+   "famille": "JetBrains Mono",
+   "graisses": [
+    400,
+    500
+   ],
+   "octets": 31432,
+   "sha256": "83c005d49d8a6a50474c73a5a36ac0468076e9c4a29da7bdb14995d80560a5be",
+   "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2",
+   "sous_ensemble": "latin"
+  }
+ ],
+ "licence": "SIL Open Font License 1.1 pour les trois familles",
+ "licences": [
+  {
+   "chemin": "src/surfaces/statique/fontes/LICENCE-space-grotesk.txt",
+   "famille": "Space Grotesk",
+   "octets": 4495,
+   "sha256": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72",
+   "source": "https://raw.githubusercontent.com/floriankarsten/space-grotesk/master/OFL.txt"
+  },
+  {
+   "chemin": "src/surfaces/statique/fontes/LICENCE-inter.txt",
+   "famille": "Inter",
+   "octets": 4380,
+   "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+   "source": "https://raw.githubusercontent.com/rsms/inter/master/LICENSE.txt"
+  },
+  {
+   "chemin": "src/surfaces/statique/fontes/LICENCE-jetbrains-mono.txt",
+   "famille": "JetBrains Mono",
+   "octets": 4399,
+   "sha256": "a76abf002c49097d146e86740a3105a5d00450b1592e820a1109a8c5680cd697",
+   "source": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/OFL.txt"
+  }
+ ],
+ "mandat": "DISP-UI-01",
+ "sous_ensembles": [
+  "latin",
+  "latin-ext"
+ ],
+ "total_octets": 217608
+}

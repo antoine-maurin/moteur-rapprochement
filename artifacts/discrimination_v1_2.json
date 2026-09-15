@@ -1,0 +1,4610 @@
+{
+  "_lisez_moi": "VERIFICATION, JAMAIS TUNING. Cet artefact MESURE si la fixture V1.2 exerce la decision 3 zones du moteur. La donnee n'est JAMAIS ajustee sur ce resultat : aucun chiffre ici ne constitue une demande de modification de la fixture, et aucune recommandation de ce type n'y figure. Si le moteur se revele excellent sur cette donnee realiste, C'EST UN RESULTAT VRAI A PUBLIER, PAS UN DEFAUT A CORRIGER — la branche qui produit cet enonce a ete ecrite AVANT la mesure. La convention de tete est 'stricte' (ZONE_GRISE compte comme predit-negatif) : le moteur a explicitement refuse de trancher, et compter ce refus comme un appariement le crediterait d'une decision qu'il n'a pas prise. Les chiffres etiquetes ORACLE sont choisis EN LISANT la verite terrain : ce sont des bornes diagnostiques, JAMAIS des performances du moteur. Tout chiffre est indissociable de son regime de projection (convention) et de son univers (denominateur) : les deux sont publies a cote de lui.",
+  "alerte_plomberie": false,
+  "controles_prealables": {
+    "alerte": false,
+    "auto_paires": [],
+    "cles_dupliquees": [],
+    "couverture_identifiants": {
+      "bijection": true,
+      "identifiants_exclus": [],
+      "n_records": 537,
+      "n_records_distincts": 537,
+      "record_id_dupliques": [],
+      "records_sans_verite": [],
+      "verite_sans_record": []
+    },
+    "ecart_cardinalite_vs_trace_moteur": 0,
+    "motif": null,
+    "n_cles_distinctes": 6235,
+    "n_correspondances": 6235,
+    "orientations_non_canoniques": [],
+    "poids_non_finis": [],
+    "verdicts_hors_enumeration": []
+  },
+  "conventions": {
+    "arrondi_des_mesures": "mesures derivees arrondies UNE SEULE FOIS a 6 decimales avant serialisation",
+    "cadre": "pairwise, micro-agrege. Le cluster-wise (B-cubed, VI, GMD) evalue U-B4 : hors perimetre.",
+    "conventions_de_zone_grise": "stricte (TETE, ZONE_GRISE = predit-negatif) | acceptation (POLITIQUE : tout accepter) | optimiste (bande resolue parfaitement) | pessimiste (bande resolue a l'envers). acceptation et pessimiste coincident numeriquement tant que la revue ne produit aucune decision partielle, mais ne se confondent pas : l'une est une politique, l'autre une borne. Bloc separe 'abstention' : paires grises retirees des deux cotes, toujours flanque de la couverture.",
+    "definition_des_vraies_paires": "CLOTURE d'equivalence induite par ground_truth.id_entite_vraie, diagonale exclue (|M| = somme des C(n_e, 2)). PAS la foret de provenance record_id_origine, qui donne somme des (n_e - 1) et sous-estimerait le denominateur du rappel.",
+    "denominateur_du_rappel": "|M| ENTIER, vraies paires perdues au blocking comprises. Les exclure reviendrait a noter le moteur sur un examen dont il a lui-meme retire les questions difficiles.",
+    "ex_aequo": "AUC en rangs moyens, calcul exact en Fraction, arrondi final unique",
+    "grille_de_r": "R livre a 9 decimales par le moteur ; JAMAIS re-arrondi par le scoreur",
+    "grille_histogramme": "pas 1.0 bit, bornes [-128, 128], DECLAREE a priori (jamais derivee des donnees)",
+    "methode_de_quantile": "interpolation lineaire entre rangs : position = q x (n - 1)",
+    "metriques_non_publiees": "exactitude, specificite, taux de faux positifs, AUC-ROC lue comme mesure operationnelle. Motif : sous une prevalence de ~0,19 %, l'exactitude vaut ~99,8 % pour un systeme qui ne predit RIEN, et tout ratio ayant TN au denominateur est ecrase (Davis & Goadrich 2006). Seul tn_candidats est publie, a titre descriptif.",
+    "univers": "C(N,2) paires possibles. Le blocking ne filtre PAS par source_id : les paires INTRA-source sont incluses, donc le regime mesure est la DEDUPLICATION toutes sources confondues, et non la liaison inter-sources pure. Declare, car les deux ne sont pas comparables."
+  },
+  "couverture_blocking": {
+    "avertissement_non_reinjectable": "la ventilation des pertes est une information de VERITE TERRAIN sur les faiblesses du blocking. Regler les passes ou la longueur de prefixe apres l'avoir lue transformerait un blocking non calibre en blocking calibre sur l'evaluation. Les parametres sont GELES avant la mesure (SHA de commit inscrit dans l'artefact).",
+    "coherence_avec_trace_moteur": {
+      "blocs_ecartes": [],
+      "ecart": 0,
+      "longueur_prefixe": 4,
+      "n_paires_observees": 6235,
+      "n_paires_trace": 6235,
+      "passes": [
+        "CP",
+        "SDX_NOM",
+        "PREF"
+      ],
+      "record_id_dupliques": [],
+      "taille_bloc_max": null
+    },
+    "n_paires_candidates": 6235,
+    "n_paires_possibles": 143916,
+    "n_perdues_annonce_manifest_synth": 7,
+    "n_vraies_perdues": 9,
+    "n_vraies_survivantes": 262,
+    "note_comparabilite": "les 7 vraies paires que le manifest declare perdues le sont au blocking DE SYNTH, qui n'est PAS celui du moteur (CP / SDX_NOM / PREF, prefixe 4). L'ecart entre les deux nombres est un ECART DE CONFIGURATION, jamais une erreur, et il ne declenche aucune modification.",
+    "note_pairs_quality": "c'est aussi la PRECISION du classifieur trivial 'tout candidat est un MATCH' : le plancher contre lequel lire la precision",
+    "pairs_quality": 0.042021,
+    "par_passe": {
+      "n_vraies_trouvees_par_une_seule_passe": 21,
+      "note_marginale": "une passe de marginale nulle est integralement redondante SUR CE JEU ; ce constat est descriptif et n'emporte aucune consigne",
+      "par_passe": {
+        "CP": {
+          "n_paires_apportees": 1134,
+          "n_vraies_apportees": 171,
+          "pc_marginale": 0.070111,
+          "pc_seule": 0.630996
+        },
+        "PREF": {
+          "n_paires_apportees": 4990,
+          "n_vraies_apportees": 243,
+          "pc_marginale": 0.00738,
+          "pc_seule": 0.896679
+        },
+        "SDX_NOM": {
+          "n_paires_apportees": 5079,
+          "n_vraies_apportees": 241,
+          "pc_marginale": 0.0,
+          "pc_seule": 0.889299
+        }
+      }
+    },
+    "pertes": {
+      "enumeration_tronquee": false,
+      "n_perdues": 9,
+      "note_ventilation": "une paire portant plusieurs categories est comptee dans chacune : les effectifs ne s'additionnent PAS au nombre de paires",
+      "paires_perdues": [
+        {
+          "categories_a": [
+            "MANQUANT"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "FORMAT",
+            "MANQUANT",
+            "PHON"
+          ],
+          "id_entite_vraie": "ENT_0001",
+          "record_id_a": "REC_00001",
+          "record_id_b": "REC_00002"
+        },
+        {
+          "categories_a": [
+            "DOUBLON",
+            "FORMAT",
+            "MANQUANT",
+            "PHON"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "MANQUANT"
+          ],
+          "id_entite_vraie": "ENT_0001",
+          "record_id_a": "REC_00002",
+          "record_id_b": "REC_00003"
+        },
+        {
+          "categories_a": [
+            "MANQUANT"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "FORMAT",
+            "TRANSPO"
+          ],
+          "id_entite_vraie": "ENT_0039",
+          "record_id_a": "REC_00065",
+          "record_id_b": "REC_00066"
+        },
+        {
+          "categories_a": [
+            "MANQUANT"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "FORMAT",
+            "MANQUANT",
+            "TRANSPO"
+          ],
+          "id_entite_vraie": "ENT_0039",
+          "record_id_a": "REC_00065",
+          "record_id_b": "REC_00067"
+        },
+        {
+          "categories_a": [
+            "MANQUANT"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "FORMAT",
+            "TRANSPO"
+          ],
+          "id_entite_vraie": "ENT_0057",
+          "record_id_a": "REC_00100",
+          "record_id_b": "REC_00102"
+        },
+        {
+          "categories_a": [
+            "DOUBLON",
+            "FORMAT",
+            "MANQUANT"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "FORMAT",
+            "TRANSPO"
+          ],
+          "id_entite_vraie": "ENT_0057",
+          "record_id_a": "REC_00101",
+          "record_id_b": "REC_00102"
+        },
+        {
+          "categories_a": [
+            "MANQUANT"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "FORMAT",
+            "MANQUANT",
+            "PHON"
+          ],
+          "id_entite_vraie": "ENT_0162",
+          "record_id_a": "REC_00276",
+          "record_id_b": "REC_00277"
+        },
+        {
+          "categories_a": [
+            "MANQUANT"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "FORMAT",
+            "PHON"
+          ],
+          "id_entite_vraie": "ENT_0197",
+          "record_id_a": "REC_00335",
+          "record_id_b": "REC_00336"
+        },
+        {
+          "categories_a": [
+            "DOUBLON",
+            "FORMAT",
+            "PHON"
+          ],
+          "categories_b": [
+            "DOUBLON",
+            "MANQUANT"
+          ],
+          "id_entite_vraie": "ENT_0197",
+          "record_id_a": "REC_00336",
+          "record_id_b": "REC_00337"
+        }
+      ],
+      "ventilation_par_categorie_de_corruption": {
+        "DOUBLON": 9,
+        "FORMAT": 9,
+        "MANQUANT": 9,
+        "PHON": 5,
+        "TRANSPO": 4
+      },
+      "ventilation_par_taille_entite": {
+        "2": 1,
+        "3": 8
+      }
+    },
+    "plafond_de_rappel": 0.96679,
+    "portee_du_plafond": "decision par paire (U-B2/U-B3) ; une partie des paires perdues peut etre recuperee par transitivite en U-B4, ce que cette mesure ne couvre pas",
+    "rappel_blocking": 0.96679,
+    "taux_de_reduction": 0.956676
+  },
+  "diagnostic_supervise_non_reinjectable": {
+    "avertissement": "SEUL chiffre supervise de l'artefact. T* est choisi EN LISANT la verite terrain sur un jeu de calibration DISJOINT, et rapporte sur l'evaluation. Il n'est JAMAIS passe au moteur : le nom 'non_reinjectable' rend toute tentative visible par grep.",
+    "ecart_calibration_evaluation": 0.057834,
+    "f1_calibration_a_t_optimal": 0.972332,
+    "f1_evaluation_a_t_optimal": 0.914498,
+    "f1_evaluation_seuils_non_supervises": 0.898246,
+    "n_vraies_calibration": 129,
+    "n_vraies_evaluation": 142,
+    "regret": 0.016253,
+    "t_optimal_calibration": 5.714879491
+  },
+  "distribution_r": {
+    "note_deux_perimetres": "les paires gardees R-20 portent R = 0.0 comme VALEUR PAR DEFAUT et non comme score : les inclure plante un pic artificiel exactement a la frontiere. Les DEUX perimetres sont donc calcules et publies, declares avant mesure, et aucun n'est choisi apres coup. Les metriques P/R/F1 portent TOUJOURS sur toutes les paires candidates, gardees comprises.",
+    "note_perimetre": "R n'existe que sur les paires candidates : 9 vraie(s) paire(s) perdue(s) au blocking n'en ont pas. La distribution ne couvre donc PAS toutes les vraies paires.",
+    "par_perimetre": {
+      "hors_garde_r20": {
+        "definition": "paires ayant au moins une composante informative",
+        "exclus": {
+          "fausses": 0,
+          "n": 0,
+          "vraies": 0
+        },
+        "fausses": {
+          "ecart_type": 4.374512,
+          "max": 7.158831,
+          "mediane": -9.90107,
+          "min": -22.887283,
+          "moyenne": -9.55621,
+          "n": 5973,
+          "n_valeurs_distinctes": 311,
+          "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+          "q01": -18.65692,
+          "q05": -15.741759,
+          "q10": -14.313599,
+          "q25": -12.863144,
+          "q75": -6.754733,
+          "q90": -3.382385,
+          "q95": -1.98154,
+          "q99": 2.133798
+        },
+        "separation": {
+          "ap": 0.944473,
+          "ap_reference": 0.042021,
+          "ap_reference_coherente_avec_le_rappel": 0.040625,
+          "auc": 0.997265,
+          "avertissement_auc": "invariante a la prevalence : mesure de SEPARATION comparable entre jeux, PAS une mesure de qualite operationnelle",
+          "denominateur_de_l_auc": 262,
+          "desequilibre": {
+            "n_fausses": 5973,
+            "n_vraies": 262,
+            "ratio": 22.79771,
+            "taux_de_positifs": 0.042021
+          },
+          "ecart_medianes": 31.636749,
+          "ks_d": 0.955,
+          "ks_x_non_actionnable": -0.23959193,
+          "lecture_equiv": "nombre de vraies paires ENTIEREMENT mal classees qui produirait la meme AUC. Le denominateur COHERENT est celui de l'AUC elle-meme, |M inter C| = 262 (paires reellement scorees) : c'est `paires_scorees_equivalentes_mal_classees`. `paires_vraies_equivalentes_mal_classees` emploie |M| = 271, perimetre du critere gele C1, conserve tel quel et surestimant la conversion de 3.4 %.",
+          "lift": 22.476299,
+          "marge_de_separation": -11.3566,
+          "note_ap_reference": "ap_reference = n_v/(n_v+n_f) est la precision d'un tirage aleatoire sur les paires SCOREES, alors que l'AP est calculee avec un rappel de denominateur |M|. La reference ramenee au meme perimetre est publiee a cote.",
+          "ovl": 0.038738,
+          "ovl_pas_fin": 0.033448,
+          "ovl_sensible_au_binning": false,
+          "paires_scorees_equivalentes_mal_classees": 0.716642,
+          "paires_vraies_equivalentes_mal_classees": 0.741259,
+          "part_fausses_dans_la_plage_commune": 0.140298,
+          "part_vraies_dans_la_plage_commune": 0.072519,
+          "plage_commune": [
+            -4.197769,
+            7.158831
+          ],
+          "plancher_bayes_r": 11,
+          "separabilite_par_seuil_unique": 0.9775,
+          "supports_disjoints": false,
+          "tolerance_binning": 0.05,
+          "tvd": 0.961262
+        },
+        "vraies": {
+          "ecart_type": 9.263751,
+          "max": 38.52538,
+          "mediane": 21.735679,
+          "min": -4.197769,
+          "moyenne": 19.875205,
+          "n": 262,
+          "n_valeurs_distinctes": 86,
+          "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+          "q01": -3.382385,
+          "q05": 4.57199,
+          "q10": 7.604718,
+          "q25": 11.641205,
+          "q75": 23.940863,
+          "q90": 32.403635,
+          "q95": 33.85409,
+          "q99": 38.52538
+        }
+      },
+      "principal": {
+        "definition": "toutes les paires candidates (ce que la decision voit reellement)",
+        "fausses": {
+          "ecart_type": 4.374512,
+          "max": 7.158831,
+          "mediane": -9.90107,
+          "min": -22.887283,
+          "moyenne": -9.55621,
+          "n": 5973,
+          "n_valeurs_distinctes": 311,
+          "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+          "q01": -18.65692,
+          "q05": -15.741759,
+          "q10": -14.313599,
+          "q25": -12.863144,
+          "q75": -6.754733,
+          "q90": -3.382385,
+          "q95": -1.98154,
+          "q99": 2.133798
+        },
+        "histogramme": {
+          "fausses": {
+            "bornes_declarees": [
+              -128.0,
+              128.0
+            ],
+            "n_hors_support": 0,
+            "pas": 1.0,
+            "seaux": {
+              "-1": 38,
+              "-10": 312,
+              "-11": 300,
+              "-12": 693,
+              "-13": 580,
+              "-14": 493,
+              "-15": 516,
+              "-16": 96,
+              "-17": 9,
+              "-18": 113,
+              "-19": 99,
+              "-2": 145,
+              "-20": 1,
+              "-21": 21,
+              "-22": 6,
+              "-23": 1,
+              "-3": 235,
+              "-4": 204,
+              "-5": 226,
+              "-6": 221,
+              "-7": 348,
+              "-8": 457,
+              "-9": 733,
+              "0": 38,
+              "1": 24,
+              "2": 37,
+              "3": 16,
+              "4": 2,
+              "5": 3,
+              "6": 5,
+              "7": 1
+            }
+          },
+          "vraies": {
+            "bornes_declarees": [
+              -128.0,
+              128.0
+            ],
+            "n_hors_support": 0,
+            "pas": 1.0,
+            "seaux": {
+              "-1": 4,
+              "-2": 1,
+              "-4": 3,
+              "-5": 2,
+              "0": 1,
+              "10": 14,
+              "11": 22,
+              "12": 3,
+              "13": 2,
+              "14": 4,
+              "15": 3,
+              "16": 10,
+              "17": 6,
+              "18": 10,
+              "19": 11,
+              "2": 1,
+              "20": 8,
+              "21": 19,
+              "22": 12,
+              "23": 40,
+              "24": 1,
+              "26": 11,
+              "27": 11,
+              "28": 1,
+              "29": 5,
+              "30": 5,
+              "32": 7,
+              "33": 12,
+              "34": 4,
+              "38": 9,
+              "4": 3,
+              "5": 1,
+              "6": 2,
+              "7": 9,
+              "8": 1,
+              "9": 4
+            }
+          }
+        },
+        "planchers": {
+          "n_valeurs_mixtes": 6,
+          "oracle_f1": {
+            "f1_max": 0.947776,
+            "fn": 26,
+            "fp": 1,
+            "precision": 0.995935,
+            "rappel": 0.904059,
+            "seuil": 6.4505038505000005,
+            "statut": "ORACLE — choisi EN LISANT la verite terrain ; borne superieure diagnostique, non transferable ; NE PAS reporter comme performance du moteur",
+            "tp": 245
+          },
+          "part_paires_mixtes": 0.022935,
+          "plancher_bayes_r": 11,
+          "plancher_seuil_unique": {
+            "erreurs": 27,
+            "fn": 26,
+            "fp": 1,
+            "note": "plancher des regles MONOTONES ; >= plancher de Bayes",
+            "seuil": 6.4505038505000005,
+            "tp": 245
+          }
+        },
+        "separation": {
+          "ap": 0.944473,
+          "ap_reference": 0.042021,
+          "ap_reference_coherente_avec_le_rappel": 0.040625,
+          "auc": 0.997265,
+          "avertissement_auc": "invariante a la prevalence : mesure de SEPARATION comparable entre jeux, PAS une mesure de qualite operationnelle",
+          "denominateur_de_l_auc": 262,
+          "desequilibre": {
+            "n_fausses": 5973,
+            "n_vraies": 262,
+            "ratio": 22.79771,
+            "taux_de_positifs": 0.042021
+          },
+          "ecart_medianes": 31.636749,
+          "ks_d": 0.955,
+          "ks_x_non_actionnable": -0.23959193,
+          "lecture_equiv": "nombre de vraies paires ENTIEREMENT mal classees qui produirait la meme AUC. Le denominateur COHERENT est celui de l'AUC elle-meme, |M inter C| = 262 (paires reellement scorees) : c'est `paires_scorees_equivalentes_mal_classees`. `paires_vraies_equivalentes_mal_classees` emploie |M| = 271, perimetre du critere gele C1, conserve tel quel et surestimant la conversion de 3.4 %.",
+          "lift": 22.476299,
+          "marge_de_separation": -11.3566,
+          "note_ap_reference": "ap_reference = n_v/(n_v+n_f) est la precision d'un tirage aleatoire sur les paires SCOREES, alors que l'AP est calculee avec un rappel de denominateur |M|. La reference ramenee au meme perimetre est publiee a cote.",
+          "ovl": 0.038738,
+          "ovl_pas_fin": 0.033448,
+          "ovl_sensible_au_binning": false,
+          "paires_scorees_equivalentes_mal_classees": 0.716642,
+          "paires_vraies_equivalentes_mal_classees": 0.741259,
+          "part_fausses_dans_la_plage_commune": 0.140298,
+          "part_vraies_dans_la_plage_commune": 0.072519,
+          "plage_commune": [
+            -4.197769,
+            7.158831
+          ],
+          "plancher_bayes_r": 11,
+          "separabilite_par_seuil_unique": 0.9775,
+          "supports_disjoints": false,
+          "tolerance_binning": 0.05,
+          "tvd": 0.961262
+        },
+        "total": {
+          "ecart_type": 7.537084,
+          "max": 38.52538,
+          "mediane": -9.58006,
+          "min": -22.887283,
+          "moyenne": -8.319477,
+          "n": 6235,
+          "n_valeurs_distinctes": 391,
+          "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+          "q01": -18.65692,
+          "q05": -15.643051,
+          "q10": -14.313599,
+          "q25": -12.863144,
+          "q75": -6.531576,
+          "q90": -2.416238,
+          "q95": 2.133798,
+          "q99": 26.590473
+        },
+        "vraies": {
+          "ecart_type": 9.263751,
+          "max": 38.52538,
+          "mediane": 21.735679,
+          "min": -4.197769,
+          "moyenne": 19.875205,
+          "n": 262,
+          "n_valeurs_distinctes": 86,
+          "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+          "q01": -3.382385,
+          "q05": 4.57199,
+          "q10": 7.604718,
+          "q25": 11.641205,
+          "q75": 23.940863,
+          "q90": 32.403635,
+          "q95": 33.85409,
+          "q99": 38.52538
+        }
+      }
+    },
+    "sensible_au_perimetre": false
+  },
+  "empreinte_des_mesures": "08d77c791bbf31ed0fa9597fd2d451272c5c8629a04c10a36e92dbbaceecb305",
+  "limites": [
+    "DEFAUT DU CRITERE GELE C1, CONSERVE ET PUBLIE (regle de non-revision). C1 lit `(1 - auc) x |M|` avec |M| = 271, alors que l'AUC divise par le nombre de vraies paires REELLEMENT SCOREES (|M inter C| = 262 : les paires perdues au blocking n'ont pas de R et n'entrent dans aucune comparaison). Descendre une vraie paire sous toutes les fausses coute donc 1/262 d'AUC, et non 1/271 : la conversion que le pre-enregistrement declare « EXACTE » surestime de 3,4 %. Le critere n'est PAS reecrit apres coup — c'est la regle que le pre-enregistrement s'impose a lui-meme — et la conversion coherente est publiee a cote, sous `paires_scorees_equivalentes_mal_classees`. VERIFIE : l'ecart ne change pas la bande atteinte par C1, les deux valeurs tombant entre les memes bornes (0,5 et 3,0).",
+    "DEFAUT DU CRITERE GELE B4, CONSERVE ET PUBLIE (regle de non-revision). B4 compare `largeur_intervalle_f1` (= F1 optimiste - F1 pessimiste, soit l'AMPLITUDE entre le meilleur et le PIRE relecteur concevable) au seuil MIN_LARGEUR_F1 = 0,01, alors que son enonce pre-ecrit decrit un GAIN (« une resolution parfaite de la bande porterait le F1 de +Y points »), c'est-a-dire F1 optimiste - F1 de la convention de tete. Les deux different d'un facteur ~27 sur ce jeu. Le critere n'est pas reecrit ; le gain est publie a cote sous `gain_d_une_revue_parfaite_f1`, et la table de proximite le confronte AUSSI au seuil, de sorte qu'un lecteur voie ce que B4 aurait donne s'il avait ete pose sur la grandeur que son enonce nomme.",
+    "OPTIMISME IN-SAMPLE, assume et declare : l'EM des m/u et le dimensionnement de la bande sont non supervises (aucune fuite d'ETIQUETTES possible) mais ajustes sur la population meme ou ils sont mesures. Regime transductif SANS etiquette. Aucun split ne le corrige, deliberement : en exploitation le moteur ajuste aussi son EM sur la population qu'il traite, et splitter mesurerait un moteur qui n'est pas celui qu'on livre. Corollaire : ces chiffres ne predisent pas la performance sur une population NOUVELLE.",
+    "TAUTOLOGIE RESIDUELLE DE LA BANDE : sa taille est dimensionnee sur la population ou elle est mesuree. L'avertissement ecrit avant le chiffre neutralise la LECTURE, pas le FAIT.",
+    "UNE SEULE FIXTURE, UNE SEULE GRAINE EM, UNE SEULE CONFIGURATION DE BLOCKING : aucune variance inter-fixtures, inter-graines ou inter-configurations n'est estimee. Les intervalles de Wilson decrivent l'incertitude d'ECHANTILLONNAGE des proportions sur ce jeu, pas la variabilite qu'induirait un autre tirage.",
+    "LE PLAFOND DE BLOCKING N'EST PAS LE PLAFOND DE LA CHAINE : une vraie paire perdue peut etre recuperee par transitivite en U-B4. Le rappel publie est donc PESSIMISTE du point de vue du systeme complet, et l'ecart n'est pas mesure ici.",
+    "METRIQUES CLUSTER-WISE ABSENTES (B-cubed, variation d'information, generalized merge distance) : elles relevent de U-B4. Le F1 pairwise pondere un cluster de taille n par n(n-1)/2 ; il n'est comparable d'un jeu a l'autre qu'accompagne de la distribution des tailles de cluster, publiee pour cette raison.",
+    "DEBIT REEL DE LA REVUE U-B3 NON MESURE : le budget de 300 derive d'un modele de capacite provisoire. largeur_intervalle_f1 mesure ce qu'une revue PARFAITE apporterait au maximum ; elle ne dit rien de ce qu'une revue REELLE apportera.",
+    "TRANSFERABILITE DE LA PRECISION : elle depend de la prevalence de l'ensemble candidat. Le meme moteur sur un blocking plus large la verrait chuter sans avoir change. Elle est donc publiee avec |C|, pairs_quality et la prevalence, mais aucune correction ne la rend transportable.",
+    "INDEPENDANCE CONDITIONNELLE ASSUMEE PAR LE MOTEUR : le modele Fellegi-Sunter suppose les 8 attributs conditionnellement independants, hypothese certainement violee (code postal et ville, nom et prefixe de blocking). Le scoreur MESURE la sortie ; il ne teste pas l'hypothese et ne peut pas dire quelle part du recouvrement residuel lui est imputable.",
+    "ARBITRAIRE ASSUME DE PLUSIEURS SEUILS DE LECTURE : ils sont argumentes mais restent des conventions. Leur vertu n'est pas d'etre justes, c'est d'etre FIXES, publies et verifiablement anterieurs aux chiffres (commit dedie + sha256).",
+    "LE PRE-ENREGISTREMENT PROTEGE DU CHOIX DE CRITERE, PAS DU CHOIX DE MESURE : le catalogue de mesures publiees a lui-meme ete choisi avant la mesure, mais sans controle externe. Un tiers avec un autre catalogue obtiendrait des chiffres differents sur les memes donnees ; c'est le bloc 'conventions' qui limite ce risque.",
+    "DIAGNOSTIC DES FAUX NEGATIFS calcule sur l'echantillon EXHIBE (au plus 50, ordonne par -poids_match), et non sur la totalite. Le perimetre est declare a cote du chiffre.",
+    "PUISSANCE DU SPLIT : un cote portant moins de 60 vraies paires donne une demi-largeur de Wilson superieure a ~5 points pres de 0,95 ; la mesure supervisee est alors etiquetee INDICATIVE — etiquetee, pas supprimee. L'exclusion des paires a cheval rend de plus la precision intra-pli OPTIMISTE.",
+    "NON-COMPARABILITE AVEC LES CHIFFRES V1.1 : population differente, donc aucun chiffre de cet artefact ne se compare a une mesure anterieure sur une autre fixture."
+  ],
+  "mandat": "DISP-UB5-01",
+  "objectif": "O2",
+  "preenregistrement": {
+    "commit_de_gel": "0eab13c85e552faa86ca05f173b960ace0b4f3ab",
+    "criteres_declares": [
+      "A1_RAPPEL",
+      "A2_ATTRIBUTION",
+      "A3_FN_EXPLIQUES",
+      "A4_FN_FACILES",
+      "A5_DEGENERESCENCE",
+      "B1_VOLUME",
+      "B2_MIXITE",
+      "B3_IRREDUCTIBILITE",
+      "B4_ENJEU",
+      "B5_NATURE_DU_DOUTE",
+      "C1_SEPARATION",
+      "D1_MOTEUR_EXCELLENT",
+      "E1_REGRET",
+      "P0_PLOMBERIE"
+    ],
+    "justifications": {
+      "MAX_EQUIV_MAL_CLASSEES_SEPAREES": "moins d'une demi-paire equivalente mal classee sur 271",
+      "MIN_EFFECTIF_MINORITAIRE": "plancher d'inspectabilite de la classe minoritaire",
+      "MIN_EQUIV_MAL_CLASSEES_RECOUVREMENT": "trois paires equivalentes mal classees : regime caracterisable",
+      "MIN_LARGEUR_F1": "1 point de F1 ~ trois vraies paires reclassees",
+      "MIN_PAIRES_INSPECTABLES": "plancher d'inspectabilite : 5 cas se lisent un a un",
+      "MIN_PART_MINORITAIRE": "2 % separe 'mixte' de 'quelques trainards' ; 5 % masquerait 3,7 pts de rappel",
+      "MIN_PART_PAIRES_MIXTES": "seule condition repondant litteralement a 'le score seul tranche-t-il ?'",
+      "MIN_PLANCHER_BAYES_BANDE": "nombre minimal d'erreurs irreductibles pour qu'une revue ait une cible",
+      "MIN_RAPPEL_EN_JEU": "2 points de rappel = l'ordre de grandeur de l'IC de Wilson a ce denominateur",
+      "MIN_VOLUME_GRIS": "sous 30, aucune proportion de la bande n'a une demi-largeur < ~18 points",
+      "REGRET_MAX": "2 points de F1 : en deca, l'independance vaut plus que le gain",
+      "SEUIL_F1_EXCELLENT": "seuil de LISIBILITE : au-dela, la conclusion operatoire ne change plus",
+      "SEUIL_FN_EXPLIQUES": "au-dela, le residu releve du cas particulier, non d'un motif de regle",
+      "SEUIL_FN_FACILES": "au-dela, des paires faciles sont manquees : anomalie de decision",
+      "SEUIL_PART_BLOCKING": "point ou l'une des deux causes de perte devient majoritaire",
+      "SEUIL_RAPPEL_EXERCE": "9 paires manquees = strictement plus que les 7 perdues structurellement annoncees ; coincide avec l'exclusion de 1,0 par l'IC de Wilson",
+      "SEUIL_RAPPEL_PLOMBERIE": "diagnostique, non une attente de performance : sous 0,50 la jointure est plus suspecte que le moteur",
+      "SEUIL_RAPPEL_SATURE": "1 paire manquee sur 271 est un cas singulier, pas un regime d'erreur"
+    },
+    "ordre": "pose avant toute mesure ; committe SEUL et AVANT le code de mesure",
+    "sha256_criteres": "aecb7b0cb2d91389ab8d5f398559ca1981fa0f31e6aee4af8f36835967f9370e",
+    "socle_de_resolution": {
+      "ancre_structurelle_empruntee": "le manifest du pack annonce 7 vraies paires perdues au blocking DE SYNTH (plafond 264/271 ~ 0,9742). C'est le seul ordre de grandeur de paires structurellement dures disponible avant mesure ; il porte sur un AUTRE blocking que celui du moteur, et sert de repere, JAMAIS d'attendu",
+      "demi_largeur_wilson_95_a_0_97_sur_271": 0.02,
+      "demi_largeur_wilson_95_a_0_995_sur_271": 0.008,
+      "demi_largeur_wilson_95_sur_30": 0.18,
+      "n_paires_possibles": 143916,
+      "n_vraies_paires_annonce": 271,
+      "poids_d_une_vraie_paire_en_rappel": 0.00369,
+      "prevalence_absolue_approx": 0.001883
+    }
+  },
+  "profil_des_vraies_paires": {
+    "au_moins_une_vraie_paire_non_triviale": true,
+    "n_vraies_paires": 271,
+    "n_vraies_paires_corrompues": 271,
+    "n_vraies_paires_non_triviales": 217,
+    "note": "garde anti-degenerescence : un rappel eleve obtenu sur des doublons quasi exacts, ou en declarant tout MATCH, ne mesure pas la discrimination",
+    "part_vraies_paires_corrompues": 1.0
+  },
+  "provenance": {
+    "arbre_de_travail_propre": true,
+    "branche": "build/U-B5",
+    "commit_de_gel_des_criteres": "0eab13c85e552faa86ca05f173b960ace0b4f3ab",
+    "commit_engine": "7ef6c0e31e398d681142b992984ee6b717e4f854",
+    "estimation_em": {
+      "champs_repli": [],
+      "convergence": true,
+      "echange_de_classes": false,
+      "graine": "U-B2::E-DEC::EM::seed-0001",
+      "iterations": 127,
+      "motif_repli": null,
+      "note": "l'estimation EM est NON SUPERVISEE : aucune etiquette n'y entre, donc aucune fuite de verite terrain n'est possible a cette etape",
+      "p": 0.045099,
+      "repli": false
+    },
+    "fixture": {
+      "canonicalisation": "sha256(UTF-8(json.dumps({records, ground_truth, corruption_annotation}, sort_keys=True, ensure_ascii=False, separators=(', ', ': ')))) ; manifest exclu",
+      "chemin_relatif_repo": "../../../env/synth_env/FIXTURE_PACK_GT_V1_2.json",
+      "content_sha256_attendu": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2",
+      "content_sha256_recalcule": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2",
+      "note_canonicalisation": "V1.2 a RETIRE la cle 'zone_intention_design' presente en V1.1 : la canonicalisation a 4 cles ne s'y applique pas. Le jeu de cles fait donc partie de la reference, et il est celui que le manifest du pack declare lui-meme.",
+      "seal_declare": "c7cb6b0a64e3d257",
+      "version_declaree": "V1.2"
+    },
+    "graine_split_scellee": "U-B5::SCORER::SPLIT::sel-0001",
+    "note_proprete": "l'artefact produit par cette execution est exclu du controle : le champ atteste l'etat du CODE, pas celui de sa sortie",
+    "parametres_moteur_par_regime": {
+      "seuils_dimensionnes": {
+        "t_lambda": -2.411412107,
+        "t_mu": 2.322127427
+      },
+      "seuils_placeholder": {
+        "t_lambda": -8.0,
+        "t_mu": 8.0
+      }
+    },
+    "verite_terrain_recomptee": {
+      "controle_manifest": {
+        "coincide": true,
+        "definition_retenue": "cloture d'equivalence sur id_entite_vraie (pre-enregistree)",
+        "ecart": 0,
+        "n_vraies_paires_annonce": 271,
+        "n_vraies_paires_recompte": 271
+      },
+      "n_vraies_paires": 271
+    },
+    "version_python": "3.12.14",
+    "version_scoreur": "U-B5 / scorer 1.0"
+  },
+  "regimes": {
+    "seuils_dimensionnes": {
+      "abstention": {
+        "avertissement": "metriques calculees sur les seules paires DECIDEES : elles sont mecaniquement meilleures (Chow 1970) et ne se lisent qu'avec la couverture affichee a cote.",
+        "couverture": 0.952205,
+        "f1": 0.894831,
+        "n_paires_abstenues": 298,
+        "n_paires_decidees": 5937,
+        "precision": 0.847973,
+        "rappel": 0.94717
+      },
+      "attribution_des_fn": {
+        "causes": {
+          "garde_r20": 0,
+          "non_match_par_seuil": 5,
+          "perdue_blocking": 9,
+          "zone_grise": 6
+        },
+        "enumeration_tronquee": false,
+        "fn_exhibees": [
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 4,
+            "poids_match": 0.827262999,
+            "poids_par_champ": {
+              "adresse": 3.6250376935132045,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00202",
+            "record_id_b": "REC_00203",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00082",
+            "record_id_b": "REC_00084",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00206",
+            "record_id_b": "REC_00207",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00241",
+            "record_id_b": "REC_00242",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00394",
+            "record_id_b": "REC_00395",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -1.366252847,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": -1.266951939460142,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00018",
+            "record_id_b": "REC_00019",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "cause": "non_match_par_seuil",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -3.382385062,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00129",
+            "record_id_b": "REC_00131",
+            "verdict": "NON_MATCH"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "cause": "non_match_par_seuil",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -3.382385062,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00130",
+            "record_id_b": "REC_00131",
+            "verdict": "NON_MATCH"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "cause": "non_match_par_seuil",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -3.382385062,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00235",
+            "record_id_b": "REC_00236",
+            "verdict": "NON_MATCH"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "TYPO"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "cause": "non_match_par_seuil",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 7,
+            "poids_match": -4.076514902,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 4.671290465455318,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": -1.266951939460142,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00260",
+            "record_id_b": "REC_00261",
+            "verdict": "NON_MATCH"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "non_match_par_seuil",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 4,
+            "poids_match": -4.197769274,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00014",
+            "record_id_b": "REC_00015",
+            "verdict": "NON_MATCH"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "PHON"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00001",
+            "record_id_b": "REC_00002"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "PHON"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00002",
+            "record_id_b": "REC_00003"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00065",
+            "record_id_b": "REC_00066"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00065",
+            "record_id_b": "REC_00067"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00100",
+            "record_id_b": "REC_00102"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00101",
+            "record_id_b": "REC_00102"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "PHON"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00276",
+            "record_id_b": "REC_00277"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "PHON"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00335",
+            "record_id_b": "REC_00336"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "PHON"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00336",
+            "record_id_b": "REC_00337"
+          }
+        ],
+        "n_exhibees": 20,
+        "n_faux_negatifs": 20,
+        "ordre": "(-poids_match, record_id_a, record_id_b) : ordre TOTAL, quasi-succes d'abord",
+        "somme_controlee": 20
+      },
+      "cardinaux": {
+        "n_candidates": 6235,
+        "n_match": 296,
+        "n_vraies": 271,
+        "n_vraies_candidates": 262,
+        "taux_match": 0.047474
+      },
+      "contingence": {
+        "gf": 292,
+        "gv": 6,
+        "mf": 45,
+        "mv": 251,
+        "nf": 5636,
+        "nv": 5,
+        "pb": 9
+      },
+      "convention_de_tete": "stricte",
+      "decomposition_du_rappel": {
+        "convention": "stricte",
+        "lecture": "le rappel bout en bout est le produit du rappel de blocking (ce que la chaine peut au mieux atteindre) et du rappel post-blocking (ce que la decision en fait)",
+        "rappel_blocking": 0.96679,
+        "rappel_bout_en_bout": 0.926199,
+        "rappel_post_blocking": 0.958015
+      },
+      "diagnostic_des_fn": {
+        "causes_materielles": "perdue au blocking | garde R-20 | >= 2 DESACCORD | >= 3 INDETERMINE_MANQUANT | >= 1 DESACCORD sur email/telephone/date_naissance | >= 1 categorie de corruption",
+        "mediane_r_des_vraies": 21.735679,
+        "n_fn_au_dessus_de_la_mediane": 0,
+        "n_fn_examines": 20,
+        "n_fn_expliques": 20,
+        "note_perimetre": "diagnostic calcule sur les FN EXHIBES (au plus 50, ordonnes par -poids_match) et non sur la totalite : l'echantillon est celui des quasi-succes, donc le plus severe pour le moteur. Le perimetre est declare plutot que tu, et 'enumeration_tronquee' dit s'il y en avait davantage.",
+        "part_fn_au_dessus_de_la_mediane_des_vraies": 0.0,
+        "part_fn_expliques": 1.0
+      },
+      "faux_positifs": {
+        "enumeration_tronquee": false,
+        "liste_bornee": [
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 4,
+            "poids_match": 7.158830624,
+            "record_id_a": "REC_00053",
+            "record_id_b": "REC_00207"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_PARTIEL",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 6.430821339,
+            "record_id_a": "REC_00279",
+            "record_id_b": "REC_00319"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 6.313937676,
+            "record_id_a": "REC_00097",
+            "record_id_b": "REC_00299"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 6.232266718,
+            "record_id_a": "REC_00149",
+            "record_id_b": "REC_00242"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 6.232266718,
+            "record_id_a": "REC_00242",
+            "record_id_b": "REC_00243"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 6.220198395,
+            "record_id_a": "REC_00099",
+            "record_id_b": "REC_00155"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "DESACCORD",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 5.708375245,
+            "record_id_a": "REC_00052",
+            "record_id_b": "REC_00207"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "DESACCORD",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 8,
+            "poids_match": 5.256807516,
+            "record_id_a": "REC_00185",
+            "record_id_b": "REC_00381"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_PARTIEL",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 5.153974009,
+            "record_id_a": "REC_00472",
+            "record_id_b": "REC_00534"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_PARTIEL",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 4,
+            "poids_match": 4.692331604,
+            "record_id_a": "REC_00072",
+            "record_id_b": "REC_00498"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 4.557807986,
+            "record_id_a": "REC_00158",
+            "record_id_b": "REC_00445"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 3.875746469,
+            "record_id_a": "REC_00239",
+            "record_id_b": "REC_00517"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_PARTIEL",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 3.765767698,
+            "record_id_a": "REC_00017",
+            "record_id_b": "REC_00242"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_PARTIEL",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 3.765767698,
+            "record_id_a": "REC_00019",
+            "record_id_b": "REC_00242"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_PARTIEL",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 3.765767698,
+            "record_id_a": "REC_00511",
+            "record_id_b": "REC_00535"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 4,
+            "poids_match": 3.742423775,
+            "record_id_a": "REC_00242",
+            "record_id_b": "REC_00403"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 4,
+            "poids_match": 3.742423775,
+            "record_id_a": "REC_00242",
+            "record_id_b": "REC_00404"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 4,
+            "poids_match": 3.742423775,
+            "record_id_a": "REC_00242",
+            "record_id_b": "REC_00405"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 3.710333738,
+            "record_id_a": "REC_00043",
+            "record_id_b": "REC_00116"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "TYPO"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 3.710333738,
+            "record_id_a": "REC_00044",
+            "record_id_b": "REC_00116"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "DESACCORD",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 3.514859399,
+            "record_id_a": "REC_00270",
+            "record_id_b": "REC_00525"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "DESACCORD",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 3.514859399,
+            "record_id_a": "REC_00270",
+            "record_id_b": "REC_00527"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "DESACCORD"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 3.305037619,
+            "record_id_a": "REC_00099",
+            "record_id_b": "REC_00156"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_PARTIEL",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "DESACCORD",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 3.241876225,
+            "record_id_a": "REC_00015",
+            "record_id_b": "REC_00343"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_PARTIEL",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 3.147737184,
+            "record_id_a": "REC_00279",
+            "record_id_b": "REC_00317"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_PARTIEL",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 7,
+            "poids_match": 3.147737184,
+            "record_id_a": "REC_00279",
+            "record_id_b": "REC_00318"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "DESACCORD",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 3.043492225,
+            "record_id_a": "REC_00027",
+            "record_id_b": "REC_00430"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00005",
+            "record_id_b": "REC_00523"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00030",
+            "record_id_b": "REC_00324"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00031",
+            "record_id_b": "REC_00322"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00031",
+            "record_id_b": "REC_00324"
+          },
+          {
+            "categories_a": [
+              "DOUBLON"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00032",
+            "record_id_b": "REC_00324"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00199",
+            "record_id_b": "REC_00376"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00273",
+            "record_id_b": "REC_00486"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00299",
+            "record_id_b": "REC_00530"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00299",
+            "record_id_b": "REC_00531"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00305",
+            "record_id_b": "REC_00330"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "TYPO"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.949182563,
+            "record_id_a": "REC_00305",
+            "record_id_b": "REC_00331"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_PARTIEL",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 2.672741006,
+            "record_id_a": "REC_00017",
+            "record_id_b": "REC_00207"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "ACCORD_PARTIEL",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 5,
+            "poids_match": 2.672741006,
+            "record_id_a": "REC_00019",
+            "record_id_b": "REC_00207"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "categories_b": [
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.608794529,
+            "record_id_a": "REC_00018",
+            "record_id_b": "REC_00021"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.608794529,
+            "record_id_a": "REC_00085",
+            "record_id_b": "REC_00206"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.608794529,
+            "record_id_a": "REC_00264",
+            "record_id_b": "REC_00460"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "DESACCORD",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.608794529,
+            "record_id_a": "REC_00265",
+            "record_id_b": "REC_00460"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "ACCORD_PARTIEL",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "n_composantes_informatives": 6,
+            "poids_match": 2.498815759,
+            "record_id_a": "REC_00056",
+            "record_id_b": "REC_00148"
+          }
+        ],
+        "n": 45,
+        "ordre": "(-poids_match, record_id_a, record_id_b)"
+      },
+      "invariants_verifies": true,
+      "mesures_par_convention": {
+        "acceptation": {
+          "convention": "acceptation",
+          "denominateurs_explicites": {
+            "precision": 594,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.59422,
+          "f1_post_blocking": 0.600467,
+          "fn": 14,
+          "fn_blocking": 9,
+          "fn_scoring": 5,
+          "fp": 337,
+          "ic_wilson_95": {
+            "precision": [
+              0.393375,
+              0.47281
+            ],
+            "rappel_bout_en_bout": [
+              0.915165,
+              0.968981
+            ],
+            "rappel_post_blocking": [
+              0.956111,
+              0.991822
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 0.43266,
+          "rappel_bout_en_bout": 0.948339,
+          "rappel_post_blocking": 0.980916,
+          "tn_candidats": 5636,
+          "tp": 257
+        },
+        "optimiste": {
+          "convention": "optimiste",
+          "denominateurs_explicites": {
+            "precision": 302,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.897033,
+          "f1_post_blocking": 0.911348,
+          "fn": 14,
+          "fn_blocking": 9,
+          "fn_scoring": 5,
+          "fp": 45,
+          "ic_wilson_95": {
+            "precision": [
+              0.806433,
+              0.886737
+            ],
+            "rappel_bout_en_bout": [
+              0.915165,
+              0.968981
+            ],
+            "rappel_post_blocking": [
+              0.956111,
+              0.991822
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 0.850993,
+          "rappel_bout_en_bout": 0.948339,
+          "rappel_post_blocking": 0.980916,
+          "tn_candidats": 5636,
+          "tp": 257
+        },
+        "pessimiste": {
+          "convention": "pessimiste",
+          "denominateurs_explicites": {
+            "precision": 588,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.5844,
+          "f1_post_blocking": 0.590588,
+          "fn": 20,
+          "fn_blocking": 9,
+          "fn_scoring": 11,
+          "fp": 337,
+          "ic_wilson_95": {
+            "precision": [
+              0.387493,
+              0.467198
+            ],
+            "rappel_bout_en_bout": [
+              0.888763,
+              0.951721
+            ],
+            "rappel_post_blocking": [
+              0.926396,
+              0.976397
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 0.426871,
+          "rappel_bout_en_bout": 0.926199,
+          "rappel_post_blocking": 0.958015,
+          "tn_candidats": 5636,
+          "tp": 251
+        },
+        "stricte": {
+          "convention": "stricte",
+          "denominateurs_explicites": {
+            "precision": 296,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.885362,
+          "f1_post_blocking": 0.899642,
+          "fn": 20,
+          "fn_blocking": 9,
+          "fn_scoring": 11,
+          "fp": 45,
+          "ic_wilson_95": {
+            "precision": [
+              0.80263,
+              0.884399
+            ],
+            "rappel_bout_en_bout": [
+              0.888763,
+              0.951721
+            ],
+            "rappel_post_blocking": [
+              0.926396,
+              0.976397
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 0.847973,
+          "rappel_bout_en_bout": 0.926199,
+          "rappel_post_blocking": 0.958015,
+          "tn_candidats": 5636,
+          "tp": 251
+        }
+      },
+      "placement_des_seuils": {
+        "centile_t_lambda_dans_fausses": 0.944751,
+        "centile_t_lambda_dans_vraies": 0.019084,
+        "centile_t_mu_dans_fausses": 0.992466,
+        "centile_t_mu_dans_vraies": 0.041985,
+        "ecart_t_mu_ks": 2.561719,
+        "n_fausses_au_dessus_de_t_mu": 45,
+        "n_fausses_sous_t_lambda": 5636,
+        "n_paires_entre_les_deux": 298,
+        "n_vraies_au_dessus_de_t_mu": 251,
+        "n_vraies_sous_t_lambda": 5,
+        "note": "descriptif : ces centiles ne sont JAMAIS reinjectes comme parametres",
+        "t_lambda": -2.411412107,
+        "t_mu": 2.322127427
+      },
+      "reference_triviale": {
+        "note": "precision qu'obtiendrait un classifieur declarant MATCH tout candidat : le plancher contre lequel lire la precision du moteur",
+        "precision_du_tout_match": 0.042021
+      },
+      "seuils": {
+        "budget_atteint": 298,
+        "budget_vise": 300,
+        "frontiere": 0.0,
+        "methode": "bande emboitee la plus proche du budget, ordonnee par distance a la frontiere ; a egalite d'ecart, la plus petite bande",
+        "provisoire": true,
+        "t_lambda": -2.411412107,
+        "t_mu": 2.322127427
+      },
+      "zone_grise": {
+        "bornes_du_doute": {
+          "f1_convention_de_tete": 0.885362,
+          "gain_d_une_revue_parfaite_f1": 0.011672,
+          "gain_d_une_revue_parfaite_rappel": 0.02214,
+          "largeur_intervalle_f1": 0.312633,
+          "largeur_intervalle_precision": 0.424123,
+          "largeur_intervalle_rappel": 0.02214,
+          "lecture": "bornes construites comme deux resolutions ATTEIGNABLES de la bande (toutes les vraies grises resolues en MATCH et les fausses rejetees, ou l'inverse), et non comme une enveloppe de bornes independantes : un tel maximum ne serait vrai de personne. largeur_intervalle_f1 est le PLAFOND de ce qu'une revue parfaite apporterait sur ce jeu.",
+          "note_gain_vs_amplitude": "DEUX grandeurs distinctes, a ne pas confondre. `gain_d_une_revue_parfaite_f1` = F1(optimiste) - F1(convention de tete) : ce qu'une revue PARFAITE ajoute a l'absence de revue. `largeur_intervalle_f1` = F1(optimiste) - F1(pessimiste) : l'AMPLITUDE entre le meilleur et le pire relecteur concevable. La seconde est necessairement plus grande, et c'est elle que lit le critere gele B4 — voir la reserve inscrite dans `limites` : le critere compare une amplitude a un seuil que son enonce decrit comme un gain. Le critere n'est PAS reecrit ; l'ecart est publie, et le gain l'est a cote pour que le lecteur tranche lui-meme.",
+          "optimiste": {
+            "f1": 0.897033,
+            "fn": 14,
+            "fp": 45,
+            "precision": 0.850993,
+            "rappel": 0.948339,
+            "tp": 257
+          },
+          "part_de_la_precision_en_jeu": 0.496599,
+          "pessimiste": {
+            "f1": 0.5844,
+            "fn": 20,
+            "fp": 337,
+            "precision": 0.426871,
+            "rappel": 0.926199,
+            "tp": 251
+          }
+        },
+        "composition": {
+          "budget_vise": 300,
+          "entropie_bits": 0.142194,
+          "motif_purete": null,
+          "n_fausses_gris": 292,
+          "n_gris": 298,
+          "n_vraies_gris": 6,
+          "note_avertissement_taille": "Sous des seuils dimensionnes par budget, la TAILLE de la zone grise est un PARAMETRE, pas une mesure : n_gris proche du budget ne prouve rien sur la donnee ni sur le moteur. La taille n'est JAMAIS lue comme une preuve de doute.",
+          "part_gris": 0.047795,
+          "part_minoritaire": 0.020134,
+          "purete": 0.020134,
+          "rappel_en_jeu": 0.02214
+        },
+        "irreductibilite": {
+          "auc_dans_la_zone_grise": 0.654966,
+          "distribution_r_interne_par_classe": {
+            "fausses": {
+              "ecart_type": 1.276974,
+              "max": 2.322127,
+              "mediane": -1.149286,
+              "min": -2.411412,
+              "moyenne": -0.635723,
+              "n": 292,
+              "n_valeurs_distinctes": 59,
+              "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+              "q01": -2.411412,
+              "q05": -2.234724,
+              "q10": -1.98154,
+              "q25": -1.502925,
+              "q75": 0.137142,
+              "q90": 1.498727,
+              "q95": 2.133798,
+              "q99": 2.141149
+            },
+            "vraies": {
+              "ecart_type": 0.638276,
+              "max": 0.827263,
+              "mediane": -0.099301,
+              "min": -1.366253,
+              "moyenne": -0.156032,
+              "n": 6,
+              "n_valeurs_distinctes": 3,
+              "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+              "q01": -1.302905,
+              "q05": -1.049515,
+              "q10": -0.732777,
+              "q25": -0.099301,
+              "q75": -0.099301,
+              "q90": 0.363981,
+              "q95": 0.595622,
+              "q99": 0.780935
+            }
+          },
+          "lecture": "deux paires de classes opposees portant la MEME valeur de R sont indiscernables par TOUTE regle lisant R. Si la part de paires mixtes est faible et le plancher proche de 0, le doute est un artefact de PLACEMENT des seuils, non un doute reel.",
+          "motif_auc_zone_grise": null,
+          "n_valeurs_distinctes_dans_la_bande": 59,
+          "part_paires_mixtes": 0.067114,
+          "plancher_bayes_bande": 6,
+          "valeurs_r_mixtes": 3
+        },
+        "profil_des_composantes": {
+          "dans_la_bande": {
+            "n": 298,
+            "n_composantes_informatives_median": 5,
+            "profils_d_accord_les_plus_frequents": [
+              {
+                "n": 82,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=DESACCORD,prenom=INDETERMINE_MANQUANT,telephone=INDETERMINE_MANQUANT,ville=ACCORD_FORT"
+              },
+              {
+                "n": 17,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=INDETERMINE_MANQUANT,email=INDETERMINE_MANQUANT,nom=DESACCORD,prenom=DESACCORD,telephone=INDETERMINE_MANQUANT,ville=ACCORD_FORT"
+              },
+              {
+                "n": 16,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=INDETERMINE_MANQUANT,email=INDETERMINE_MANQUANT,nom=DESACCORD,prenom=INDETERMINE_MANQUANT,telephone=INDETERMINE_MANQUANT,ville=ACCORD_FORT"
+              },
+              {
+                "n": 9,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=DESACCORD,prenom=ACCORD_PARTIEL,telephone=DESACCORD,ville=ACCORD_FORT"
+              },
+              {
+                "n": 9,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=INDETERMINE_MANQUANT,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=ACCORD_FORT,telephone=INDETERMINE_MANQUANT,ville=DESACCORD"
+              }
+            ],
+            "taux_indetermine_manquant": 0.292366
+          },
+          "hors_bande": {
+            "n": 5937,
+            "n_composantes_informatives_median": 7,
+            "profils_d_accord_les_plus_frequents": [
+              {
+                "n": 567,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=DESACCORD,telephone=INDETERMINE_MANQUANT,ville=DESACCORD"
+              },
+              {
+                "n": 543,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=DESACCORD,telephone=DESACCORD,ville=DESACCORD"
+              },
+              {
+                "n": 426,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=DESACCORD,nom=ACCORD_FORT,prenom=DESACCORD,telephone=INDETERMINE_MANQUANT,ville=DESACCORD"
+              },
+              {
+                "n": 397,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=DESACCORD,nom=ACCORD_FORT,prenom=DESACCORD,telephone=DESACCORD,ville=DESACCORD"
+              },
+              {
+                "n": 287,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=INDETERMINE_MANQUANT,telephone=DESACCORD,ville=DESACCORD"
+              }
+            ],
+            "taux_indetermine_manquant": 0.186921
+          },
+          "lecture": "un taux eleve d'INDETERMINE_MANQUANT dans la bande signale un doute par ABSENCE de preuve ; un taux faible, un doute par CONFLIT"
+        },
+        "reconciliation_de_bande": {
+          "budget_consomme_par_garde_r20": 0,
+          "coherent": true,
+          "ecart_bande_vs_verdict": 0,
+          "n_dans_la_bande_par_seuils": 298,
+          "n_gardees_dans_la_bande": 0,
+          "n_paires_garde_r20": 0,
+          "n_zone_grise_par_verdict": 298,
+          "note": "du budget de revue dimensionne, les paires gardees R-20 tombant dans la bande sont consommees sans jamais atteindre U-B3 : elles n'ont rien a instruire, faute de la moindre composante informative"
+        }
+      }
+    },
+    "seuils_placeholder": {
+      "abstention": {
+        "avertissement": "metriques calculees sur les seules paires DECIDEES : elles sont mecaniquement meilleures (Chow 1970) et ne se lisent qu'avec la couverture affichee a cote.",
+        "couverture": 0.6749,
+        "f1": 0.981211,
+        "n_paires_abstenues": 2027,
+        "n_paires_decidees": 4208,
+        "precision": 1.0,
+        "rappel": 0.963115
+      },
+      "attribution_des_fn": {
+        "causes": {
+          "garde_r20": 0,
+          "non_match_par_seuil": 0,
+          "perdue_blocking": 9,
+          "zone_grise": 27
+        },
+        "enumeration_tronquee": false,
+        "fn_exhibees": [
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "ACCORD_FORT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": 7.542736912,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 11.740506185885042,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00028",
+            "record_id_b": "REC_00029",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "ACCORD_FORT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": 7.542736912,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 11.740506185885042,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00054",
+            "record_id_b": "REC_00055",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "ACCORD_FORT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": 7.542736912,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 11.740506185885042,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00068",
+            "record_id_b": "REC_00069",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "ACCORD_FORT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": 7.542736912,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 11.740506185885042,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00449",
+            "record_id_b": "REC_00450",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "TYPO"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 7,
+            "poids_match": 7.468414071,
+            "poids_par_champ": {
+              "adresse": 3.6250376935132045,
+              "code_postal": 2.1119402032491736,
+              "date_naissance": -3.2830841549392007,
+              "email": 4.671290465455318,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": -1.266951939460142,
+              "ville": 1.4470741823712154
+            },
+            "record_id_a": "REC_00259",
+            "record_id_b": "REC_00260",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 4,
+            "poids_match": 7.3471597,
+            "poids_par_champ": {
+              "adresse": 3.6250376935132045,
+              "code_postal": 2.1119402032491736,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": 1.4470741823712154
+            },
+            "record_id_a": "REC_00116",
+            "record_id_b": "REC_00117",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 4,
+            "poids_match": 7.3471597,
+            "poids_par_champ": {
+              "adresse": 3.6250376935132045,
+              "code_postal": 2.1119402032491736,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": 1.4470741823712154
+            },
+            "record_id_a": "REC_00482",
+            "record_id_b": "REC_00483",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "ACCORD_FORT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 7,
+            "poids_match": 7.285570574,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 10.667955635659622,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00234",
+            "record_id_b": "REC_00236",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_PARTIEL",
+              "accord_telephone": "ACCORD_FORT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": 7.009129017,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.5389426551760733,
+              "telephone": 10.667955635659622,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00083",
+            "record_id_b": "REC_00084",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "PHON"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "ACCORD_FORT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": 6.470186362,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 10.667955635659622,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00249",
+            "record_id_b": "REC_00250",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "ACCORD_FORT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": 6.275784973,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 11.740506185885042,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": -1.266951939460142,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00071",
+            "record_id_b": "REC_00072",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "TYPO"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "ACCORD_FORT",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "DESACCORD",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 8,
+            "poids_match": 5.445136592,
+            "poids_par_champ": {
+              "adresse": 3.6250376935132045,
+              "code_postal": 2.1119402032491736,
+              "date_naissance": -3.2830841549392007,
+              "email": -1.4504553791786534,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": -1.266951939460142,
+              "ville": 1.4470741823712154
+            },
+            "record_id_a": "REC_00180",
+            "record_id_b": "REC_00181",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": 4.571989558,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 4.671290465455318,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00026",
+            "record_id_b": "REC_00027",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": 4.571989558,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 4.671290465455318,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00205",
+            "record_id_b": "REC_00207",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": 4.571989558,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 4.671290465455318,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00510",
+            "record_id_b": "REC_00511",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "ACCORD_FORT"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": 2.815859869,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": 1.4470741823712154
+            },
+            "record_id_a": "REC_00497",
+            "record_id_b": "REC_00498",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "ACCORD_FORT",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 4,
+            "poids_match": 0.827262999,
+            "poids_par_champ": {
+              "adresse": 3.6250376935132045,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00202",
+            "record_id_b": "REC_00203",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00082",
+            "record_id_b": "REC_00084",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00206",
+            "record_id_b": "REC_00207",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00241",
+            "record_id_b": "REC_00242",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 5,
+            "poids_match": -0.099300907,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00394",
+            "record_id_b": "REC_00395",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -1.366252847,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": -1.266951939460142,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00018",
+            "record_id_b": "REC_00019",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -3.382385062,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00129",
+            "record_id_b": "REC_00131",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -3.382385062,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00130",
+            "record_id_b": "REC_00131",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TYPO"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "ACCORD_FORT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 6,
+            "poids_match": -3.382385062,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 4.098468366320497,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00235",
+            "record_id_b": "REC_00236",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "TYPO"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "DESACCORD",
+              "accord_email": "ACCORD_FORT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "DESACCORD",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 7,
+            "poids_match": -4.076514902,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": -3.2830841549392007,
+              "email": 4.671290465455318,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": -1.266951939460142,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00260",
+            "record_id_b": "REC_00261",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "cause": "zone_grise",
+            "composantes": {
+              "accord_adresse": "DESACCORD",
+              "accord_code_postal": "DESACCORD",
+              "accord_date_naissance": "INDETERMINE_MANQUANT",
+              "accord_email": "INDETERMINE_MANQUANT",
+              "accord_nom": "ACCORD_FORT",
+              "accord_prenom": "INDETERMINE_MANQUANT",
+              "accord_telephone": "INDETERMINE_MANQUANT",
+              "accord_ville": "DESACCORD"
+            },
+            "id_entite_vraie": null,
+            "n_composantes_informatives": 4,
+            "poids_match": -4.197769274,
+            "poids_par_champ": {
+              "adresse": -1.3999945789869348,
+              "code_postal": -1.492795721557429,
+              "date_naissance": 0.0,
+              "email": 0.0,
+              "nom": 0.16310762058976883,
+              "prenom": 0.0,
+              "telephone": 0.0,
+              "ville": -1.4680865935691507
+            },
+            "record_id_a": "REC_00014",
+            "record_id_b": "REC_00015",
+            "verdict": "ZONE_GRISE"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "PHON"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00001",
+            "record_id_b": "REC_00002"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "PHON"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00002",
+            "record_id_b": "REC_00003"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00065",
+            "record_id_b": "REC_00066"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00065",
+            "record_id_b": "REC_00067"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00100",
+            "record_id_b": "REC_00102"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "TRANSPO"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00101",
+            "record_id_b": "REC_00102"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "MANQUANT",
+              "PHON"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00276",
+            "record_id_b": "REC_00277"
+          },
+          {
+            "categories_a": [
+              "MANQUANT"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "FORMAT",
+              "PHON"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00335",
+            "record_id_b": "REC_00336"
+          },
+          {
+            "categories_a": [
+              "DOUBLON",
+              "FORMAT",
+              "PHON"
+            ],
+            "categories_b": [
+              "DOUBLON",
+              "MANQUANT"
+            ],
+            "cause": "perdue_blocking",
+            "id_entite_vraie": null,
+            "record_id_a": "REC_00336",
+            "record_id_b": "REC_00337"
+          }
+        ],
+        "n_exhibees": 36,
+        "n_faux_negatifs": 36,
+        "ordre": "(-poids_match, record_id_a, record_id_b) : ordre TOTAL, quasi-succes d'abord",
+        "somme_controlee": 36
+      },
+      "cardinaux": {
+        "n_candidates": 6235,
+        "n_match": 235,
+        "n_vraies": 271,
+        "n_vraies_candidates": 262,
+        "taux_match": 0.03769
+      },
+      "contingence": {
+        "gf": 2000,
+        "gv": 27,
+        "mf": 0,
+        "mv": 235,
+        "nf": 3973,
+        "nv": 0,
+        "pb": 9
+      },
+      "convention_de_tete": "stricte",
+      "decomposition_du_rappel": {
+        "convention": "stricte",
+        "lecture": "le rappel bout en bout est le produit du rappel de blocking (ce que la chaine peut au mieux atteindre) et du rappel post-blocking (ce que la decision en fait)",
+        "rappel_blocking": 0.96679,
+        "rappel_bout_en_bout": 0.867159,
+        "rappel_post_blocking": 0.896947
+      },
+      "diagnostic_des_fn": {
+        "causes_materielles": "perdue au blocking | garde R-20 | >= 2 DESACCORD | >= 3 INDETERMINE_MANQUANT | >= 1 DESACCORD sur email/telephone/date_naissance | >= 1 categorie de corruption",
+        "mediane_r_des_vraies": 21.735679,
+        "n_fn_au_dessus_de_la_mediane": 0,
+        "n_fn_examines": 36,
+        "n_fn_expliques": 36,
+        "note_perimetre": "diagnostic calcule sur les FN EXHIBES (au plus 50, ordonnes par -poids_match) et non sur la totalite : l'echantillon est celui des quasi-succes, donc le plus severe pour le moteur. Le perimetre est declare plutot que tu, et 'enumeration_tronquee' dit s'il y en avait davantage.",
+        "part_fn_au_dessus_de_la_mediane_des_vraies": 0.0,
+        "part_fn_expliques": 1.0
+      },
+      "faux_positifs": {
+        "enumeration_tronquee": false,
+        "liste_bornee": [],
+        "n": 0,
+        "ordre": "(-poids_match, record_id_a, record_id_b)"
+      },
+      "invariants_verifies": true,
+      "mesures_par_convention": {
+        "acceptation": {
+          "convention": "acceptation",
+          "denominateurs_explicites": {
+            "precision": 2262,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.206869,
+          "f1_post_blocking": 0.207607,
+          "fn": 9,
+          "fn_blocking": 9,
+          "fn_scoring": 0,
+          "fp": 2000,
+          "ic_wilson_95": {
+            "precision": [
+              0.103285,
+              0.129671
+            ],
+            "rappel_bout_en_bout": [
+              0.938099,
+              0.982432
+            ],
+            "rappel_post_blocking": [
+              0.985549,
+              1.0
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 0.115827,
+          "rappel_bout_en_bout": 0.96679,
+          "rappel_post_blocking": 1.0,
+          "tn_candidats": 3973,
+          "tp": 262
+        },
+        "optimiste": {
+          "convention": "optimiste",
+          "denominateurs_explicites": {
+            "precision": 262,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.983114,
+          "f1_post_blocking": 1.0,
+          "fn": 9,
+          "fn_blocking": 9,
+          "fn_scoring": 0,
+          "fp": 0,
+          "ic_wilson_95": {
+            "precision": [
+              0.985549,
+              1.0
+            ],
+            "rappel_bout_en_bout": [
+              0.938099,
+              0.982432
+            ],
+            "rappel_post_blocking": [
+              0.985549,
+              1.0
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 1.0,
+          "rappel_bout_en_bout": 0.96679,
+          "rappel_post_blocking": 1.0,
+          "tn_candidats": 3973,
+          "tp": 262
+        },
+        "pessimiste": {
+          "convention": "pessimiste",
+          "denominateurs_explicites": {
+            "precision": 2235,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.18755,
+          "f1_post_blocking": 0.188226,
+          "fn": 36,
+          "fn_blocking": 9,
+          "fn_scoring": 27,
+          "fp": 2000,
+          "ic_wilson_95": {
+            "precision": [
+              0.093099,
+              0.118547
+            ],
+            "rappel_bout_en_bout": [
+              0.821573,
+              0.90248
+            ],
+            "rappel_post_blocking": [
+              0.854215,
+              0.928205
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 0.105145,
+          "rappel_bout_en_bout": 0.867159,
+          "rappel_post_blocking": 0.896947,
+          "tn_candidats": 3973,
+          "tp": 235
+        },
+        "stricte": {
+          "convention": "stricte",
+          "denominateurs_explicites": {
+            "precision": 235,
+            "rappel_bout_en_bout": 271,
+            "rappel_post_blocking": 262
+          },
+          "etiquette_rappel_post_blocking": "perimetre : decision seule ; ne decrit PAS la chaine ; NON comparable entre systemes de blocking differents",
+          "f1_bout_en_bout": 0.928854,
+          "f1_post_blocking": 0.945674,
+          "fn": 36,
+          "fn_blocking": 9,
+          "fn_scoring": 27,
+          "fp": 0,
+          "ic_wilson_95": {
+            "precision": [
+              0.983916,
+              1.0
+            ],
+            "rappel_bout_en_bout": [
+              0.821573,
+              0.90248
+            ],
+            "rappel_post_blocking": [
+              0.854215,
+              0.928205
+            ]
+          },
+          "motif_f1": null,
+          "motif_precision": null,
+          "motif_rappel": null,
+          "note_tn": "effectif descriptif : ce n'est PAS le TN de l'univers. La difference est exactement le nombre de paires que le blocking n'a jamais proposees.",
+          "precision": 1.0,
+          "rappel_bout_en_bout": 0.867159,
+          "rappel_post_blocking": 0.896947,
+          "tn_candidats": 3973,
+          "tp": 235
+        }
+      },
+      "placement_des_seuils": {
+        "centile_t_lambda_dans_fausses": 0.66516,
+        "centile_t_lambda_dans_vraies": 0.0,
+        "centile_t_mu_dans_fausses": 1.0,
+        "centile_t_mu_dans_vraies": 0.103053,
+        "ecart_t_mu_ks": 8.239592,
+        "n_fausses_au_dessus_de_t_mu": 0,
+        "n_fausses_sous_t_lambda": 3973,
+        "n_paires_entre_les_deux": 2027,
+        "n_vraies_au_dessus_de_t_mu": 235,
+        "n_vraies_sous_t_lambda": 0,
+        "note": "descriptif : ces centiles ne sont JAMAIS reinjectes comme parametres",
+        "t_lambda": -8.0,
+        "t_mu": 8.0
+      },
+      "reference_triviale": {
+        "note": "precision qu'obtiendrait un classifieur declarant MATCH tout candidat : le plancher contre lequel lire la precision du moteur",
+        "precision_du_tout_match": 0.042021
+      },
+      "seuils": {
+        "budget_atteint": null,
+        "budget_vise": null,
+        "frontiere": null,
+        "methode": "placeholders declares a +/- 8 bits (GAP-A), non calibres",
+        "provisoire": true,
+        "t_lambda": -8.0,
+        "t_mu": 8.0
+      },
+      "zone_grise": {
+        "bornes_du_doute": {
+          "f1_convention_de_tete": 0.928854,
+          "gain_d_une_revue_parfaite_f1": 0.054261,
+          "gain_d_une_revue_parfaite_rappel": 0.099631,
+          "largeur_intervalle_f1": 0.795565,
+          "largeur_intervalle_precision": 0.894855,
+          "largeur_intervalle_rappel": 0.099631,
+          "lecture": "bornes construites comme deux resolutions ATTEIGNABLES de la bande (toutes les vraies grises resolues en MATCH et les fausses rejetees, ou l'inverse), et non comme une enveloppe de bornes independantes : un tel maximum ne serait vrai de personne. largeur_intervalle_f1 est le PLAFOND de ce qu'une revue parfaite apporterait sur ce jeu.",
+          "note_gain_vs_amplitude": "DEUX grandeurs distinctes, a ne pas confondre. `gain_d_une_revue_parfaite_f1` = F1(optimiste) - F1(convention de tete) : ce qu'une revue PARFAITE ajoute a l'absence de revue. `largeur_intervalle_f1` = F1(optimiste) - F1(pessimiste) : l'AMPLITUDE entre le meilleur et le pire relecteur concevable. La seconde est necessairement plus grande, et c'est elle que lit le critere gele B4 — voir la reserve inscrite dans `limites` : le critere compare une amplitude a un seuil que son enonce decrit comme un gain. Le critere n'est PAS reecrit ; l'ecart est publie, et le gain l'est a cote pour que le lecteur tranche lui-meme.",
+          "optimiste": {
+            "f1": 0.983114,
+            "fn": 9,
+            "fp": 0,
+            "precision": 1.0,
+            "rappel": 0.96679,
+            "tp": 262
+          },
+          "part_de_la_precision_en_jeu": 0.894855,
+          "pessimiste": {
+            "f1": 0.18755,
+            "fn": 36,
+            "fp": 2000,
+            "precision": 0.105145,
+            "rappel": 0.867159,
+            "tp": 235
+          }
+        },
+        "composition": {
+          "budget_vise": null,
+          "entropie_bits": 0.102076,
+          "motif_purete": null,
+          "n_fausses_gris": 2000,
+          "n_gris": 2027,
+          "n_vraies_gris": 27,
+          "note_avertissement_taille": "Sous des seuils dimensionnes par budget, la TAILLE de la zone grise est un PARAMETRE, pas une mesure : n_gris proche du budget ne prouve rien sur la donnee ni sur le moteur. La taille n'est JAMAIS lue comme une preuve de doute.",
+          "part_gris": 0.3251,
+          "part_minoritaire": 0.01332,
+          "purete": 0.01332,
+          "rappel_en_jeu": 0.099631
+        },
+        "irreductibilite": {
+          "auc_dans_la_zone_grise": 0.920731,
+          "distribution_r_interne_par_classe": {
+            "fausses": {
+              "ecart_type": 2.751218,
+              "max": 7.158831,
+              "mediane": -5.173228,
+              "min": -7.982032,
+              "moyenne": -4.626898,
+              "n": 2000,
+              "n_valeurs_distinctes": 185,
+              "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+              "q01": -7.982032,
+              "q05": -7.838111,
+              "q10": -7.480853,
+              "q25": -6.915177,
+              "q75": -2.599741,
+              "q90": -1.149286,
+              "q95": 0.685643,
+              "q99": 3.516814
+            },
+            "vraies": {
+              "ecart_type": 4.291278,
+              "max": 7.542737,
+              "mediane": 4.57199,
+              "min": -4.197769,
+              "moyenne": 3.036803,
+              "n": 27,
+              "n_valeurs_distinctes": 16,
+              "note_ecart_type": "decrit mal une distribution bimodale : garde-fou grossier, pas une mesure de separation",
+              "q01": -4.166243,
+              "q05": -3.868276,
+              "q10": -3.382385,
+              "q25": -0.099301,
+              "q75": 7.316365,
+              "q90": 7.542737,
+              "q95": 7.542737,
+              "q99": 7.542737
+            }
+          },
+          "lecture": "deux paires de classes opposees portant la MEME valeur de R sont indiscernables par TOUTE regle lisant R. Si la part de paires mixtes est faible et le plancher proche de 0, le doute est un artefact de PLACEMENT des seuils, non un doute reel.",
+          "motif_auc_zone_grise": null,
+          "n_valeurs_distinctes_dans_la_bande": 195,
+          "part_paires_mixtes": 0.070548,
+          "plancher_bayes_bande": 11,
+          "valeurs_r_mixtes": 6
+        },
+        "profil_des_composantes": {
+          "dans_la_bande": {
+            "n": 2027,
+            "n_composantes_informatives_median": 6,
+            "profils_d_accord_les_plus_frequents": [
+              {
+                "n": 262,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=INDETERMINE_MANQUANT,telephone=INDETERMINE_MANQUANT,ville=DESACCORD"
+              },
+              {
+                "n": 116,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=DESACCORD,prenom=DESACCORD,telephone=DESACCORD,ville=ACCORD_FORT"
+              },
+              {
+                "n": 111,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=DESACCORD,prenom=DESACCORD,telephone=INDETERMINE_MANQUANT,ville=ACCORD_FORT"
+              },
+              {
+                "n": 90,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=DESACCORD,prenom=INDETERMINE_MANQUANT,telephone=DESACCORD,ville=ACCORD_FORT"
+              },
+              {
+                "n": 85,
+                "profil": "adresse=DESACCORD,code_postal=ACCORD_FORT,date_naissance=DESACCORD,email=DESACCORD,nom=DESACCORD,prenom=DESACCORD,telephone=INDETERMINE_MANQUANT,ville=ACCORD_FORT"
+              }
+            ],
+            "taux_indetermine_manquant": 0.247595
+          },
+          "hors_bande": {
+            "n": 4208,
+            "n_composantes_informatives_median": 7,
+            "profils_d_accord_les_plus_frequents": [
+              {
+                "n": 567,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=DESACCORD,telephone=INDETERMINE_MANQUANT,ville=DESACCORD"
+              },
+              {
+                "n": 543,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=DESACCORD,telephone=DESACCORD,ville=DESACCORD"
+              },
+              {
+                "n": 426,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=DESACCORD,nom=ACCORD_FORT,prenom=DESACCORD,telephone=INDETERMINE_MANQUANT,ville=DESACCORD"
+              },
+              {
+                "n": 397,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=DESACCORD,nom=ACCORD_FORT,prenom=DESACCORD,telephone=DESACCORD,ville=DESACCORD"
+              },
+              {
+                "n": 287,
+                "profil": "adresse=DESACCORD,code_postal=DESACCORD,date_naissance=DESACCORD,email=INDETERMINE_MANQUANT,nom=ACCORD_FORT,prenom=INDETERMINE_MANQUANT,telephone=DESACCORD,ville=DESACCORD"
+              }
+            ],
+            "taux_indetermine_manquant": 0.165162
+          },
+          "lecture": "un taux eleve d'INDETERMINE_MANQUANT dans la bande signale un doute par ABSENCE de preuve ; un taux faible, un doute par CONFLIT"
+        },
+        "reconciliation_de_bande": {
+          "budget_consomme_par_garde_r20": 0,
+          "coherent": true,
+          "ecart_bande_vs_verdict": 0,
+          "n_dans_la_bande_par_seuils": 2027,
+          "n_gardees_dans_la_bande": 0,
+          "n_paires_garde_r20": 0,
+          "n_zone_grise_par_verdict": 2027,
+          "note": "du budget de revue dimensionne, les paires gardees R-20 tombant dans la bande sont consommees sans jamais atteindre U-B3 : elles n'ont rien a instruire, faute de la moindre composante informative"
+        }
+      }
+    }
+  },
+  "split": {
+    "anti_seed_shopping": "le sel est SCELLE. Il existe UN split ; si le sel changeait, le changement ET les deux resultats seraient publies cote a cote.",
+    "effet_declare_exclusion": "toute paire a cheval est FAUSSE (deux entites distinctes) : l'exclusion ne detruit aucune vraie paire, mais elle retire des NEGATIFS. La precision intra-pli est donc OPTIMISTE et la prevalence de chaque pli differe de celle du jeu entier : les chiffres de pli ne sont comparables QU'ENTRE EUX, jamais aux metriques de tete.",
+    "methode": "pli(e) = calibration si sha256(sel::id_entite) mod 10000 < 10000 x proportion, sinon evaluation — fonction PURE de l'identifiant",
+    "n_paires_a_cheval_ecartees": 3070,
+    "n_vraies_paires_a_cheval": 0,
+    "niveau": "entite",
+    "plis": {
+      "calibration": {
+        "etiquette": "mesure exploitable",
+        "n_entites": 158,
+        "n_paires_candidates": 1681,
+        "n_records": 262,
+        "n_vraies_paires": 129,
+        "prevalence_parmi_les_candidats": 0.07674,
+        "puissance_suffisante": true
+      },
+      "evaluation": {
+        "etiquette": "mesure exploitable",
+        "n_entites": 162,
+        "n_paires_candidates": 1484,
+        "n_records": 275,
+        "n_vraies_paires": 142,
+        "prevalence_parmi_les_candidats": 0.095687,
+        "puissance_suffisante": true
+      }
+    },
+    "proportion_visee": 0.5,
+    "sel_scelle": "U-B5::SCORER::SPLIT::sel-0001",
+    "usage": "obligatoire pour toute valeur dependant d'un parametre choisi en regardant la verite terrain — ici le seul seuil oracle. Le chemin principal n'en depend pas."
+  },
+  "statut": "MESURE",
+  "unite": "U-B5",
+  "verdict": {
+    "aucune_recommandation_sur_la_donnee": true,
+    "criteres": [
+      {
+        "axe": "prealable",
+        "code": "P0_PLOMBERIE",
+        "enonce_du_critere": "integrite de la jointure et rappel minimal de plomberie",
+        "issue": "SATISFAIT",
+        "seuil": 0.5,
+        "valeur_observee": {
+          "alerte_plomberie": false,
+          "rappel": 0.926199
+        }
+      },
+      {
+        "axe": "decision",
+        "cle_enonce": "RAPPEL_EXERCE",
+        "code": "A1_RAPPEL",
+        "enonce_du_critere": "le rappel < 1,0 est-il credible ? (bandes SATURE / EXERCE_FAIBLEMENT / EXERCE)",
+        "enonce_rendu": "Le moteur manque 20 vraies paires sur 271, soit un rappel bout en bout de 0.926199 (IC95 [0.888763, 0.951721]). 9 sont perdues au blocking (plafond 0.96679), 11 survivent au blocking sans etre declarees MATCH. Le rappel < 1,0 est credible et mesurable sur V1.2 ; la donnee exerce le blocking ET la decision.",
+        "enonce_retenu": "Le moteur manque {n_manquees} vraies paires sur {n_vraies}, soit un rappel bout en bout de {rappel} (IC95 [{ic_bas}, {ic_haut}]). {n_perdues_blocking} sont perdues au blocking (plafond {plafond}), {n_manquees_decision} survivent au blocking sans etre declarees MATCH. Le rappel < 1,0 est credible et mesurable sur V1.2 ; la donnee exerce {ce_qui_est_exerce}.",
+        "issue": "EXERCE",
+        "seuil": {
+          "exerce": 0.97,
+          "sature": 0.995
+        },
+        "valeur_observee": 0.926199
+      },
+      {
+        "axe": "blocking",
+        "code": "A2_ATTRIBUTION",
+        "enonce_du_critere": "ou le rappel se perd-il : blocking, decision, ou ni l'un ni l'autre ?",
+        "issue": "LA_DECISION_EST_EXERCEE",
+        "seuil": {
+          "inspectables": 5,
+          "part_blocking": 0.5
+        },
+        "valeur_observee": {
+          "n_manquees_decision": 11,
+          "n_perdues_blocking": 9,
+          "part_imputable_au_blocking": 0.45
+        }
+      },
+      {
+        "axe": "decision",
+        "cle_enonce": "FN_EXPLIQUES",
+        "code": "A3_FN_EXPLIQUES",
+        "enonce_du_critere": "les faux negatifs portent-ils une cause materielle identifiee ?",
+        "enonce_rendu": "100.0 % des faux negatifs portent une cause materielle identifiee (perte au blocking, garde R-20, desaccords, champs absents, corruption annotee) : le rappel < 1 est imputable a la DONNEE, pas a la regle de decision. Aucune modification de la donnee n'en decoule.",
+        "enonce_retenu": "{part} des faux negatifs portent une cause materielle identifiee (perte au blocking, garde R-20, desaccords, champs absents, corruption annotee) : le rappel < 1 est imputable a la DONNEE, pas a la regle de decision. Aucune modification de la donnee n'en decoule.",
+        "issue": "SATISFAIT",
+        "seuil": 0.9,
+        "valeur_observee": 1.0
+      },
+      {
+        "axe": "decision",
+        "code": "A4_FN_FACILES",
+        "enonce_du_critere": "des paires faciles sont-elles manquees ? (anti-vacuite de la difficulte)",
+        "issue": "SATISFAIT",
+        "seuil": 0.2,
+        "valeur_observee": 0.0
+      },
+      {
+        "axe": "decision",
+        "code": "A5_DEGENERESCENCE",
+        "enonce_du_critere": "un rappel eleve est-il obtenu autrement qu'en declarant tout MATCH ?",
+        "issue": "SATISFAIT",
+        "seuil": {
+          "part_corrompues": 0.5,
+          "precision": 0.5,
+          "taux_match": 0.5
+        },
+        "valeur_observee": {
+          "au_moins_une_vraie_paire_non_triviale": true,
+          "part_vraies_paires_corrompues": 1.0,
+          "precision": 0.847973,
+          "taux_match": 0.047474
+        }
+      },
+      {
+        "axe": "doute",
+        "code": "B1_VOLUME",
+        "enonce_du_critere": "Z1 volume de la zone grise (NECESSAIRE, jamais probant : la taille est un parametre)",
+        "issue": "SATISFAIT",
+        "seuil": {
+          "n": 30,
+          "part": 0.001
+        },
+        "valeur_observee": {
+          "n_gris": 298,
+          "part_gris": 0.047795
+        }
+      },
+      {
+        "axe": "doute",
+        "code": "B2_MIXITE",
+        "enonce_du_critere": "Z2 la bande contient-elle les deux classes en effectif inspectable ?",
+        "issue": "SATISFAIT",
+        "seuil": {
+          "effectif": 5,
+          "part": 0.02
+        },
+        "valeur_observee": {
+          "n_fausses_gris": 292,
+          "n_vraies_gris": 6,
+          "part_minoritaire": 0.020134
+        }
+      },
+      {
+        "axe": "doute",
+        "code": "B3_IRREDUCTIBILITE",
+        "enonce_du_critere": "Z3 le doute est-il irreductible au score seul ? (SEULE condition litterale)",
+        "issue": "SATISFAIT",
+        "seuil": {
+          "part_mixtes": 0.2,
+          "plancher": 5
+        },
+        "valeur_observee": {
+          "part_paires_mixtes": 0.067114,
+          "plancher_bayes_bande": 6
+        }
+      },
+      {
+        "axe": "doute",
+        "cle_enonce": "ZONE_GRISE_NON_TRIVIALE",
+        "code": "B4_ENJEU",
+        "enonce_du_critere": "Z4 resoudre la bande deplacerait-il quelque chose de mesurable ?",
+        "enonce_rendu": "La zone grise contient 298 paires, dont 6 vraies et 292 fausses ; 6.7 % d'entre elles reposent sur une valeur de R ou les deux classes coexistent, et aucune regle lisant R seul ne peut en trancher au moins 6. Une resolution parfaite de la bande porterait le rappel bout en bout de 0.926199 a 0.948339 et le F1 de 0.312633 point(s). IL EXISTE SUR V1.2 UN DOUTE QUE LE SCORE SEUL NE TRANCHE PAS ; U-B3 a matiere a instruire, et cet ecart est sa cible mesurable.",
+        "enonce_retenu": "La zone grise contient {n_gris} paires, dont {n_vraies_gris} vraies et {n_fausses_gris} fausses ; {part_mixtes} d'entre elles reposent sur une valeur de R ou les deux classes coexistent, et aucune regle lisant R seul ne peut en trancher au moins {plancher}. Une resolution parfaite de la bande porterait le rappel bout en bout de {rappel_pess} a {rappel_opt} et le F1 de {largeur_f1} point(s). IL EXISTE SUR V1.2 UN DOUTE QUE LE SCORE SEUL NE TRANCHE PAS ; U-B3 a matiere a instruire, et cet ecart est sa cible mesurable.",
+        "issue": "SATISFAIT",
+        "seuil": {
+          "largeur_f1": 0.01,
+          "rappel_en_jeu": 0.02
+        },
+        "valeur_observee": {
+          "largeur_intervalle_f1": 0.312633,
+          "rappel_en_jeu": 0.02214
+        }
+      },
+      {
+        "axe": "doute",
+        "cle_enonce": "DOUTE_SANS_QUALIFICATIF",
+        "code": "B5_NATURE_DU_DOUTE",
+        "enonce_du_critere": "nature du doute dans la bande (qualificateur NON bloquant)",
+        "enonce_rendu": "AUC interne a la bande = 0.654966 : publiee sans qualificatif (entre les deux regimes).",
+        "enonce_retenu": "AUC interne a la bande = {auc} : publiee sans qualificatif (entre les deux regimes).",
+        "issue": "SANS_QUALIFICATIF",
+        "seuil": {
+          "irreductible": [
+            0.45,
+            0.55
+          ],
+          "ordonne": 0.7
+        },
+        "valeur_observee": 0.654966
+      },
+      {
+        "axe": "separation",
+        "cle_enonce": "RECOUVREMENT_MARGINAL",
+        "code": "C1_SEPARATION",
+        "enonce_du_critere": "les distributions de R des vraies et des fausses paires se recouvrent-elles ?",
+        "enonce_rendu": "Separation forte mais non totale (auc = 0.997265, ovl = 0.0387379) ; le recouvrement residuel est localise en [-4.197769274, 7.158830624], a confronter au placement des seuils.",
+        "enonce_retenu": "Separation forte mais non totale (auc = {auc}, ovl = {ovl}) ; le recouvrement residuel est localise en {plage}, a confronter au placement des seuils.",
+        "issue": "RECOUVREMENT_MARGINAL",
+        "seuil": {
+          "ovl_recouvrement": 0.05,
+          "ovl_separe": 0.01,
+          "recouvrement_equiv": 3.0,
+          "separees_equiv": 0.5
+        },
+        "valeur_observee": {
+          "auc": 0.997265,
+          "marge_de_separation": -11.3566,
+          "ovl": 0.038738,
+          "paires_vraies_equivalentes_mal_classees": 0.741259,
+          "plancher_bayes_r": 11
+        }
+      },
+      {
+        "axe": "decision",
+        "code": "D1_MOTEUR_EXCELLENT",
+        "enonce_du_critere": "issue 'moteur excellent sur donnee realiste' (ecrite AVANT la mesure)",
+        "issue": "NON_ATTEINTE",
+        "seuil": 0.99,
+        "valeur_observee": {
+          "f1_bout_en_bout": 0.885362,
+          "garde_anti_degenerescence": true,
+          "zone_grise_triviale": false
+        }
+      },
+      {
+        "axe": "separation",
+        "cle_enonce": "SANS_REGRET_NOTABLE",
+        "code": "E1_REGRET",
+        "enonce_du_critere": "le placement non supervise des seuils laisse-t-il un regret notable ?",
+        "enonce_rendu": "Le placement non supervise des seuils est sans regret notable : F1 d'evaluation 0.898246 contre 0.914498 au seuil calibre, regret 0.0162525 <= 0.02. Valeur NON REINJECTABLE dans le moteur.",
+        "enonce_retenu": "Le placement non supervise des seuils est sans regret notable : F1 d'evaluation {f1_non_supervise} contre {f1_oracle} au seuil calibre, regret {regret} <= {regret_max}. Valeur NON REINJECTABLE dans le moteur.",
+        "issue": "SANS_REGRET_NOTABLE",
+        "seuil": 0.02,
+        "valeur_observee": {
+          "f1_non_supervise": 0.898246,
+          "f1_oracle": 0.914498,
+          "regret": 0.016253
+        }
+      }
+    ],
+    "enonces_pre_enregistres_utilises": [
+      "DOUTE_SANS_QUALIFICATIF",
+      "FN_EXPLIQUES",
+      "RAPPEL_EXERCE",
+      "RECOUVREMENT_MARGINAL",
+      "SANS_REGRET_NOTABLE",
+      "ZONE_GRISE_NON_TRIVIALE"
+    ],
+    "lecture_globale": "Sur V1.2, le blocking, la decision, le doute sont exerces de maniere mesurable. Chaque axe est lu par son propre critere, aucun n'est ecrase dans un jugement unique.",
+    "note_anti_tautologie": "La TAILLE de la zone grise (n_gris ~ budget) est un PARAMETRE du dimensionnement, pas une mesure : elle ne compte comme preuve de rien. Seule Z3 repond litteralement a 'le score seul tranche-t-il ?'.",
+    "note_non_revision": "Aucun critere n'est reecrit apres lecture des mesures. Si l'un s'avere mal pose, il est CONSERVE, son verdict est publie, et la critique est ajoutee dans 'limites' — a cote du verdict qu'elle conteste, jamais a sa place.",
+    "proximite_aux_frontieres": {
+      "grandeurs_au_ras_de_leur_borne": [
+        "A1_RAPPEL.rappel_bout_en_bout = 0.926199, borne haute a 0.97 (ecart <= 10% du seuil)",
+        "B2_MIXITE.part_minoritaire = 0.0201342, borne basse a 0.02 (ecart <= 10% du seuil et moins d'une unite de comptage separe la valeur de la borne)",
+        "B2_MIXITE.effectif_minoritaire = 6, borne basse a 5 (a 1 unite(s) de la borne)",
+        "B3_IRREDUCTIBILITE.plancher_bayes_bande = 6, borne basse a 5 (a 1 unite(s) de la borne)",
+        "B4_ENJEU.rappel_en_jeu = 0.0221402, borne basse a 0.02 (moins d'une unite de comptage separe la valeur de la borne)"
+      ],
+      "marge_entiere": 2,
+      "marge_relative": 0.1,
+      "n_au_ras": 5,
+      "note": "convention de RAPPORT, pas un critere : aucune borne n'est deplacee, aucune issue n'est changee. Elle applique la discipline pre-enregistree — une valeur qui frole sa borne est publiee AVEC sa proximite, pour qu'un verdict tenant a un cheveu ne se lise pas comme un verdict franc.",
+      "table": [
+        {
+          "au_ras_de_la_borne": true,
+          "code": "A1_RAPPEL",
+          "ecart": -0.043801,
+          "grandeur": "rappel_bout_en_bout",
+          "motif": "ecart <= 10% du seuil",
+          "poids_d_une_unite_de_comptage": 0.00369,
+          "sens_de_la_borne": "borne haute",
+          "seuil": 0.97,
+          "valeur": 0.926199
+        },
+        {
+          "au_ras_de_la_borne": true,
+          "code": "B2_MIXITE",
+          "ecart": 0.000134,
+          "grandeur": "part_minoritaire",
+          "motif": "ecart <= 10% du seuil et moins d'une unite de comptage separe la valeur de la borne",
+          "poids_d_une_unite_de_comptage": 0.003356,
+          "sens_de_la_borne": "borne basse",
+          "seuil": 0.02,
+          "valeur": 0.020134
+        },
+        {
+          "au_ras_de_la_borne": true,
+          "code": "B2_MIXITE",
+          "ecart": 1,
+          "grandeur": "effectif_minoritaire",
+          "motif": "a 1 unite(s) de la borne",
+          "poids_d_une_unite_de_comptage": null,
+          "sens_de_la_borne": "borne basse",
+          "seuil": 5,
+          "valeur": 6
+        },
+        {
+          "au_ras_de_la_borne": true,
+          "code": "B3_IRREDUCTIBILITE",
+          "ecart": 1,
+          "grandeur": "plancher_bayes_bande",
+          "motif": "a 1 unite(s) de la borne",
+          "poids_d_une_unite_de_comptage": null,
+          "sens_de_la_borne": "borne basse",
+          "seuil": 5,
+          "valeur": 6
+        },
+        {
+          "au_ras_de_la_borne": true,
+          "code": "B4_ENJEU",
+          "ecart": 0.00214,
+          "grandeur": "rappel_en_jeu",
+          "motif": "moins d'une unite de comptage separe la valeur de la borne",
+          "poids_d_une_unite_de_comptage": 0.00369,
+          "sens_de_la_borne": "borne basse",
+          "seuil": 0.02,
+          "valeur": 0.02214
+        },
+        {
+          "au_ras_de_la_borne": false,
+          "code": "B4_ENJEU",
+          "ecart": 0.302633,
+          "grandeur": "largeur_intervalle_f1",
+          "motif": "ecart confortable",
+          "poids_d_une_unite_de_comptage": null,
+          "sens_de_la_borne": "borne basse",
+          "seuil": 0.01,
+          "valeur": 0.312633
+        },
+        {
+          "au_ras_de_la_borne": false,
+          "code": "B4_ENJEU",
+          "ecart": 0.001672,
+          "grandeur": "gain_d_une_revue_parfaite_f1",
+          "motif": "ecart confortable",
+          "poids_d_une_unite_de_comptage": null,
+          "sens_de_la_borne": "borne basse",
+          "seuil": 0.01,
+          "valeur": 0.011672
+        },
+        {
+          "au_ras_de_la_borne": false,
+          "code": "C1_SEPARATION",
+          "ecart": 0.241259,
+          "grandeur": "paires_equivalentes_mal_classees",
+          "motif": "ecart confortable",
+          "poids_d_une_unite_de_comptage": null,
+          "sens_de_la_borne": "borne basse",
+          "seuil": 0.5,
+          "valeur": 0.741259
+        },
+        {
+          "au_ras_de_la_borne": false,
+          "code": "E1_REGRET",
+          "ecart": -0.003747,
+          "grandeur": "regret",
+          "motif": "ecart confortable",
+          "poids_d_une_unite_de_comptage": null,
+          "sens_de_la_borne": "borne haute",
+          "seuil": 0.02,
+          "valeur": 0.016253
+        }
+      ]
+    },
+    "sensibilite_du_verdict_de_bande": {
+      "delta_minimal_qui_bascule_le_verdict": -1,
+      "doute_exerce_observe": true,
+      "evaluable": true,
+      "lecture": "nombre de vraies paires qu'il faudrait ajouter (+) ou retirer (-) de la bande, a taille de bande constante, pour que la conjonction Z1..Z4 change d'issue. Un |delta| de 1 signifie que le verdict de bande tient a UNE seule paire.",
+      "methode": "criteres GELES re-appliques tels quels sur une composition perturbee ; plancher de Bayes borne par min(plancher, gv') — borne exacte, puisque le plancher est une somme de min(n_vraies, n_fausses) par valeur de R",
+      "n_vraies_paires_dans_la_bande": 6
+    },
+    "sha256_criteres": "aecb7b0cb2d91389ab8d5f398559ca1981fa0f31e6aee4af8f36835967f9370e",
+    "statut": "MESURE",
+    "triplet": {
+      "blocking_exerce": true,
+      "decision_exercee": true,
+      "doute_exerce": true
+    }
+  },
+  "verite_terrain": {
+    "distribution_tailles_entites": {
+      "1": 157,
+      "2": 109,
+      "3": 54
+    },
+    "ecart_cloture_foret": 54,
+    "n_entites": 320,
+    "n_entites_singleton": 157,
+    "n_paires_foret_pour_memoire": 217,
+    "n_paires_possibles": 143916,
+    "n_records": 537,
+    "n_vraies_paires": 271,
+    "note_cloture_vs_foret": "n_vraies_paires est la CLOTURE d'equivalence (somme des C(n,2)). Le compte-foret (somme des n-1, = nombre d'aretes de provenance) est publie POUR MEMOIRE : c'est l'erreur classique, et l'ecart prouve par convexite qu'il existe des entites de taille >= 3, donc que la transitivite est active sur ce jeu.",
+    "prevalence_absolue": 0.001883,
+    "taille_entite_max": 3
+  },
+  "version_schema": "scorer/1.0"
+}

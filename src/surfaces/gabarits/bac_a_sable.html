@@ -1,0 +1,194 @@
+{# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+   Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+   Tous droits réservés / All rights reserved.
+   Composant du démonstrateur « moteur-rapprochement ».
+   Reproduction, modification ou redistribution interdites sans autorisation écrite. #}
+{# LE BAC À SABLE — scénarios réalistes d'abord, saisie manuelle en second.
+   Deux modes, et la page dit lequel est lequel :
+     - un SCÉNARIO affiche un résultat calculé au build (des centaines de fiches prennent de
+       14 à 57 s : le promettre en direct serait une promesse intenable) ;
+     - la SAISIE MANUELLE fait tourner le moteur pour de vrai, sous les cinq secondes.
+   Aucun chiffre n'est écrit ici : les nombres des scénarios sont lus de leur artefact. #}
+{% extends "base.html" %}
+
+{% block titre %}Essayer — vos fichiers en désordre, une base propre{% endblock %}
+{% block description %}Choisissez un cas proche du vôtre et voyez ce que le rapprochement en fait.{% endblock %}
+
+{% block liens %}
+  <a href="/">← Accueil</a>
+  <a href="/salle-des-machines">La salle des machines</a>
+{% endblock %}
+
+{% block contenu %}
+<div class="wrap">
+  <section class="bac-titre">
+    <h1>Vos fichiers en désordre entrent. Une base propre, unique et triée sort.</h1>
+    <p class="sous">Choisissez le cas qui ressemble au vôtre. Vous verrez ce que le moteur
+      réunit, ce qu'il laisse tel quel, et ce sur quoi il préfère vous demander votre avis.</p>
+  </section>
+
+  {# ---- Le sélecteur : premier écran, pas un sous-menu ---- #}
+  <section class="choix-scenarios" id="choix-scenarios-section" aria-labelledby="titre-choix">
+    <h2 id="titre-choix" class="titre-choix">Trois situations courantes</h2>
+    <div class="cartes-scenarios">
+      {% for scenario in v.scenarios %}
+      <button type="button" class="carte-scenario" data-scenario="{{ scenario.cle }}"
+              aria-pressed="false">
+        <span class="nom">{{ scenario.titre }}</span>
+        <span class="chiffres">{{ scenario.n_lignes }} lignes
+          → {{ scenario.n_fiches_uniques }} fiches uniques</span>
+        <span class="sources">
+          {% for fichier in scenario.fichiers %}<span class="jeton-format {{ fichier.format }}">{{ fichier.format }}</span>{% endfor %}
+          {{ scenario.fichiers | length }} fichiers
+        </span>
+      </button>
+      {% endfor %}
+      <button type="button" class="carte-scenario secondaire" data-scenario="manuel"
+              aria-pressed="false">
+        <span class="nom">Ou testez avec vos propres lignes</span>
+        <span class="chiffres">Quelques enregistrements, calculés en direct</span>
+        <span class="sources">le moteur tourne réellement, sous cinq secondes</span>
+      </button>
+    </div>
+  </section>
+
+  {# ---- Un scénario : les fichiers d'entrée, puis le résultat ---- #}
+  <section id="vue-scenario" hidden aria-labelledby="titre-scenario">
+    <div class="bac-panneau">
+      <h2 id="titre-scenario" class="titre-scenario"></h2>
+      <p class="accroche-scenario" id="accroche-scenario"></p>
+
+      <div class="depot" id="depot">
+        <p class="consigne-depot">Vos fichiers, de sources et de formats différents</p>
+        <div class="cartes-fichiers" id="cartes-fichiers"></div>
+        <p class="note-depot">Dans la démonstration, ce sont des exemples.
+          <b>Dans votre version sur mesure, ce sont vos fichiers réels — PDF, CSV, Excel — qui
+          entrent directement.</b></p>
+      </div>
+
+      <div class="bac-actions">
+        <button class="btn btn-plein" id="rapprocher-scenario" type="button">Rapprocher</button>
+        <button class="btn btn-fantome" id="retour-choix" type="button">← Changer de cas</button>
+        <span class="chrono" id="chrono-scenario" role="status" aria-live="polite"></span>
+      </div>
+      <p class="benefice" id="benefice-scenario"></p>
+    </div>
+
+    <div id="resultat-scenario" aria-live="polite"></div>
+  </section>
+
+  {# ---- La saisie manuelle : secondaire, mais réellement calculée ---- #}
+  <section id="vue-manuelle" hidden aria-labelledby="titre-manuel">
+    <div class="bac-panneau">
+      <div class="titre">
+        <h2 id="titre-manuel">Vos propres lignes — <span id="compte-lignes"></span></h2>
+        <span id="compte-sources"></span>
+      </div>
+      <div class="defilable">
+        <table class="saisie" id="saisie">
+          <thead>
+            <tr>{% for champ in champs %}<th>{{ champ | libelle }}</th>{% endfor %}<th></th></tr>
+          </thead>
+          <tbody id="lignes"></tbody>
+        </table>
+      </div>
+      <div class="bac-actions">
+        <button class="btn btn-plein" id="rapprocher" type="button">Rapprocher</button>
+        <button class="btn btn-fantome" id="ajouter" type="button">Ajouter une ligne</button>
+        <button class="btn btn-fantome" id="reinitialiser" type="button">Réinitialiser</button>
+        <button class="btn btn-fantome" id="retour-choix-2" type="button">← Changer de cas</button>
+        <span class="chrono" id="chrono" role="status" aria-live="polite"></span>
+      </div>
+      {# Le texte ne parlait que des paires. Depuis la correction du budget, le plafond qui
+         mord en premier sur des valeurs longues est celui du COÛT — paires × longueurs² — et
+         un refus sur ce motif arrivait sans avoir été annoncé. On nomme les deux dimensions. #}
+      <p class="avis">Ici, le moteur tourne réellement sur ce que vous saisissez. Le coût suit
+        les <b>paires à comparer</b> et la <b>longueur des valeurs</b>, pas le nombre de
+        lignes : des enregistrements qui partagent tous le même code postal se comparent tous
+        entre eux, et comparer deux textes coûte le produit de leurs longueurs. Au-delà du
+        plafond, le calcul est refusé plutôt que de vous laisser devant une page figée.</p>
+    </div>
+    <div class="bac-resultat">
+      <div id="sortie" aria-live="polite"></div>
+      <div id="message" aria-live="polite" role="status"></div>
+    </div>
+  </section>
+
+  <section class="bac-panneau" style="margin-top:20px" aria-labelledby="titre-reserves">
+    <div class="titre"><h2 id="titre-reserves">Ce que cette démonstration montre, et ce qu'elle ne fait pas</h2></div>
+    <p style="font-size:13px;color:var(--ink-2)">
+      Les scénarios affichent un résultat <b>calculé à l'avance</b> sur des données d'exemple :
+      des centaines de fiches demandent plus de temps que ce qu'une page doit faire attendre.
+      La saisie manuelle, elle, fait tourner le moteur en direct. Dans les deux cas, les
+      décisions affichées sont bien celles du moteur.
+      La démonstration <b>ne lit pas vos fichiers</b> : l'ingestion de vos formats et de vos
+      sources fait partie du sur-mesure, et c'est précisément ce qu'on construit avec vous.
+    </p>
+    {# La revue a relevé des invraisemblances de surface — une « place Bellecour » à Nantes,
+       des courriels en `example.fr`, un seul code postal par ville. Elles viennent des
+       réservoirs du générateur de test, qui est gelé et qu'on ne rouvre pas pour habiller une
+       démonstration. Les maquiller aurait été fabriquer de la crédibilité ; on dit plutôt
+       d'où viennent ces lignes, ce qui règle la question à la racine : le lecteur ne les lit
+       plus comme un extrait client raté. #}
+    <p style="font-size:13px;color:var(--ink-2);margin-top:12px">
+      Ces lignes sont <b>fabriquées par un générateur</b>, à partir d'un petit répertoire de
+      noms, de villes et de rues françaises : vous y croiserez des combinaisons improbables et
+      des adresses de courriel en <code>example.fr</code>. C'est voulu — aucune donnée réelle
+      n'entre dans une démonstration. Ce que le moteur en fait, en revanche, n'a rien de
+      fabriqué : ce sont ses décisions, sur ces lignes-là.
+    </p>
+    {# Cet avertissement avait DISPARU des quatre surfaces lors d'une révision : la décision
+       owner autorise à déplacer, jamais à retirer. Or c'est la seule page où un visiteur
+       saisit SES lignes et reçoit un verdict — sans lui, il repart en croyant que le moteur
+       a été réglé pour ses données. Restauré ici, à sa place. #}
+    {# Le couple de seuils affiché ici est celui de la SAISIE MANUELLE. Les trois scénarios
+       ont re-dérivé le leur sur leurs propres données — +2,650 d'un côté, −8,325 de l'autre —
+       et la page les présentait tous sous un seul réglage : le lecteur attribuait aux
+       résultats qu'il regardait des seuils qui ne les avaient pas produits. Chaque scénario
+       porte désormais le sien, sous son résultat ; cette phrase est cantonnée à son mode. #}
+    <p style="font-size:13px;color:var(--ink-2);margin-top:12px">
+      Et surtout, pour la <b>saisie manuelle</b> : les seuils de décision
+      (Tμ&nbsp;=&nbsp;{{ v.point.t_mu | nombre(3) }},
+      Tλ&nbsp;=&nbsp;{{ v.point.t_lambda | nombre(3) }}) ont été réglés sur un jeu de
+      référence, <b>pas sur le vôtre</b>. Appliqués à d'autres données, ils découpent une zone
+      de doute qui n'a plus le même sens. Ce que vous voyez est une <b>démonstration du
+      mécanisme</b>, pas un étalonnage sur vos données — c'est précisément pourquoi toute
+      proposition commence par mesurer sur votre fichier réel.
+      {% if v.point.provisoire %}Ces seuils sont déclarés provisoires ({{ v.point.gap }}).{% endif %}
+      Les scénarios, eux, ont chacun les leurs, redimensionnés sur leurs propres données :
+      ils sont rappelés sous chaque résultat.
+    </p>
+
+    {# Le budget de revue des scénarios est ~75 fois plus serré que celui du jeu de mesure :
+       la file y paraît légère parce qu'elle a été réglée pour l'être. Le taire, sur une
+       section intitulée « ce qu'elle ne fait pas », serait exactement l'omission qui flatte. #}
+    <p style="font-size:13px;color:var(--ink-2);margin-top:12px">
+      Une dernière chose, sur la <b>taille de la file à confirmer</b>. Dans les scénarios, elle
+      est courte parce que le réglage la veut courte :
+      {{ v.scenarios_provenance.budget_revue }} cas visés, pour qu'elle s'instruise ici d'un
+      coup d'œil. Sur le jeu de mesure de la
+      <a href="/salle-des-machines">salle des machines</a>, réglé pour un budget de revue
+      réaliste, le moteur met de côté
+      <b>{{ v.demonstration.population.repartition_verdicts.ZONE_GRISE | entier }} paires</b>
+      sur {{ v.demonstration.population.n_paires_candidates | entier }}. C'est le vrai ordre
+      de grandeur, et il se règle : plus vous acceptez d'en relire, moins le moteur tranche
+      seul — et l'inverse.
+    </p>
+  </section>
+</div>
+
+<script id="champs-record" type="application/json">{{ champs | tojson }}</script>
+{# Le plafond de longueur venait du SERVEUR pour la validation et était recopié à la main dans
+   le navigateur. Les deux pouvaient diverger : le champ de saisie aurait tronqué en silence à
+   son ancienne valeur, et le message d'erreur soigné du serveur serait devenu inatteignable
+   par l'interface. Une seule source. #}
+<script id="longueur-max-valeur" type="application/json">{{ longueur_max_valeur | tojson }}</script>
+<script id="extrait-initial" type="application/json">{{ extrait_json | safe }}</script>
+{% endblock %}
+
+{% block scripts %}
+{# `logique.js` d'abord : il porte la composition des phrases et l'arithmétique des
+   compteurs, et c'est LUI que les tests exécutent sous Node. `bac.js` n'a plus que le DOM. #}
+<script src="/statique/logique.js"></script>
+<script src="/statique/bac.js"></script>
+{% endblock %}

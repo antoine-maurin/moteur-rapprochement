@@ -1,0 +1,502 @@
+{
+  "_lisez_moi": "Contribution MESUREE de la revue de zone grise (unite U-B3, mandat DISP-UB3-01, SEF-LLM-4). LIRE 'contexte_amont' EN PREMIER. Fait central : la zone grise dimensionnee ne contient qu'UNE paire reellement liee, et elle s'y trouve parce que le dimensionnement a pose t_mu exactement sur son agregat, qu'une inegalite stricte exclut de MATCH. Le doute que la revue peut lever est celui que le dimensionnement a fabrique : mesuree contre l'etat du moteur d'AVANT le dimensionnement, la contribution maximale est NULLE. De plus, aucun adjudicateur n'est joignable dans ce build (aucun runtime de modele local n'est declare, runtime hors ligne strict), donc la revue livree n'instruit AUCUNE paire. La contribution mesuree est donc NULLE en nombre de liens restitues, et le rappel net est en RETRAIT par rapport a l'etat d'avant le dimensionnement (voir contexte_amont.delta_rappel_net_vs_avant_dimensionnement, qui est NEGATIF) : le dimensionnement a retire une paire que la revue ne rend pas. Le plafond de ce delta est zero — la revue ne peut, au mieux, que revenir au point de depart. Instrumentation de chantier, PAS la preuve : la mesure de qualite autoritaire est l'unite U-B5, independante par construction.",
+  "contexte_amont": {
+    "delta_rappel_net_vs_avant_dimensionnement": -0.004424779,
+    "n_match_avant_dimensionnement": 226,
+    "n_match_lies_avant_dimensionnement": 226,
+    "n_zone_grise_avant_dimensionnement": 0,
+    "n_zone_grise_liees_avant_dimensionnement": 0,
+    "note": "Le dimensionnement a RETIRE de MATCH la paire que la revue pourrait restituer : son agregat vaut exactement t_mu, et la decision a trois zones exclut l'egalite. Un gain publie par rapport a l'etat POST dimensionnement serait vrai et trompeur. Le delta ci-dessus est mesure par rapport a l'etat ANTERIEUR au dimensionnement : il est NEGATIF ou nul tant que la revue ne restitue pas la paire retiree, et son plafond est zero — la revue ne peut, au mieux, que revenir au point de depart.",
+    "plafond_de_delta_rappel_net_vs_avant_dimensionnement": 0.0,
+    "taux_rappel_apres_dimensionnement": 0.995575221,
+    "taux_rappel_apres_revue": 0.995575221,
+    "taux_rappel_avant_dimensionnement": 1.0
+  },
+  "contribution_mesuree": {
+    "n_liens_restitues": 0,
+    "n_match_apres_revue": 225,
+    "n_match_avant_revue": 225,
+    "n_match_lies_apres_revue": 225,
+    "n_match_lies_avant_revue": 225,
+    "n_paires_liees_candidates": 226,
+    "n_paires_liees_totales": 233,
+    "note_denominateurs": "Deux denominateurs sont publies : les paires liees ayant survecu au blocking, et toutes les paires liees du pack. Le premier flatte le taux en masquant les liens perdus au blocking ; publier les deux interdit de choisir le plus avantageux.",
+    "restitution_de_paires_retirees_par_le_dimensionnement": 0,
+    "taux_justesse_apres_revue": 1.0,
+    "taux_justesse_avant_revue": 1.0,
+    "taux_rappel_apres_revue_sur_paires_candidates": 0.995575221,
+    "taux_rappel_apres_revue_sur_paires_liees_totales": 0.965665236,
+    "taux_rappel_avant_revue_sur_paires_candidates": 0.995575221
+  },
+  "controles_hors_echantillon": {
+    "_lisez_moi": "Populations distinctes de celle sur laquelle les seuils ont ete dimensionnes. Une capacite de restitution qui ne s'observerait que sur la population d'ajustement serait une propriete de l'echantillon, pas du module.",
+    "populations": [
+      {
+        "graine": "SP_CYCLE_001::GEN-01::seed-0002",
+        "n_grises_sans_aucun_desaccord": 0,
+        "n_zone_grise": 220,
+        "n_zone_grise_liees": 0,
+        "plafond_de_restitution": 0
+      },
+      {
+        "graine": "HOLDOUT::seed-0007",
+        "n_grises_sans_aucun_desaccord": 0,
+        "n_zone_grise": 391,
+        "n_zone_grise_liees": 0,
+        "plafond_de_restitution": 0
+      }
+    ]
+  },
+  "cout": {
+    "cout_declare_par_appel_du_client": null,
+    "cout_pour_1000_paires": null,
+    "cout_total": null,
+    "motif": "NON MESURABLE dans ce build, et declare tel plutot que rempli d'un substitut : aucun adjudicateur n'a ete execute, donc il n'existe ni appel, ni jeton, ni duree a rapporter. Une duree d'horloge serait de toute facon proscrite ici, l'artefact devant se regenerer a l'identique.",
+    "unite_budget": "paires_tentees"
+  },
+  "gap": "GAP-A",
+  "mandat": "DISP-UB3-01",
+  "mesure_dims_v2": {
+    "_lisez_moi": "Contribution du substitut 1b, RE-MESUREE sur la zone grise DIMS-v2 reelle de FX_001 V1.2 (mandat DISP-UB7-01, O1). Les criteres de lecture ont ete GELES et committes AVANT que ce chiffre n'existe : l'anteriorite est verifiable en git par un tiers qui n'a que le depot. Le resultat est publie tel quel.",
+    "critique_du_critere_gele": [
+      {
+        "consequence_sur_cette_mesure": "C'est PRECISEMENT le cas ici : 300 paires tentees, 0 adjugee. Le verdict CONTRIBUTION_NULLE doit donc etre lu comme << la chaine de revue n'a rien produit sur cette population >>, et NON comme << un adjudicateur a examine la zone grise et n'y a rien trouve >>. La seconde lecture serait fausse et le present bloc existe pour l'empecher.",
+        "correction_refusee_et_pourquoi": "Ajouter le critere manquant exigerait un second commit sur le fichier gele, ce qui ferait echouer C11_ANTERIORITE_DU_GEL et detruirait l'attestation de pre-enregistrement. Le defaut est donc publie, pas corrige -- c'est la regle que ce fichier s'est donnee avant de mesurer.",
+        "critere": "grille (regle de verdict)",
+        "defaut": "La grille n'a AUCUN critere de vacuite : elle ne lit nulle part le nombre de paires effectivement ADJUGEES. Une revue qui n'instruit rien satisfait donc les 11 criteres et rend CONTRIBUTION_NULLE, exactement comme une revue qui aurait instruit 300 paires sans en promouvoir aucune. Ce sont deux situations tres differentes, et le verdict ne les distingue pas."
+      },
+      {
+        "consequence_sur_cette_mesure": "Aucune sur le fond : aucun terme prohibe ne DECRIT le substitut, et les seules occurrences dans le fichier sont l'enonce de la regle elle-meme et une reference de specification. La portee reelle est publiee dans portee_du_controle_c7.",
+        "correction_refusee_et_pourquoi": "idem : le fichier gele n'est pas reecrit.",
+        "critere": "C7_SUBSTITUT_DECLARE",
+        "defaut": "le seuil annonce une portee (<< l'artefact publie >>) plus large que celle du controle execute."
+      }
+    ],
+    "mesures": {
+      "anteriorite": {
+        "commit_gel": "864f6e092ba67d7bb487adfcb78205a86e6d8f2b",
+        "commit_mesure": "d37932ebc2a3b94868b71a6384e49d17cd00f186",
+        "designation": "commits d'AJOUT des deux fichiers : immuables, donc l'attestation reste vraie apres tout commit ulterieur",
+        "motif": null,
+        "n_commits_sur_le_fichier": "1",
+        "ok": true,
+        "sha_fichier": "1878d08be91267dca8982dd52136f6cf73b72aa522eaba8651f4c0c9bbb6801f"
+      },
+      "client": {
+        "est_substitut_declare": true,
+        "n_reponses_disponibles": 4,
+        "nom": "rejeu",
+        "termes_interdits_trouves": []
+      },
+      "cout": {
+        "budget": 300,
+        "cout_declare": 0,
+        "motifs_non_revue": {
+          "adjudicateur_indisponible": 0,
+          "budget_epuise": 1,
+          "reponse_absente": 300
+        },
+        "n_instruites": 300,
+        "unite_budget": "paires_tentees"
+      },
+      "determinisme": {
+        "identique": true
+      },
+      "effets": {
+        "convention": "stricte",
+        "delta_f1": 0.0,
+        "delta_precision": 0.0,
+        "delta_rappel": 0.0,
+        "f1_apres": 0.9194139194139194,
+        "f1_avant": 0.9194139194139194,
+        "note_convention": "Convention STRICTE : la zone grise n'est PAS comptee comme un lien. C'est la convention de tete du scoreur, declaree avant toute mesure ; elle n'est pas choisie ici.",
+        "precision_apres": 0.9127272727272727,
+        "precision_avant": 0.9127272727272727,
+        "rappel_apres": 0.9261992619926199,
+        "rappel_avant": 0.9261992619926199
+      },
+      "incertitude": {
+        "intervalle_rappel_apres": [
+          0.88876,
+          0.95172
+        ],
+        "intervalle_rappel_avant": [
+          0.88876,
+          0.95172
+        ],
+        "note": "Sur un plafond de 6 paire(s), UNE paire restituee deplacerait le rappel de 0.003690037. Tout ecart plus petit n'est pas mesurable ici, et l'intervalle de Wilson le dit.",
+        "valeur_d_une_paire_du_plafond": 0.166666667,
+        "valeur_d_une_paire_en_rappel": 0.003690037
+      },
+      "perimetre": {
+        "entree_intacte": true,
+        "n_hors_perimetre": 0,
+        "n_instruites": 300
+      },
+      "plafond": {
+        "gain_en_paires": 0,
+        "n_vraies_en_zone_grise": 6,
+        "n_zone_grise": 301,
+        "note": "Aucune revue, si parfaite soit-elle, ne peut restituer plus de paires liees qu'il n'y en a dans la zone grise. Ce plafond borne TOUTE affirmation de gain, et il est publie A COTE du gain.",
+        "part_du_plafond": 0.0
+      },
+      "population": {
+        "content_sha256": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2",
+        "fixture": "../../../env/synth_env/FIXTURE_PACK_GT_V1_2.json",
+        "n_paires_candidates": 5932,
+        "n_records": 537,
+        "n_vraies_paires": 271,
+        "n_zone_grise": 301,
+        "note_ecart": "Le mandat DISP-UB7-01 annonce 298 paires en zone grise, artifacts/dims_v2.json en annonce 301 ; la valeur observee ci-dessus est publiee telle quelle et l'ecart n'est pas arbitre en silence. Le PLAFOND observe (6 vraies paires en zone grise) coincide, lui, avec les 6 annoncees par le mandat.",
+        "point": "DIMS-v2",
+        "t_lambda": -2.681884167,
+        "t_mu": 2.650183265
+      },
+      "prudence": {
+        "n_non_revue": 301,
+        "n_non_tranche": 0,
+        "n_promues_sans_decision": 0
+      }
+    },
+    "outil_producteur": "tools/contribution_dims_v2.py",
+    "portee_du_controle_c7": {
+      "exclusions_et_leur_motif": [
+        "mesure_dims_v2.verdict : reproduit le texte du critere C7, lequel NOMME les termes qu'il proscrit. Un controle a portee totale echouerait sur l'enonce de la regle elle-meme, ce qui la rendrait ininscriptible.",
+        "le _lisez_moi de tete de l'artefact : herite de U-B3, il cite l'identifiant de specification SEF-LLM-4, qui est une reference de document.",
+        "ce bloc-ci, qui doit nommer ce qu'il declare exclu."
+      ],
+      "methode": "locutions cherchees en sous-chaine ; sigles en LIMITE DE MOT. 'llm' en sous-chaine mordrait sur le chemin fixtures/llm_review/, qui est un nom de fichier et ne decrit rien ; 'ia' mordrait sur des mots francais ordinaires.",
+      "portee_annoncee_par_le_seuil_gele": "l'artefact publie",
+      "portee_reellement_controlee": [
+        "mesure_dims_v2.mesures",
+        "mesure_dims_v2.substitut"
+      ],
+      "termes": [
+        "intelligence artificielle",
+        "modele de langue",
+        "modèle de langue",
+        "IA",
+        "LLM"
+      ]
+    },
+    "sortie_e2e_content_sha256": "646c6d4e7625ea8e24c407d31e7a9b3f470d37c98527aece234d2abef2a65b26",
+    "substitut": {
+      "est_une_transcription_de_modele": false,
+      "mecanisme": "rejeu d'une table de reponses enregistree (ClientRejeu)",
+      "note": "Le substitut 1b est un rejeu deterministe, jamais autre chose : aucun runtime de modele n'est declare dans ce depot et le runtime est hors ligne strict. Sa table de reponses porte sur des paires SYNTHETIQUES -- U-B3 les a fabriquees deliberement, parce que choisir des paires reelles de la zone grise puis decider de leur reponse reviendrait a choisir les reponses en sachant lesquelles sont bonnes. La consequence, publiee ici plutot que tue, est que sur CETTE population aucune cle de rejeu ne correspond : le substitut n'instruit rien, et la contribution mesuree est nulle POUR CETTE RAISON MECANIQUE. C'est un fait sur le dispositif de mesure, et il ne requalifie pas le verdict.",
+      "transcription": "fixtures/llm_review/vecteurs_de_test.json"
+    },
+    "trace_revue": {
+      "budget": 300,
+      "client": {
+        "cout_declare_par_appel": 0,
+        "disponible": true,
+        "n_reponses": 4,
+        "nom": "rejeu",
+        "provenance": {
+          "est_une_transcription_de_modele": false,
+          "mandat": "DISP-UB3-01",
+          "modele": null,
+          "nature": "VECTEURS_DE_TEST_FABRIQUES",
+          "outil_producteur": "tools/enregistre_vecteurs_revue.py"
+        }
+      },
+      "decisions": {
+        "MATCH_APRES_REVUE": 0,
+        "NON_MATCH_APRES_REVUE": 0,
+        "NON_TRANCHE": 0
+      },
+      "mode_strict": true,
+      "motifs_non_revue": {
+        "adjudicateur_indisponible": 0,
+        "budget_epuise": 1,
+        "reponse_absente": 300
+      },
+      "n_correspondances": 5932,
+      "n_en_attente": 0,
+      "n_non_revues": 301,
+      "n_revues": 0,
+      "n_tentees": 300,
+      "n_zone_grise": 301,
+      "ordre_instruction": "identifiants de paire (independant de l'agregat)",
+      "perimetre": "paires ZONE_GRISE seules ; MATCH et NON_MATCH jamais touches",
+      "unite_budget": "paires_tentees"
+    },
+    "verdict": {
+      "cle_enonce": "VERDICT_CONTRIBUTION_NULLE",
+      "criteres": [
+        {
+          "cle_enonce": "C1_PERIMETRE_ZONE_GRISE_SAT",
+          "code": "C1_PERIMETRE_ZONE_GRISE",
+          "enonce_du_critere": "la revue n'a-t-elle instruit QUE des paires en zone grise ?",
+          "enonce_rendu": "Perimetre respecte : 300 paires instruites, toutes en zone grise. Aucune paire deja tranchee n'a ete relue ni modifiee.",
+          "enonce_retenu": "Perimetre respecte : {n_instruites} paires instruites, toutes en zone grise. Aucune paire deja tranchee n'a ete relue ni modifiee.",
+          "famille": "perimetre",
+          "issue": "SATISFAIT",
+          "seuil": "aucune paire deja tranchee (MATCH ou NON_MATCH) instruite ni modifiee",
+          "valeur_observee": 0
+        },
+        {
+          "cle_enonce": "C2_R20_NON_TRANCHE_RESTE_GRIS_SAT",
+          "code": "C2_R20_NON_TRANCHE_RESTE_GRIS",
+          "enonce_du_critere": "le doute non tranche reste-t-il gris ?",
+          "enonce_rendu": "R-20 tenu : 0 paire(s) NON_TRANCHE et 301 non revue(s) sont restees indeterminees. Aucune promotion sans decision.",
+          "enonce_retenu": "R-20 tenu : {n_non_tranche} paire(s) NON_TRANCHE et {n_non_revue} non revue(s) sont restees indeterminees. Aucune promotion sans decision.",
+          "famille": "prudence",
+          "issue": "SATISFAIT",
+          "seuil": "aucune paire NON_TRANCHE, ni non revue, promue en lien",
+          "valeur_observee": 0
+        },
+        {
+          "cle_enonce": "C3_ENTREE_NON_MUTEE_SAT",
+          "code": "C3_ENTREE_NON_MUTEE",
+          "enonce_du_critere": "la revue rend-elle une liste NEUVE sans muter la sortie moteur ?",
+          "enonce_rendu": "La sortie du moteur est intacte apres la revue : la revue enrichit une copie.",
+          "enonce_retenu": "La sortie du moteur est intacte apres la revue : la revue enrichit une copie.",
+          "famille": "perimetre",
+          "issue": "SATISFAIT",
+          "seuil": "la liste d'entree est identique avant et apres la revue",
+          "valeur_observee": true
+        },
+        {
+          "cle_enonce": "C4_PLAFOND_PUBLIE_SAT",
+          "code": "C4_PLAFOND_PUBLIE",
+          "enonce_du_critere": "le plafond de la contribution est-il publie a cote du gain ?",
+          "enonce_rendu": "Plafond publie : la zone grise contient 6 paire(s) reellement liee(s) sur 301 paires. Aucune revue ne peut en restituer davantage. Le gain constate est de 0 paire(s), soit 0.0 du plafond.",
+          "enonce_retenu": "Plafond publie : la zone grise contient {plafond} paire(s) reellement liee(s) sur {n_zone_grise} paires. Aucune revue ne peut en restituer davantage. Le gain constate est de {gain_en_paires} paire(s), soit {part_du_plafond} du plafond.",
+          "famille": "honnetete",
+          "issue": "SATISFAIT",
+          "seuil": "n_vraies_en_zone_grise present, et gain_en_paires <= plafond",
+          "valeur_observee": {
+            "gain_en_paires": 0,
+            "plafond": 6
+          }
+        },
+        {
+          "cle_enonce": "C5_PRECISION_STABLE_SAT",
+          "code": "C5_PRECISION_STABLE",
+          "enonce_du_critere": "le gain de rappel est-il obtenu a precision stable ?",
+          "enonce_rendu": "Precision stable : 0.9127272727272727 -> 0.9127272727272727 (variation 0.0, tolerance 0.01). Le gain de rappel n'est pas achete par des promotions fausses.",
+          "enonce_retenu": "Precision stable : {precision_avant} -> {precision_apres} (variation {delta_precision}, tolerance {tolerance}). Le gain de rappel n'est pas achete par des promotions fausses.",
+          "famille": "honnetete",
+          "issue": "SATISFAIT",
+          "seuil": {
+            "chute_toleree": 0.01
+          },
+          "valeur_observee": 0.0
+        },
+        {
+          "cle_enonce": "C6_INTERVALLE_PUBLIE_SAT",
+          "code": "C6_INTERVALLE_PUBLIE",
+          "enonce_du_critere": "l'incertitude est-elle publiee a cote de chaque taux ?",
+          "enonce_rendu": "Incertitude publiee : rappel 0.9261992619926199, intervalle de Wilson a 0.95 = [0.88876 ; 0.95172]. Sur 6 paire(s) vraie(s) en zone grise, UNE paire vaut 0.003690037 de rappel : l'intervalle est large, et c'est la matiere qui le veut, pas la mesure qui faiblit.",
+          "enonce_retenu": "Incertitude publiee : rappel {rappel_apres}, intervalle de Wilson a {niveau} = [{borne_basse} ; {borne_haute}]. Sur {plafond} paire(s) vraie(s) en zone grise, UNE paire vaut {valeur_d_une_paire} de rappel : l'intervalle est large, et c'est la matiere qui le veut, pas la mesure qui faiblit.",
+          "famille": "honnetete",
+          "issue": "SATISFAIT",
+          "seuil": {
+            "niveau": 0.95,
+            "regle": "intervalle de Wilson sur tout taux issu d'un effectif < 100"
+          },
+          "valeur_observee": [
+            0.88876,
+            0.95172
+          ]
+        },
+        {
+          "cle_enonce": "C7_SUBSTITUT_DECLARE_SAT",
+          "code": "C7_SUBSTITUT_DECLARE",
+          "enonce_du_critere": "le substitut est-il nomme pour ce qu'il est ?",
+          "enonce_rendu": "Le client de revue est declare pour ce qu'il est : rejeu, substitut deterministe par rejeu. Ce qui est mesure ici est le comportement de la CHAINE quand un adjudicateur repond, et non ce qu'un adjudicateur reel deciderait.",
+          "enonce_retenu": "Le client de revue est declare pour ce qu'il est : {nom_client}, substitut deterministe par rejeu. Ce qui est mesure ici est le comportement de la CHAINE quand un adjudicateur repond, et non ce qu'un adjudicateur reel deciderait.",
+          "famille": "honnetete",
+          "issue": "SATISFAIT",
+          "seuil": "le client est declare substitut deterministe ; les mots 'IA', 'intelligence artificielle', 'modele de langue', 'LLM' sont ABSENTS de l'artefact publie",
+          "valeur_observee": {
+            "nom": "rejeu",
+            "termes_trouves": []
+          }
+        },
+        {
+          "cle_enonce": "C8_COUT_PUBLIE_SAT",
+          "code": "C8_COUT_PUBLIE",
+          "enonce_du_critere": "le volume revu et le cout sont-ils publies ?",
+          "enonce_rendu": "Cout publie : 300 paires instruites pour un budget de 300, cout declare 0.",
+          "enonce_retenu": "Cout publie : {n_instruites} paires instruites pour un budget de {budget}, cout declare {cout}.",
+          "famille": "honnetete",
+          "issue": "SATISFAIT",
+          "seuil": "n_paires_instruites, budget et cout declare presents",
+          "valeur_observee": {
+            "budget": 300,
+            "cout_declare": 0,
+            "motifs_non_revue": {
+              "adjudicateur_indisponible": 0,
+              "budget_epuise": 1,
+              "reponse_absente": 300
+            },
+            "n_instruites": 300,
+            "unite_budget": "paires_tentees"
+          }
+        },
+        {
+          "cle_enonce": "C9_POPULATION_DECLAREE_SAT",
+          "code": "C9_POPULATION_DECLAREE",
+          "enonce_du_critere": "la population mesuree est-elle identifiee sans ambiguite ?",
+          "enonce_rendu": "Population identifiee : ../../../env/synth_env/FIXTURE_PACK_GT_V1_2.json, content_sha256 66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2, au point DIMS-v2. Zone grise OBSERVEE : 301 paires. Le mandat DISP-UB7-01 annonce 298 paires en zone grise, artifacts/dims_v2.json en annonce 301 ; la valeur observee ci-dessus est publiee telle quelle et l'ecart n'est pas arbitre en silence. Le PLAFOND observe (6 vraies paires en zone grise) coincide, lui, avec les 6 annoncees par le mandat.",
+          "enonce_retenu": "Population identifiee : {fixture}, content_sha256 {sha_fixture}, au point {point}. Zone grise OBSERVEE : {n_zone_grise} paires. {note_ecart}",
+          "famille": "honnetete",
+          "issue": "SATISFAIT",
+          "seuil": "fixture, content_sha256, point de fonctionnement et taille de zone grise OBSERVEE publies ; tout ecart a une taille annoncee ailleurs est publie comme fait, jamais arbitre en silence",
+          "valeur_observee": {
+            "content_sha256": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2",
+            "fixture": "../../../env/synth_env/FIXTURE_PACK_GT_V1_2.json",
+            "n_paires_candidates": 5932,
+            "n_records": 537,
+            "n_vraies_paires": 271,
+            "n_zone_grise": 301,
+            "note_ecart": "Le mandat DISP-UB7-01 annonce 298 paires en zone grise, artifacts/dims_v2.json en annonce 301 ; la valeur observee ci-dessus est publiee telle quelle et l'ecart n'est pas arbitre en silence. Le PLAFOND observe (6 vraies paires en zone grise) coincide, lui, avec les 6 annoncees par le mandat.",
+            "point": "DIMS-v2",
+            "t_lambda": -2.681884167,
+            "t_mu": 2.650183265
+          }
+        },
+        {
+          "cle_enonce": "C10_DETERMINISME_SAT",
+          "code": "C10_DETERMINISME",
+          "enonce_du_critere": "deux mesures identiques rendent-elles le meme artefact ?",
+          "enonce_rendu": "Deux constructions rendent la meme serialisation canonique.",
+          "enonce_retenu": "Deux constructions rendent la meme serialisation canonique.",
+          "famille": "plomberie",
+          "issue": "SATISFAIT",
+          "seuil": "serialisation canonique identique entre deux constructions",
+          "valeur_observee": true
+        },
+        {
+          "cle_enonce": "C11_ANTERIORITE_DU_GEL_SAT",
+          "code": "C11_ANTERIORITE_DU_GEL",
+          "enonce_du_critere": "un tiers peut-il verifier que les criteres precedent la mesure ?",
+          "enonce_rendu": "Anteriorite verifiable par un tiers qui n'a que le depot : criteres geles au commit 864f6e092ba67d7bb487adfcb78205a86e6d8f2b (sha256 1878d08be91267dca8982dd52136f6cf73b72aa522eaba8651f4c0c9bbb6801f), ancetre du commit de mesure d37932ebc2a3b94868b71a6384e49d17cd00f186.",
+          "enonce_retenu": "Anteriorite verifiable par un tiers qui n'a que le depot : criteres geles au commit {commit_gel} (sha256 {sha_fichier}), ancetre du commit de mesure {commit_mesure}.",
+          "famille": "honnetete",
+          "issue": "SATISFAIT",
+          "seuil": "un seul commit sur ce fichier ; commit de gel ancetre du commit de mesure ; sha256 du fichier cite dans l'artefact",
+          "valeur_observee": {
+            "commit_gel": "864f6e092ba67d7bb487adfcb78205a86e6d8f2b",
+            "commit_mesure": "d37932ebc2a3b94868b71a6384e49d17cd00f186",
+            "designation": "commits d'AJOUT des deux fichiers : immuables, donc l'attestation reste vraie apres tout commit ulterieur",
+            "motif": null,
+            "n_commits_sur_le_fichier": "1",
+            "ok": true,
+            "sha_fichier": "1878d08be91267dca8982dd52136f6cf73b72aa522eaba8651f4c0c9bbb6801f"
+          }
+        }
+      ],
+      "criteres_en_echec": [],
+      "enonce_rendu": "CONTRIBUTION NULLE. Sur la zone grise de 301 paires du point DIMS-v2, qui contient 6 paire(s) reellement liee(s), la revue n'en restitue AUCUNE. Rappel et F1 sont inchanges. C'est un resultat, publie tel quel, et il ne sera requalifie ni en 'zone grise defavorable', ni en 'substitut a remplacer', ni en 'budget trop court', ni en 'mesure a refaire sur une autre population' : ces quatre echappatoires sont nommees ici, avant la mesure, precisement pour qu'aucune ne puisse etre invoquee apres. Si la revue doit apporter quelque chose, elle le montrera sur une zone grise qui contient de quoi le montrer ; ce qui est etabli ici, c'est que sur CETTE zone grise, au point DIMS-v2, elle n'apporte rien de mesurable.",
+      "enonce_retenu": "CONTRIBUTION NULLE. Sur la zone grise de {n_zone_grise} paires du point {point}, qui contient {plafond} paire(s) reellement liee(s), la revue n'en restitue AUCUNE. Rappel et F1 sont inchanges. C'est un resultat, publie tel quel, et il ne sera requalifie ni en 'zone grise defavorable', ni en 'substitut a remplacer', ni en 'budget trop court', ni en 'mesure a refaire sur une autre population' : ces quatre echappatoires sont nommees ici, avant la mesure, precisement pour qu'aucune ne puisse etre invoquee apres. Si la revue doit apporter quelque chose, elle le montrera sur une zone grise qui contient de quoi le montrer ; ce qui est etabli ici, c'est que sur CETTE zone grise, au point DIMS-v2, elle n'apporte rien de mesurable.",
+      "sha256_criteres": "1878d08be91267dca8982dd52136f6cf73b72aa522eaba8651f4c0c9bbb6801f",
+      "statut": "CONTRIBUTION_NULLE"
+    }
+  },
+  "outil_producteur": "tools/contribution_llm.py",
+  "panneau_de_sensibilite": {
+    "_lisez_moi": "Ce que chaque regle candidate AURAIT fait. AUCUNE n'est livree, sauf 'abstention'. Ce tableau existe pour rendre visible qu'aucune n'est selectionnable sans regarder les reponses : la regle qui gagne est celle qui isole l'unique paire liee, et la choisir POUR CELA serait la circularite que CC1 interdit. Les regles plausibles a priori, elles, degradent la justesse — jusqu'a 154 promotions erronees.",
+    "regles": [
+      {
+        "enonce": "courriel en accord fort ET nom en accord fort",
+        "livree": false,
+        "n_match_apres": 483,
+        "n_match_lies_apres": 226,
+        "n_promues": 258,
+        "n_promues_liees": 1,
+        "n_promues_non_liees": 257,
+        "regle": "identifiant_et_nom_concordants",
+        "taux_justesse_apres": 0.467908903,
+        "taux_rappel_apres_sur_paires_candidates": 1.0
+      },
+      {
+        "enonce": "aucun des 8 attributs en desaccord",
+        "livree": false,
+        "n_match_apres": 226,
+        "n_match_lies_apres": 226,
+        "n_promues": 1,
+        "n_promues_liees": 1,
+        "n_promues_non_liees": 0,
+        "regle": "aucun_desaccord",
+        "taux_justesse_apres": 1.0,
+        "taux_rappel_apres_sur_paires_candidates": 1.0
+      },
+      {
+        "enonce": "au plus 2 attributs en desaccord (la tolerance observee de l'ensemble MATCH)",
+        "livree": false,
+        "n_match_apres": 233,
+        "n_match_lies_apres": 226,
+        "n_promues": 8,
+        "n_promues_liees": 1,
+        "n_promues_non_liees": 7,
+        "regle": "tolerance_du_moteur",
+        "taux_justesse_apres": 0.969957082,
+        "taux_rappel_apres_sur_paires_candidates": 1.0
+      },
+      {
+        "enonce": "ne promeut rien : la regle effectivement LIVREE, faute d'adjudicateur",
+        "livree": true,
+        "n_match_apres": 225,
+        "n_match_lies_apres": 225,
+        "n_promues": 0,
+        "n_promues_liees": 0,
+        "n_promues_non_liees": 0,
+        "regle": "abstention",
+        "taux_justesse_apres": 1.0,
+        "taux_rappel_apres_sur_paires_candidates": 0.995575221
+      }
+    ]
+  },
+  "plafond": {
+    "n_zone_grise": 360,
+    "n_zone_grise_liees": 1,
+    "note": "Aucune revue, si parfaite soit-elle, ne peut restituer plus de paires liees qu'il n'y en a dans la zone grise. Ce plafond borne TOUTE affirmation de gain."
+  },
+  "population_demonstration": {
+    "graine": "SP_CYCLE_001::GEN-01::seed-0001",
+    "n_entites": 400,
+    "n_paires_candidates": 21391,
+    "n_records": 590,
+    "source": "generateur GEN_001 (unite U-B1), population BULK"
+  },
+  "revue_livree": {
+    "adjudicateur_joignable": false,
+    "client": {
+      "cout_declare_par_appel": null,
+      "disponible": false,
+      "motif_indisponibilite": "aucun runtime de modele local n'est declare dans le manifeste de dependances et le runtime est hors ligne strict : rien a interroger",
+      "nom": "modele_local_absent"
+    },
+    "decisions": {
+      "MATCH_APRES_REVUE": 0,
+      "NON_MATCH_APRES_REVUE": 0,
+      "NON_TRANCHE": 0
+    },
+    "mode_strict": true,
+    "motifs_non_revue": {
+      "adjudicateur_indisponible": 360,
+      "budget_epuise": 0,
+      "reponse_absente": 0
+    },
+    "n_non_revues": 360,
+    "n_revues": 0,
+    "n_tentees": 360,
+    "n_zone_grise": 360,
+    "unite_budget": "paires_tentees"
+  },
+  "seuils_employes": {
+    "source": "artifacts/thresholds_sized.json (mandat DISP-DIMS-01)",
+    "t_lambda": -24.528007741,
+    "t_mu": 16.874619418
+  },
+  "statut": "PROVISOIRE",
+  "volume_revu": {
+    "n_paires_du_perimetre": 360,
+    "n_paires_soumises": 360,
+    "part_du_perimetre_instruite": 1.0
+  }
+}

@@ -1,0 +1,396 @@
+{# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+   Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+   Tous droits réservés / All rights reserved.
+   Composant du démonstrateur « moteur-rapprochement ».
+   Reproduction, modification ou redistribution interdites sans autorisation écrite. #}
+{# LA VITRINE — parcours acheteur, ≤ 10 s, ZÉRO jargon.
+   Aucun chiffre n'est écrit ici : tout vient de `v`, construit par surfaces.vue depuis les
+   artefacts. Le vocabulaire technique (précision, rappel, F1, noms d'outils tiers) est
+   proscrit sur cette page et un scan automatique l'éprouve — voir tests/test_surfaces.py.
+
+   « IA » n'est PLUS proscrit (briefing de clôture, point 5) : le mot désigne ici une
+   CAPACITÉ du produit, et c'est un argument d'achat. Ce qui reste interdit, partout, c'est
+   de revendiquer un code FABRIQUÉ par une IA — la copie dit l'inverse, et un oracle cherche
+   les locutions entières.
+
+   La comparaison au marché a quitté cette page comme elle a quitté la Salle des machines :
+   elle vit intacte au dossier technique. Ce qui se vend ici est le résultat, pas le classement. #}
+{% extends "base.html" %}
+{% set heros = v.demonstration.cas_heros.correspondance %}
+{% set concordent = heros.champs_par_niveau.ACCORD_FORT %}
+
+{% block titre %}Concordance — des fichiers propres, en un clic{% endblock %}
+{% block description %}Des fichiers clients, des lignes de comptes, pleins de doublons : le moteur trie, dédoublonne et complète, et vous voyez pourquoi.{% endblock %}
+
+{% block liens %}
+  <a href="/salle-des-machines">La salle des machines</a>
+  <a class="btn btn-fantome" href="/bac-a-sable">Essayer</a>
+{% endblock %}
+
+{% block contenu %}
+<div class="wrap">
+
+  {# ---- L'ENCADRÉ COMMERCIAL, EN TÊTE. C'est la première chose vue (briefing, point 6).
+     Titre et sous-titre à découvert ; les onze exemples repliés derrière un chevron, pour
+     que le premier écran reste court. Le sous-titre porte le cadrage d'honnêteté : ce
+     démonstrateur est une version réduite, et ce qui suit décrit le sur-mesure. ---- #}
+  <section class="surmesure" aria-labelledby="titre-offre">
+    <div class="offre">
+      <div class="entete-offre">
+        <span class="marqueur" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 2l1.7 3.9 4.3.4-3.2 2.8 1 4.2L9 11.9 5.2 13.3l1-4.2L3 6.3l4.3-.4z"/></svg>
+        </span>
+        <div>
+          {# C'est le titre de PREMIER niveau de l'accueil, et pas seulement par convenance de
+             mise en page : l'encadré ouvre la page, et un `h1` qui viendrait après onze `h3`
+             donnerait un plan de titres illisible à qui navigue au lecteur d'écran. Le plan
+             rendu est donc h1 (l'offre) → h2 (les exemples) → h3 (chacun) → h2 (l'accroche)
+             → h3 (les arguments). #}
+          <h1 id="titre-offre">Un moteur de rapprochement construit pour vos données —
+            aussi complet et aussi précis que vous le souhaitez.</h1>
+          <p>Ce démonstrateur est une version volontairement réduite. Sur mesure, votre moteur
+            peut prendre tous vos fichiers, vos documents et vos logiciels — tels qu'ils sont —
+            pour éliminer les doublons qui coûtent, rapprocher ce qui ne matche pas, et vous
+            livrer chaque résultat avec la preuve qu'il est juste.</p>
+        </div>
+      </div>
+
+      <details>
+        <summary>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          <h2>Exemples de ce que nous pouvons mettre en place</h2>
+        </summary>
+
+        <div class="pistes">
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 5.5h6l1.5 2h5.5v7h-13z"/><path d="M2.5 5.5v-2h4l1.5 2"/></svg></span>
+            <div>
+              <h3>Vos fichiers, tels qu'ils sont</h3>
+              <p>Qu'ils sortent de votre logiciel de gestion, d'un tableau tenu à la main ou
+                d'un ancien système, vos fichiers sont rarement parfaits : les colonnes ne sont
+                pas dans le même ordre, les formats varient, les fautes de frappe s'accumulent.
+                Le moteur les accepte tels quels, croise autant de sources que nécessaire, et
+                reconnaît un même client, fournisseur ou produit sous toutes ses variantes.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2.5h6.5L14 6v9.5H4z"/><path d="M10.5 2.5V6H14M6.5 9h5M6.5 12h3.5"/></svg></span>
+            <div>
+              <h3>Vos documents lus, triés, rapprochés</h3>
+              <p>Le moteur lit vos factures, vos scans, vos relevés et vos bons de livraison,
+                en extrait les montants, les dates et les numéros, puis classe chaque document,
+                le renomme proprement et le relie au bon paiement et à la bonne écriture
+                comptable. Une facture arrivée deux fois, par courriel puis par votre
+                plateforme, est repérée avant d'être payée une seconde fois.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="6.5"/><path d="M11.5 6.3a3.4 3.4 0 100 5.4M5.8 8.3h4.4M5.8 10h4.4"/></svg></span>
+            <div>
+              <h3>Chaque euro payé en double, retrouvé</h3>
+              <p>Il arrive qu'une facture soit réglée deux fois, qu'un fournisseur enregistré en
+                double soit payé sur chacune de ses fiches, ou qu'un avoir ne soit jamais
+                déduit. Selon les études du secteur, ces erreurs représentent près d'un pour
+                cent des sommes décaissées. Le moteur reprend plusieurs années d'historique,
+                chiffre chaque anomalie et vous remet la liste des montants à récupérer, en
+                commençant par les plus importants.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 6h9M9 3.5L11.5 6 9 8.5M15.5 12h-9M9 9.5L6.5 12 9 14.5"/></svg></span>
+            <div>
+              <h3>Tous vos rapprochements</h3>
+              <p>Vos relevés bancaires sont rapprochés de votre comptabilité, et vos factures
+                de leurs règlements, y compris lorsqu'un seul virement solde douze factures ou
+                qu'un client paie en plusieurs fois. Le moteur gère les acomptes, les avoirs et
+                les écarts de quelques centimes, contrôle la chaîne commande — livraison —
+                facture, puis fait correspondre vos ventes en ligne aux versements réellement
+                reçus. Ce qui ne trouve pas de contrepartie est isolé et expliqué, prêt à être
+                traité.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2.2l5.5 2.4v4.1c0 3.1-2.3 4.9-5.5 6.1-3.2-1.2-5.5-3-5.5-6.1V4.6z"/><path d="M6.6 8.8l1.7 1.7 3.3-3.7"/></svg></span>
+            <div>
+              <h3>Vos référentiels remis d'aplomb</h3>
+              <p>Chaque entreprise de votre base est vérifiée auprès du registre officiel
+                (SIRET, TVA, sociétés radiées), les adresses sont remises aux normes postales,
+                les courriels et les téléphones contrôlés, et les établissements rattachés à
+                leur maison mère. Vous obtenez une fiche de référence unique par client et par
+                fournisseur, qui indique l'origine de chaque information, avec un identifiant
+                durable qui empêche les doublons de revenir.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2.5l6.5 3.2L9 9 2.5 5.7z"/><path d="M2.5 9L9 12.3 15.5 9M2.5 12.3L9 15.5l6.5-3.2"/></svg></span>
+            <div>
+              <h3>À votre échelle, à votre rythme</h3>
+              <p>Le moteur traite des millions de lignes s'il le faut. Après un premier grand
+                nettoyage, il ne contrôle plus que les nouveautés, chaque nuit par exemple. Il
+                sait aussi agir en prévention : au moment où quelqu'un crée une fiche, il
+                signale que ce client existe déjà, et le doublon est arrêté avant même
+                d'exister.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 11l-2 2a2.5 2.5 0 01-3.5-3.5l2-2M11 7l2-2a2.5 2.5 0 013.5 3.5l-2 2M7 11l4-4"/></svg></span>
+            <div>
+              <h3>Dans vos outils, pas à côté</h3>
+              <p>Nous connectons le moteur à votre gestion commerciale, votre suivi client,
+                votre comptabilité, votre banque ou votre plateforme de facturation
+                électronique. Les fusions s'appliquent directement dans vos fiches et le
+                pointage directement dans votre comptabilité, sans fichier à réimporter à la
+                main. Vous n'avez rien à remplacer.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6.5" r="2.2"/><circle cx="12" cy="6.5" r="2.2"/><path d="M2.5 14.5c0-2 1.6-3.3 3.5-3.3s3.5 1.3 3.5 3.3M9 14.5c0-2 1.6-3.3 3.5-3.3s3.5 1.3 3.5 3.3"/></svg></span>
+            <div>
+              <h3>Vos équipes gardent la main</h3>
+              <p>Quand le moteur hésite, il ne décide pas à votre place. Les cas douteux vous
+                sont présentés côte à côte, différences surlignées, et se valident ou se
+                refusent d'un clic, en commençant par les montants les plus élevés. Vos règles
+                maison font loi, comme ne jamais fusionner deux SIRET différents ; toute fusion
+                peut être annulée, et le moteur apprend de vos décisions pour vous en soumettre
+                de moins en moins.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 2.5l1.2 2.8L10.5 6.5 7.7 7.7 6.5 10.5 5.3 7.7 2.5 6.5l2.8-1.2z"/><path d="M12.5 9.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span>
+            <div>
+              <h3>De l'IA, oui — mais prouvée</h3>
+              {# La règle corrigée (briefing, point 5) : « IA » se dit des CAPACITÉS du
+                 produit, jamais de la fabrication du code. La phrase le dit dans cet ordre,
+                 et c'est ce qui la rend vraie.
+                 Troisième règle, ajoutée ici : l'IA ne porte jamais le RÉSULTAT. La copie
+                 disait « là où elle fait vraiment la différence » — une attribution de
+                 performance, et la seule cause explicitement nommée de toute la Vitrine,
+                 alors que l'apport mesuré de la revue par IA vaut 0,0 en rappel comme en F1
+                 (`artifacts/contribution_llm.json`). On dit désormais un PÉRIMÈTRE. #}
+              <p>Le moteur est conçu et vérifié par un ingénieur, et il s'appuie sur
+                l'intelligence artificielle pour ce qu'un calcul ne sait pas faire : lire un
+                document de mauvaise qualité, reconnaître dans un libellé bancaire réduit à des
+                abréviations — « VIR SEPA STE ACME », suivi d'un numéro — la facture du
+                fournisseur ACME, trancher un cas ambigu, ou expliquer chaque rapprochement en
+                français clair. Son apport est mesuré et publié tel quel dans le
+                <a href="/dossier-technique">dossier technique</a>. Et
+                si vous le souhaitez, elle fonctionne entièrement chez vous : vos données ne
+                sortent jamais.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="6.5"/><path d="M6 9l2 2 4-4.5"/></svg></span>
+            <div>
+              {# Le titre disait « recompté par un tiers ». Trois écrans plus bas, la même
+                 page écrit prudemment « recompté par un programme séparé du moteur », et son
+                 commentaire explique pourquoi : le banc est écrit par l'auteur du moteur, et
+                 « tiers indépendant » serait faux. Un titre ne peut pas rétablir ce que le
+                 corps de la page a écarté. Le corps du point, lui, disait déjà juste. #}
+              <h3>Le résultat, recompté indépendamment du moteur</h3>
+              <p>Un vérificateur indépendant du moteur mesure la justesse du travail sur un
+                échantillon de vos propres données, et le rapport vous est remis tel quel.
+                Chaque fusion conserve sa trace : qui l'a validée, quand, selon quelle règle et
+                à partir de quelle source. Vous pouvez la présenter telle quelle à votre
+                expert-comptable, à votre commissaire aux comptes ou lors d'un contrôle.</p>
+            </div>
+          </div>
+          <div class="piste">
+            <span class="icone" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2.5h7L14 5.5v10H4z"/><circle cx="9" cy="9.5" r="2.1"/><path d="M7.6 11.3L7 14l2-1 2 1-.6-2.7"/></svg></span>
+            <div>
+              <h3>Conforme, et vous pouvez le montrer</h3>
+              {# « en vigueur depuis septembre 2026 » a été retiré deux fois, et pour deux
+                 raisons distinctes : aucun gabarit n'écrit de nombre, et une affirmation de
+                 droit datée vieillit en silence dans une page statique. « Se généralise »
+                 reste vrai sans maintenance, et ne prétend rien sur un calendrier. #}
+              <p>La facturation électronique se généralise : le moteur contrôle
+                chaque facture reçue contre vos commandes et votre annuaire fournisseurs,
+                détecte les doublons entre canaux et suit les statuts jusqu'au paiement. Côté
+                protection des données personnelles, il retrouve toutes les traces d'une
+                personne sous toutes ses orthographes — la condition pour pouvoir réellement
+                l'effacer. Et si vous l'exigez, tout est hébergé chez vous.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="signature">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 2.5l6.5 3.2v4.6c0 3.6-2.7 5.7-6.5 7.2-3.8-1.5-6.5-3.6-6.5-7.2V5.7z"/><path d="M7 10l2 2 4-4.5"/></svg>
+          <p>Le même moteur s'applique partout où deux listes doivent se correspondre :
+            clients, fournisseurs, produits, écritures, abonnés, adhérents, candidats ou
+            dossiers. <b>Si vos données existent quelque part — dans un fichier, un logiciel ou
+            sur papier — le moteur peut les rapprocher, les dédoublonner, et vous prouver
+            qu'il l'a bien fait.</b></p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div>
+      <h2>Des fichiers clients, des lignes de comptes — pleins de doublons, écrits de
+        plusieurs façons différentes. En un clic, le moteur trie, dédoublonne et complète,
+        pour des fichiers propres et conformes.</h2>
+      <p class="sous">Un moteur de rapprochement de fiches souverain : il tourne chez vous,
+        hors ligne, et chaque rapprochement est expliqué et reproductible à l'identique.</p>
+      <div class="cta">
+        <a class="btn btn-plein" href="/bac-a-sable">Essayer sur un extrait</a>
+        <a class="btn btn-fantome" href="/salle-des-machines">Voir comment c'est mesuré</a>
+      </div>
+    </div>
+
+    {# Un vrai moment de rapprochement : deux fiches réelles, leur verdict réel, sa preuve. #}
+    <div class="fiche-paire">
+      {# L'intitulé se DÉRIVE des fiches montrées : il annonçait « Deux fiches » à côté d'un
+         badge « 3 fiches réunies », au-dessus de deux fiches. Trois affirmations qui ne
+         peuvent pas être vraies ensemble, sur l'élément le plus regardé de la Vitrine — et
+         le commentaire de ce gabarit reproche exactement cela quelques lignes plus bas. #}
+      {# Tout se dérive des fiches montrées, y compris les petits nombres : « Deux fiches » et
+         « 2 des N » étaient écrits à la main dans le gabarit, sur la carte même dont le
+         mandat exige qu'aucun chiffre affiché ne le soit. Le « 2 » ne franchissait la garde
+         que par une entrée d'exception prévue pour les énumérations, pas pour un compte. #}
+      {% set montrees = [heros.record_a, heros.record_b] %}
+      {% set fichiers = montrees | map(attribute='source_id') | unique | list %}
+      {# « Fiches d'exemple » : la carte affiche des lignes sorties d'un générateur, et un
+         lecteur français y repère des combinaisons improbables. Deux mots suffisent à ce
+         qu'il ne les lise pas comme un extrait client raté — le détail est au bac à sable. #}
+      {# « 2 des 2 fiches réunies » : la formule était juste et sonnait faux dès que la carte
+         montrait TOUTE l'entité, ce qui est le cas depuis que le héros est une paire. On dit
+         alors ce qui s'est passé — elles n'en font plus qu'une — et on garde la fraction pour
+         le cas où l'entité en compte davantage. #}
+      {% set membres = v.demonstration.cas_heros.entite.membres %}
+      <div class="entete">
+        <span>{{ montrees | length }} fiches d'exemple,
+          {{ fichiers | length }} fichiers différents</span>
+        {% if montrees | length == membres | length %}
+        <span>réunies en une seule fiche</span>
+        {% else %}
+        <span>{{ montrees | length }} des {{ membres | length }} fiches réunies</span>
+        {% endif %}
+      </div>
+
+      {% for fiche in montrees %}
+      <div class="fiche">
+        <span class="source">Fichier {{ fiche.source_id }}</span>
+        {# TOUS les champs comparés, et pas une sélection : le verdict ci-dessous annonce un
+           nombre d'informations concordantes, et le lecteur doit pouvoir les compter. Une
+           carte qui promet sept concordances en montrant six lignes se contredit sous les
+           yeux de celui qu'elle doit convaincre. #}
+        {% for champ in v.champs_compares %}
+        {% set niveau = heros.composantes["accord_" ~ champ] %}
+        <div class="ligne">
+          <span class="cle">{{ champ | libelle }}</span>
+          {% if fiche[champ] %}
+          <span class="val {% if niveau == 'ACCORD_FORT' %}concorde{% elif niveau == 'ACCORD_PARTIEL' %}concorde-partiel{% elif niveau == 'DESACCORD' %}diverge{% endif %}">{{ fiche[champ] }}</span>
+          {% else %}
+          <span class="val absent">— non renseigné —</span>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+
+      <div class="verdict-fiche">
+        <span class="pastille">Même client</span>
+        <small>
+          {# « Les différences d'écriture (nom, prénom et téléphone) sont ignorées » mêlait
+             deux choses opposées : le nom et le téléphone concordent MALGRÉ la graphie, le
+             prénom est le seul champ qui n'a pas concordé. On ne nomme donc ici que les
+             champs à la fois concordants ET écrits différemment.
+
+             Et on nomme AUSSI ce qui ne concorde pas : la carte montre huit lignes, la phrase
+             en nommait sept, et le seul champ visiblement différent à l'écran n'avait plus
+             pour signal qu'une couleur sans légende. Un lecteur qui compte trouve l'écart. #}
+          {% set graphies = heros.champs_ecrits_differemment
+                            | select('in', concordent) | list %}
+          {% set partiels = heros.champs_par_niveau.ACCORD_PARTIEL %}
+          {% set manquants = heros.champs_par_niveau.INDETERMINE_MANQUANT %}
+          {{ concordent | length }} informations sur {{ v.champs_compares | length }}
+          concordent : <b>{{ concordent | liste_libelles }}</b>.
+          {% if graphies %}
+          Les différences d'écriture sur {{ graphies | liste_libelles_avec_articles }}
+          n'empêchent pas le rapprochement.
+          {% endif %}
+          {% if partiels %}
+          {# « information » est féminin quel que soit le champ nommé : la tournure évite
+             d'accorder « seul »/« seule » sur un genre variable, là où le navigateur, lui,
+             porte une table de genres. #}
+          {{ partiels | length }}
+          {%- if partiels | length == 1 %} information ne concorde{% else %} informations ne
+          concordent{% endif %} qu'en partie :
+          {{ partiels | liste_libelles_avec_articles }}{% if partiels | length == 1 %},
+          « {{ heros.record_a[partiels[0]] }} » d'un côté et
+          « {{ heros.record_b[partiels[0]] }} » de l'autre{% endif %}.
+          {% endif %}
+          {% if manquants %}
+          {# La carte montre huit lignes ; la phrase en nommait sept, et la huitième restait
+             à l'écran sans un mot. Un champ absent d'un seul côté n'est ni un accord ni un
+             désaccord : on le nomme pour cela, et le lecteur qui compte retrouve son total.
+
+             L'accord passe par le filtre `accorde` : sur « la ville », la première écriture
+             donnait « la ville n'est renseigné », faute que les données du jour n'exposaient
+             pas — le champ manquant se trouve être l'e-mail, masculin. La branche que les
+             données n'exercent pas est celle qui casse le jour où elles changent. #}
+          {{ manquants | liste_libelles_avec_articles | capitalize }}
+          {%- if manquants | length == 1 %} n'est{% else %} ne sont{% endif %}
+          {{ 'renseigné' | accorde(manquants) }} que d'un seul côté : le moteur n'en tient
+          donc pas compte, ni pour rapprocher ni pour séparer.
+          {% endif %}
+        </small>
+      </div>
+    </div>
+  </section>
+
+  {# LE CHIFFRE D'AFFICHE. Même mesure que la salle des machines, deux écritures :
+     ici « plus de N sur 10 », là-bas la valeur exacte. Une seule valeur brute, donc G4. #}
+  <section class="affiche" aria-label="Résultat mesuré">
+    <div class="grand">{{ v.chiffre_affiche.sur_dix }}<span aria-hidden="true">/10</span></div>
+    <div class="texte">
+      {# « tiers indépendant » serait faux, et le dossier technique le déclare lui-même :
+         le banc est écrit par l'auteur du moteur, et c'est une des asymétries publiées. Ce
+         que les artefacts soutiennent, c'est la séparation du CODE — le programme qui note
+         n'est pas celui qui décide, et celui qui décide ne voit jamais la réponse. C'est
+         cela qu'on dit, et rien de plus. #}
+      {# « un jeu de données réaliste » était un adjectif que la page elle-même contredisait :
+         les fiches montrées viennent d'un générateur, et un lecteur français y repère des
+         combinaisons improbables. On dit ce que c'est — un jeu de test, sa taille — plutôt
+         qu'un qualificatif qui invite à vérifier et perd la vérification. #}
+      Plus de <b>{{ v.chiffre_affiche.sur_dix }} doublons sur 10</b> retrouvés sur un jeu de
+      test de <b>{{ v.demonstration.population.n_records | entier }} fiches</b>. Et ce chiffre
+      est recompté par <b>un programme séparé du moteur</b>, pas par le moteur lui-même.
+      {# Le dossier n'était atteignable depuis la Vitrine qu'en DEUX sauts, par la Salle des
+         machines. Le lecteur qui doute d'un chiffre doute au moment où il le lit : le
+         renvoi se pose donc ici, sous le chiffre, et pas dans une barre de navigation qu'il
+         a dépassée. Deux mots, aucun jargon, et la transparence cesse d'être à deux clics. #}
+      Le détail de la mesure est publié dans le
+      <a href="/dossier-technique">dossier technique</a>.
+    </div>
+  </section>
+
+  <section class="arguments">
+    <div class="argument">
+      <div class="icone" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8.5l2.5 2.5L8 6"/><path d="M8 8.5l2.5 2.5L14 6"/></svg>
+      </div>
+      <h3>Retrouve même ce qui est mal saisi</h3>
+      <p>Fautes de frappe, abréviations, champs vides, mots dans le désordre, orthographes
+        différentes d'un même nom : le rapprochement tient là où une simple comparaison échoue.</p>
+    </div>
+    <div class="argument">
+      <div class="icone" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="10" height="7" rx="1.3"/><path d="M5 7V5a3 3 0 016 0v2"/></svg>
+      </div>
+      <h3>Souverain</h3>
+      <p>Il tourne chez vous, hors ligne, sur un ordinateur ordinaire. Aucune donnée ne sort
+        et aucun service extérieur n'est appelé : vos fichiers restent vos fichiers.</p>
+    </div>
+    <div class="argument">
+      <div class="icone" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><path d="M8 5.5v3l2 1.5"/></svg>
+      </div>
+      <h3>Auditable</h3>
+      <p>Chaque rapprochement affiche sa preuve : les informations qui concordent, celles qui
+        divergent. Et tout se rejoue à l'identique, à la virgule près.</p>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

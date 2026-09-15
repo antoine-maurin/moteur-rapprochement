@@ -1,0 +1,49 @@
+{# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+   Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+   Tous droits réservés / All rights reserved.
+   Composant du démonstrateur « moteur-rapprochement ».
+   Reproduction, modification ou redistribution interdites sans autorisation écrite. #}
+{# Squelette commun aux trois surfaces. Aucune ressource distante : le produit tourne hors
+   ligne, et une page qui irait chercher une fonte chez un tiers ferait mentir sa propre
+   promesse au premier chargement. #}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titre %}Concordance{% endblock %}</title>
+<meta name="description" content="{% block description %}Rapprochement de fiches, souverain et auditable.{% endblock %}">
+{# Les fontes sont servies PAR CE SERVEUR, jamais par un tiers : le navigateur ne contacte
+   aucun autre hôte en rendant cette page. `preload` sur les deux faces latines les plus
+   employées — le budget de la Vitrine se compte jusqu'au texte lisible. #}
+<link rel="preload" href="/statique/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/statique/fontes/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/statique/fontes.css">
+<link rel="stylesheet" href="/statique/surfaces.css">
+</head>
+<body class="{% block classe_body %}{% endblock %}">
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="wrap">
+  <nav class="nav">
+    <a class="marque" href="/"><i aria-hidden="true"></i>Concordance</a>
+    <div class="liens">
+      {% block liens %}{% endblock %}
+    </div>
+  </nav>
+</header>
+
+<main id="contenu">
+{% block contenu %}{% endblock %}
+</main>
+
+<footer class="pied-page">
+  <div class="wrap">
+    {% block pied %}
+    <p>Concordance — rapprochement de fiches. Fonctionne chez vous, hors ligne, sur processeur.</p>
+    {% endblock %}
+  </div>
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

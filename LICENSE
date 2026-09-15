@@ -1,0 +1,54 @@
+Copyright © 2026 Antoine Maurin. Tous droits réservés. / All rights reserved.
+https://antoine-maurin.com — antoine@antoine-maurin.com
+
+« moteur-rapprochement » — démonstrateur de rapprochement/déduplication d'entités.
+
+================================================================================
+LICENCE PROPRIÉTAIRE — TOUS DROITS RÉSERVÉS
+================================================================================
+
+Ce logiciel, son code source, sa documentation et les éléments qui les
+accompagnent (le « Logiciel ») sont la propriété exclusive d'Antoine Maurin.
+
+Le Logiciel est publié à des fins de DÉMONSTRATION et d'ÉVALUATION uniquement.
+Aucune licence, aucun droit d'utilisation, de reproduction, de modification, de
+distribution, de sous-licence, de publication ou d'exploitation commerciale
+n'est accordé, expressément ou implicitement, sauf autorisation écrite préalable
+et explicite d'Antoine Maurin.
+
+Vous n'êtes PAS autorisé, sans cette autorisation écrite, à :
+  - copier, reproduire ou héberger tout ou partie du code source ;
+  - modifier, adapter, traduire ou créer des œuvres dérivées ;
+  - redistribuer, revendre, louer ou intégrer le Logiciel dans un autre produit ;
+  - en faire un usage commercial ou en production.
+
+La consultation du code aux seules fins d'évaluation de la démonstration est
+tolérée ; elle n'emporte cession d'aucun droit.
+
+--------------------------------------------------------------------------------
+COMPOSANTS TIERS (non couverts par le présent copyright)
+--------------------------------------------------------------------------------
+
+Le Logiciel embarque ou dépend de composants tiers qui restent régis par LEURS
+propres licences, et sur lesquels Antoine Maurin ne revendique aucun droit :
+
+  - Polices Space Grotesk, Inter, JetBrains Mono — SIL Open Font License (OFL) ;
+    leurs fichiers de licence sont inclus et demeurent inchangés.
+  - Bibliothèques externes (dont Splink, DuckDB, pandas et leurs dépendances) —
+    référencées et non redistribuées sous le présent copyright ; chacune reste
+    soumise à sa licence d'origine.
+
+Le présent copyright « Tous droits réservés » couvre exclusivement le code
+écrit par Antoine Maurin, jamais ces composants tiers.
+
+--------------------------------------------------------------------------------
+ABSENCE DE GARANTIE
+--------------------------------------------------------------------------------
+
+LE LOGICIEL EST FOURNI « EN L'ÉTAT », SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU
+IMPLICITE, Y COMPRIS SANS S'Y LIMITER LES GARANTIES DE QUALITÉ MARCHANDE,
+D'ADÉQUATION À UN USAGE PARTICULIER ET D'ABSENCE DE CONTREFAÇON. EN AUCUN CAS
+L'AUTEUR NE POURRA ÊTRE TENU RESPONSABLE DE TOUT DOMMAGE OU AUTRE RESPONSABILITÉ
+DÉCOULANT DU LOGICIEL OU DE SON UTILISATION.
+
+Pour toute demande d'autorisation : antoine@antoine-maurin.com

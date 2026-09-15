@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+# Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+# Tous droits réservés / All rights reserved.
+# Composant du démonstrateur « moteur-rapprochement ».
+# Reproduction, modification ou redistribution interdites sans autorisation écrite.
+
+# Ce que le contexte de build NE doit PAS porter dans l'image.
+#
+# Il manquait, et son absence n'etait pas anodine : `COPY src/engine/ ./src/engine/` copie le
+# CONTENU DU REPERTOIRE, pas ce que git suit. Sans ce fichier, les trois `__pycache__/`
+# presents sur ce poste entraient dans l'image -- 40 fichiers .pyc, dont une partie compilee
+# par un interpreteur que l'image n'execute meme pas (elle est en python:3.12-slim), et tous
+# machine-dependants donc absents chez tout autre operateur. L'image n'etait reproductible
+# sur aucune deuxieme machine, et MANIFESTE_PRODUIT.json aurait atteste un objet -- l'arbre
+# suivi par git -- en le presentant comme un autre : ce qui part.
+#
+# `PYTHONDONTWRITEBYTECODE=1` (Dockerfile) empeche la creation de .pyc A L'EXECUTION ; il
+# n'empeche pas leur ingestion par le COPY. C'est ce fichier-ci qui l'empeche.
+#
+# Avec lui, le contexte se reduit aux fichiers suivis, et l'egalite « ce que le manifeste
+# hache » = « ce qui part dans l'image » redevient vraie. Un oracle la verifie
+# (`tests/test_manifeste.py`).
+
+# Bytecode et caches -- machine-dependants, jamais du produit
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Environnement local -- recree par install.bat, jamais versionne
+.venv/
+
+# Histoire et outillage de developpement -- hors produit
+.git/
+.github/
+tests/
+tools/
+fixtures/
+
+# Fichiers d'edition
+*.swp
+.DS_Store
+Thumbs.db

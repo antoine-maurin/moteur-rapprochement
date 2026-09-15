@@ -1,0 +1,41 @@
+{
+  "_lisez_moi": "VECTEURS DE TEST FABRIQUES a la main pour la DoD de la revue de zone grise. Ce fichier n'est PAS une transcription de modele de langue : aucun runtime de modele local n'est declare dans requirements.txt et le runtime est hors ligne strict, donc aucune reponse de modele ne peut etre enregistree dans ce build. Les enregistrements sont INVENTES, jamais tires de la population de demonstration : ces vecteurs eprouvent le MECANISME de revue (les trois decisions, le piege de sous-chaine, le rate de rejeu), jamais la justesse d'une adjudication.",
+  "entete": {
+    "attributs": [
+      "nom",
+      "prenom",
+      "date_naissance",
+      "adresse",
+      "code_postal",
+      "ville",
+      "email",
+      "telephone"
+    ],
+    "gabarit": "U-B3::E-LLM::gabarit-revue::v1",
+    "projection": "valeurs_normalisees_8_attributs"
+  },
+  "provenance": {
+    "est_une_transcription_de_modele": false,
+    "modele": null,
+    "nature": "VECTEURS_DE_TEST_FABRIQUES",
+    "outil_producteur": "tools/enregistre_vecteurs_revue.py"
+  },
+  "reponses": {
+    "06d18182943f2fdb18f582d71a22fb9e0ba9fc41de090228738c00b609e50bb8": {
+      "cas": "identifiant_et_nom_concordants",
+      "texte": "DECISION: MATCH_APRES_REVUE\nJUSTIFICATION: courriel identique et nom identique, adresse concordante apres expansion de l'abreviation de voie."
+    },
+    "26923d96dd4533a8480c83c87f914441cb40ec26cb13315666de09ad1fa971a8": {
+      "cas": "meme_adresse_personnes_differentes",
+      "texte": "DECISION: NON_MATCH_APRES_REVUE\nJUSTIFICATION: meme adresse mais noms, prenoms, dates de naissance et courriels tous distincts : co-residence, pas identite."
+    },
+    "9617b9b6ff3c5e0589687cf09759c3f04d8bcb89c6deb46777cb21fd339945b3": {
+      "cas": "reponse_ambigue_deux_jetons",
+      "texte": "DECISION: MATCH_APRES_REVUE\nDECISION: NON_MATCH_APRES_REVUE\nJUSTIFICATION: reponse contradictoire, volontairement ambigue."
+    },
+    "dcf6ee06594bf9d9160eb8df2bc398a3daf68e897b982c7a6fc203353fae2770": {
+      "cas": "preuve_trop_maigre",
+      "texte": "DECISION: NON_TRANCHE\nJUSTIFICATION: un patronyme frequent et une commune ne suffisent pas ; aucun attribut discriminant n'est renseigne des deux cotes."
+    }
+  }
+}

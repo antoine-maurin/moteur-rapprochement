@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+# Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+# Tous droits réservés / All rights reserved.
+# Composant du démonstrateur « moteur-rapprochement ».
+# Reproduction, modification ou redistribution interdites sans autorisation écrite.
+
+# =====================================================================
+# moteur-rapprochement -- manifeste de dependances DIRECTES
+# Source unique declarative.
+# Reference blueprint : §9.4 (stack imposee)
+#                       + §10 DEPENDENCY_MANIFEST (renvoi, ne re-specifie pas).
+#
+# Ce fichier declare l'INTENTION (deps directes + le seul pin dur).
+# La REPRODUCTIBILITE exacte (versions resolues + hashes) est produite par
+# install.bat dans requirements.lock, sur la machine cible :
+# la resolution depend du reseau ET de la plateforme Windows : le lock ne peut
+# etre genere qu'au 1er run ici.
+#
+# Contraintes dures heritees (blueprint §9.4) : Python, CPU-only, zero-GPU,
+# offline au RUNTIME (le reseau n'est requis qu'au moment de l'installation).
+# =====================================================================
+
+# --- Benchmark de reference : outil externe embarque, execute reellement ---
+# PIN DUR arbitre par ARCHI. NE PAS modifier sans escalade ARCHI.
+splink==4.0.16
+# Backend d'execution par defaut de Splink 4. Version laissee a la resolution
+# (pilotee par la contrainte splink ci-dessus), figee exactement dans le lock.
+duckdb
+
+# --- Socle du moteur Fellegi-Sunter MAISON + scoreur independant + pipeline ---
+# Le moteur F-S est implemente NATIVEMENT (ce n'est PAS une librairie).
+# Versions volontairement NON figees ici : la resolution est contrainte par
+# splink==4.0.16 (compatibilite pandas/numpy), puis figee dans requirements.lock.
+pandas
+numpy
+scipy
+scikit-learn
+networkx
+
+# --- Surfaces (Vitrine + Salle des machines) ---
+# Front "repli Streamlit" (custom vs Streamlit tranche au gate G-R3).
+streamlit
+
+# --- Tests (determinisme, unites, oracle) ---
+pytest
+
+# =====================================================================
+# VOLONTAIREMENT ABSENT de ce manifeste (decisions groundees, pas un oubli) :
+#
+#  * torch / transformers / sentence-transformers / tout runtime LLM lourd.
+#    La revue LLM de zone grise tourne OFFLINE via fixtures pre-calculees
+#    (replay), PAS un modele live au runtime :
+#      - blueprint §9.6 : "LLM offline via fixtures pre-calculees, pas un mock" ;
+#      - revue de zone grise : reponses enregistrees puis rejouees.
+#    Le choix du modele open-weight est DEFERRED en amont.
+#    Une eventuelle (re)generation offline des fixtures LLM fera l'objet d'un
+#    manifeste separe (concern distinct du runtime du demonstrateur).
+#
+#  * recordlinkage / jellyfish / rapidfuzz : les baselines (exact-match,
+#    fuzzy simple) et les comparateurs du moteur sont implementes nativement
+#    (owner R_MATCHING_RULES). Splink reste le SEUL comparateur
+#    externe, en tant que benchmark (voisin embarque), jamais le moteur.
+# =====================================================================

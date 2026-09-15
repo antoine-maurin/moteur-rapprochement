@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+# Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+# Tous droits réservés / All rights reserved.
+# Composant du démonstrateur « moteur-rapprochement ».
+# Reproduction, modification ou redistribution interdites sans autorisation écrite.
+
+# Le depot livre des OCTETS, pas du texte reformate.
+#
+# `MANIFESTE_PRODUIT.json` hache le contenu des fichiers octet par octet, et sa promesse est
+# qu'un lecteur recalcule le meme chiffre a partir du fichier qu'il tient. Un checkout qui
+# traduirait les fins de ligne -- ce que git fait de lui-meme quand `core.autocrlf` est actif,
+# frequent sous Windows -- rendrait tout le manifeste faux sans qu'aucun commit n'ait eu lieu,
+# et le defaut se lirait comme une alteration du produit.
+#
+# `-text` desactive toute conversion, dans les deux sens. L'etat mesure du depot est deja
+# celui-la (109 fichiers en LF, 5 en CRLF, 6 binaires, index et arbre de travail identiques) :
+# ce fichier ne change rien aujourd'hui, il empeche que cela change demain.
+* -text
+*.bat eol=crlf

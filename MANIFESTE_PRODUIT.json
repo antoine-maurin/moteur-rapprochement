@@ -1,0 +1,380 @@
+{
+  "_lisez_moi": "Identite formelle du produit livre. Regenerable : `python tools/manifeste_produit.py --verifie` recalcule tout et sort 2 en cas de divergence. Le CORPS est deterministe et son sceau est la valeur citee au registre de promotion ; l'empreinte de tete est datee et publiee non scellee.",
+  "corps": {
+    "anneau_1": {
+      "fichiers": [
+        {
+          "blob_git": "55dd6e71596a2729b681f84a601aebc14d0f09d5",
+          "chemin": "artifacts/banc_ub6.json",
+          "octets": 196796,
+          "sha256": "1cdcda1de5ba877acc6ee9913261aad41e039ebcddc3fcd890744701776158d8"
+        },
+        {
+          "blob_git": "c3410cfdeb6d7e82e035443ba310202657da9a56",
+          "chemin": "artifacts/contribution_llm.json",
+          "octets": 29258,
+          "sha256": "12efa6debdfaa2a71fcc7d4e1ad1e80e2a1a2ce4e86d4d5670374297ab271975"
+        },
+        {
+          "blob_git": "d98dc41cfa083be47ff489e90f8bff0e0f2dcee8",
+          "chemin": "artifacts/dimensions.json",
+          "octets": 3940,
+          "sha256": "fc62a259f12a46c349a4256934fdc9682608ffc0d986023946d2cfabe4e8bcda"
+        },
+        {
+          "blob_git": "16d889eeb2226b2417e25d1acc09509e7fb5058a",
+          "chemin": "artifacts/discrimination_v1_2.json",
+          "octets": 177670,
+          "sha256": "0f0619c88f2d2de601cabe1d527a569a013d3705db887e594d64efcdf6bcd819"
+        },
+        {
+          "blob_git": "75a2388db36fc58091cebb9dad8292b5f3439e3c",
+          "chemin": "artifacts/thresholds_sized.json",
+          "octets": 2076,
+          "sha256": "e27e657056176d8d3a454ebbc3525d34cc35fca12bcdd3fdab307e103ea61aaa"
+        },
+        {
+          "blob_git": "2c49ed95e46c64f523e3d61ed3e63d8a6aad7bda",
+          "chemin": "artifacts/ui_demonstration.json",
+          "octets": 27460,
+          "sha256": "95e7dd48c62832698c52d8fe3ed5852ed84817450d7d3d85340e958400913380"
+        },
+        {
+          "blob_git": "aac33ae5e20b712c14197b31b77652d58276b597",
+          "chemin": "artifacts/ui_scenarios.json",
+          "octets": 743584,
+          "sha256": "555b1bf6a5d583b29232110471be165895512dcccaa95760947b04fb9ed399b3"
+        },
+        {
+          "blob_git": "c19c133690dff136b2de349ceb003273ba9e968b",
+          "chemin": "serveur.py",
+          "octets": 1344,
+          "sha256": "c88bb8967d74889db52bb1b830c5fec7828f7bce52bd5428d3d3af3787f2fc2c"
+        },
+        {
+          "blob_git": "4b5b4be89f2f4eadb8f402a4075b9409e3581793",
+          "chemin": "src/engine/__init__.py",
+          "octets": 6080,
+          "sha256": "d18c69ec267c1a7c7ec28427e5a7355c5bbf891d4dae0612b077b61fbaf14d59"
+        },
+        {
+          "blob_git": "feb9179d6ae3b26af64ba53001db9546fc4389f9",
+          "chemin": "src/engine/blocking.py",
+          "octets": 11345,
+          "sha256": "bb177e6525a34e14be84257806635118fba97b50d6d1d8bcd61001df2b2e8cf9"
+        },
+        {
+          "blob_git": "06cfed8406c45bfb07165909b88a3e86fb2a63d9",
+          "chemin": "src/engine/clustering.py",
+          "octets": 20719,
+          "sha256": "dfc80c1584921e1608f8a53a4e6b8cb53cd1b0c3077d2530eadffc67ee65cfab"
+        },
+        {
+          "blob_git": "190c75dbcf7e7b4e65003fa026fa450708a91939",
+          "chemin": "src/engine/compare.py",
+          "octets": 11480,
+          "sha256": "938d38ef3095a68163f1619ee071200fe78d940e6ab87a9aa5fcf9b9e716cd62"
+        },
+        {
+          "blob_git": "b5450d24057ad32fd2587e03d93fef1341731e1b",
+          "chemin": "src/engine/decide.py",
+          "octets": 16970,
+          "sha256": "4952451b0ac6ad5eb03cc1c8024e08f41e99b8fab605d6282e5d2a6661062ddd"
+        },
+        {
+          "blob_git": "3e4449806520a1c19608d80404a5fd354cda45b5",
+          "chemin": "src/engine/engine.py",
+          "octets": 8037,
+          "sha256": "c9f58087b7ded4dcd75b8a4e9b43c06b55e7d7e2b9e6bfef5c394f6b7828dfab"
+        },
+        {
+          "blob_git": "c044e2f38cc97e088763bf7e94bc2bedc93e16a4",
+          "chemin": "src/engine/fusion.py",
+          "octets": 25433,
+          "sha256": "9adc2a7372a9974fc7404268a62a8391c344e02f7caeb654e2fc1d42093716ca"
+        },
+        {
+          "blob_git": "4edf5b830a7dfd43e585c972f53f59d76e5bdd88",
+          "chemin": "src/engine/llm_client.py",
+          "octets": 17666,
+          "sha256": "6339d2c6d4787445a1ec8d7561570d31393639c633886718ebfbc7bdaf03bac3"
+        },
+        {
+          "blob_git": "c7fe2455fb7a50cd06695c8dc6ff9d97f32810b5",
+          "chemin": "src/engine/llm_review.py",
+          "octets": 10678,
+          "sha256": "c1878a301116ce548c78637423590fa0d75ebdc78dc83094a4af28fd78e95748"
+        },
+        {
+          "blob_git": "0458f15a9c2450c4068f311880c85479988a1e70",
+          "chemin": "src/engine/normalize.py",
+          "octets": 9952,
+          "sha256": "1bc16ea285a7a9dad85ffb1928751f53cf5fd9d2c42870e6363a554a84004e7e"
+        },
+        {
+          "blob_git": "a91525533a949e7156b73b71052f968639880978",
+          "chemin": "src/engine/threshold_sizing.py",
+          "octets": 12877,
+          "sha256": "9fcb2da6b5656abda5b4d13096560541a3d368c3a47d88ffd2d76d6db00dfe0d"
+        },
+        {
+          "blob_git": "a0b33645570c8364054f87a5764bd8bb2a9b3ee2",
+          "chemin": "src/pipeline/__init__.py",
+          "octets": 2672,
+          "sha256": "cb9e9cd4b98de3400a1e9e3e0c163013619b2dff3640cd71be80fa1fcb9e579c"
+        },
+        {
+          "blob_git": "f45252301f81756b380b284b9d7c34710acf3e6c",
+          "chemin": "src/pipeline/canonicalisation.py",
+          "octets": 5186,
+          "sha256": "8e71d41a4eff508cfba3d3d7dcb6cc874711f3bfcaac203d873d2d07453d7dbb"
+        },
+        {
+          "blob_git": "97208476224965abb0a355101216fed760adae78",
+          "chemin": "src/pipeline/chaine.py",
+          "octets": 8350,
+          "sha256": "73b0f338fa9aead503e39288dfacbc758aa7d7799b6dc2a1d3932fde9846d3d8"
+        },
+        {
+          "blob_git": "aaa7751a74949e9c248ccdefdce8c4ee1e48314e",
+          "chemin": "src/pipeline/point.py",
+          "octets": 12267,
+          "sha256": "71a6d04c1d7e4e148140700c7e2b07448704ca68713879bb1f218748785f4311"
+        },
+        {
+          "blob_git": "7695db9ed24d4ff9a22b088e9b88576df741e5dc",
+          "chemin": "src/surfaces/__init__.py",
+          "octets": 1702,
+          "sha256": "512be4af54db054d507abd0e76c307ebb9cd53d722ebd8e28ee92b2994bff80c"
+        },
+        {
+          "blob_git": "ee6873db668089fb1aaed147368a4090b1728f82",
+          "chemin": "src/surfaces/app.py",
+          "octets": 9307,
+          "sha256": "8c3754835357236151ccbff2f5aa78f1696167c040deeb9141c9d82564792aa4"
+        },
+        {
+          "blob_git": "be25ead67cc8f8c227118f3ba58d068848ff5ea5",
+          "chemin": "src/surfaces/bac_a_sable.py",
+          "octets": 20507,
+          "sha256": "ea99616e14bbdb2e251ea4eb1f7053ca4c694dfb61f41ba648ecc27cc32fa289"
+        },
+        {
+          "blob_git": "8b004fa7953dabb0659e67a2fba87f8bdb12d679",
+          "chemin": "src/surfaces/format.py",
+          "octets": 6622,
+          "sha256": "10631f09e35b6af87bd688f20dab01af54ec1c535742283b1ca763febf3166f4"
+        },
+        {
+          "blob_git": "42c9393bffedc779cb7dd8e11b5c3c941d96e91f",
+          "chemin": "src/surfaces/gabarits/bac_a_sable.html",
+          "octets": 11698,
+          "sha256": "cda502f6636774913bf8f614cd86de5fff6af6383043854f6fd5cf667de69679"
+        },
+        {
+          "blob_git": "6a4a5a2ee87751627f8ab11aefcb629a1680073c",
+          "chemin": "src/surfaces/gabarits/base.html",
+          "octets": 2092,
+          "sha256": "de16cd21b0cb4b6ce2bc5f743f610ac57ec8471ec80ad7e189b89bbaf4773d35"
+        },
+        {
+          "blob_git": "4b2f06fef9d6f8b0009010200fe14d764a04bd47",
+          "chemin": "src/surfaces/gabarits/dossier_technique.html",
+          "octets": 10123,
+          "sha256": "161ba5c33a23224fef5c33c14f06f194c544595f71c96324112929d4d6b0b1dc"
+        },
+        {
+          "blob_git": "a5f855833f907187998ba5fdf3a23258ccc618f3",
+          "chemin": "src/surfaces/gabarits/salle_des_machines.html",
+          "octets": 12503,
+          "sha256": "beb1d46fde6eee4db372c3901a90b927f384f38c3b3dd99bb43d279dcb0176cf"
+        },
+        {
+          "blob_git": "05f7fd3c1b6b9939a4767ca173f2378ad523935b",
+          "chemin": "src/surfaces/gabarits/vitrine.html",
+          "octets": 26852,
+          "sha256": "101cdc2cac452a5901ecdb34be5505fb3638d6bf200d8bfecda3c5d50374a9a2"
+        },
+        {
+          "blob_git": "62eb041db7b19a44b9bc90a03e41ae3194c2c23f",
+          "chemin": "src/surfaces/lecture.py",
+          "octets": 7469,
+          "sha256": "9386dcfd46545edb5da38c5141d79467c4d05b6e9468dad20db709d740c412c3"
+        },
+        {
+          "blob_git": "8f62eb0881807a0f36b84c3cb82a0164ffd24def",
+          "chemin": "src/surfaces/statique/bac.js",
+          "octets": 25053,
+          "sha256": "f517739738c1840293e833c81bdbcadebb99a90b1ca546fa90b415689ec7d90d"
+        },
+        {
+          "blob_git": "303fad5892f6149c858f2c1f3025d2d2d627e145",
+          "chemin": "src/surfaces/statique/fontes.css",
+          "octets": 8476,
+          "sha256": "81a6f13cbcbaca6ca31ab7d850c957cdea4c2ebaad87f30f1f6dd1c14e19ebed"
+        },
+        {
+          "blob_git": "9b2ca37b3ffc77391d8b2ebef4a974ef32bf46ea",
+          "chemin": "src/surfaces/statique/fontes/LICENCE-inter.txt",
+          "octets": 4380,
+          "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+        },
+        {
+          "blob_git": "5ceee0025da23d2cd5fd14b28569708a8db4db2b",
+          "chemin": "src/surfaces/statique/fontes/LICENCE-jetbrains-mono.txt",
+          "octets": 4399,
+          "sha256": "a76abf002c49097d146e86740a3105a5d00450b1592e820a1109a8c5680cd697"
+        },
+        {
+          "blob_git": "cb512b9af44ff61e75e1aad387b7424cdfab36a3",
+          "chemin": "src/surfaces/statique/fontes/LICENCE-space-grotesk.txt",
+          "octets": 4495,
+          "sha256": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72"
+        },
+        {
+          "blob_git": "479d010d2902fa3a5b48e84a973db1978b2e9949",
+          "chemin": "src/surfaces/statique/fontes/inter-latin-ext.woff2",
+          "octets": 85068,
+          "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956"
+        },
+        {
+          "blob_git": "d15208de03cd1ad7c5199f0a0ce915fe841e4722",
+          "chemin": "src/surfaces/statique/fontes/inter-latin.woff2",
+          "octets": 48256,
+          "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+        },
+        {
+          "blob_git": "82f96681c0762d98ec703df7836829d0ab44a785",
+          "chemin": "src/surfaces/statique/fontes/jetbrains-mono-latin-ext.woff2",
+          "octets": 11624,
+          "sha256": "db5ff4db83e580426280e9337a58dc57d3a83784a1b03ad80914651594441d52"
+        },
+        {
+          "blob_git": "4d09cda4a4c3f4c08ae253dd8a9c5133a89b31b7",
+          "chemin": "src/surfaces/statique/fontes/jetbrains-mono-latin.woff2",
+          "octets": 31432,
+          "sha256": "83c005d49d8a6a50474c73a5a36ac0468076e9c4a29da7bdb14995d80560a5be"
+        },
+        {
+          "blob_git": "9ad9d0819d3cff7ea679b0c38709c774423fe1d7",
+          "chemin": "src/surfaces/statique/fontes/manifeste.json",
+          "octets": 3667,
+          "sha256": "87cd84b629c898bf9bc4d639fa157d4c4636a61bc902551c588319d8a8aa5605"
+        },
+        {
+          "blob_git": "db732c272dc2d48c5600b88ca24d2206fb123bd4",
+          "chemin": "src/surfaces/statique/fontes/space-grotesk-latin-ext.woff2",
+          "octets": 18940,
+          "sha256": "952dddb45d2f96f71cbf3b7f510b24379afc3c89ea02fcf89d377b45d62c0166"
+        },
+        {
+          "blob_git": "0f3474ee8af2f8253225f3b41bf79be986a1ae13",
+          "chemin": "src/surfaces/statique/fontes/space-grotesk-latin.woff2",
+          "octets": 22288,
+          "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d"
+        },
+        {
+          "blob_git": "6a2ec1d2f57b3da1e29680b3220f3ca6a3953cf4",
+          "chemin": "src/surfaces/statique/logique.js",
+          "octets": 14270,
+          "sha256": "bf0f51d0a0b6e831c287b2703096b1bc45beba722cf204596118e2ba42ef4a53"
+        },
+        {
+          "blob_git": "1c7b193435ea4a24bac82d6f62ff0234d272a6d8",
+          "chemin": "src/surfaces/statique/surfaces.css",
+          "octets": 33857,
+          "sha256": "4a511ead69a247eb6eb5f63e1b53967839b0aefc87a1ad3eabad74d313569a7e"
+        },
+        {
+          "blob_git": "bc007c4ecb99a9a4c193b201deecf21c3ee045a6",
+          "chemin": "src/surfaces/vue.py",
+          "octets": 26804,
+          "sha256": "83e94027fe10fbaf2ec43b7ec12ed1bbaf60ef53282606158e57d2849e69f105"
+        }
+      ],
+      "n_fichiers": 48,
+      "octets": 1813724,
+      "sceau": "07e7dee1c7ce253d7644826fcf974dfdb9de25a93c4590b97d562fd0877fb53b"
+    },
+    "anneau_2": {
+      "fichiers": [
+        {
+          "blob_git": "313f18c4c12489874ad03e3c6d9057be95620f16",
+          "chemin": ".dockerignore",
+          "octets": 1707,
+          "sha256": "301723d0c51a304269c9a04fe9e178c5d2f7072736919be03033e492308cfb24"
+        },
+        {
+          "blob_git": "3b96ba5b89c190f96aa2bc5229796dc22db424b8",
+          "chemin": ".gitattributes",
+          "octets": 1095,
+          "sha256": "e2ea8fa73d16923d84a42fd1c3d0d2767816cedaa3e5ea651dad25d00eeef434"
+        },
+        {
+          "blob_git": "cd570f95db183db4cedb85c5eb261f14fb77804b",
+          "chemin": "deploiement/Dockerfile",
+          "octets": 3007,
+          "sha256": "681063f25cd85cd3f49f0b2f1c6471cef1686f1d1286c4260479ef52e48c15eb"
+        },
+        {
+          "blob_git": "d13857bec64868d01d0bb45fe62f2878f7449ae7",
+          "chemin": "deploiement/requirements-surfaces.txt",
+          "octets": 1027,
+          "sha256": "16036cb8eabfe8351d9b9b7d92324cf12b0fb4cce248a60cf0980df1c9476f61"
+        },
+        {
+          "blob_git": "ea9bb2d52d11c82febf1e4c689ec0d5607354fe5",
+          "chemin": "requirements.lock",
+          "octets": 90326,
+          "sha256": "8ddf181fe70390199d2dcc9ba6477898985ed178cc944e0229cbc20d4fc60aa7"
+        },
+        {
+          "blob_git": "6d88f9be4bd1c365c8f44a95e6e09e341edeccb2",
+          "chemin": "requirements.txt",
+          "octets": 3089,
+          "sha256": "4b0d0153c49fb68e4ebd839d90975b037014e7fc012362e10f33a5c641c3d4be"
+        }
+      ],
+      "n_fichiers": 6,
+      "octets": 100251,
+      "sceau": "51aa658d87ade4d18a73eeca4ad9a71cc1e2502d1c379b571f15b2cc46fdb38e"
+    },
+    "perimetre": {
+      "anneau_1": [
+        "src/engine",
+        "src/pipeline",
+        "src/surfaces",
+        "artifacts",
+        "serveur.py"
+      ],
+      "anneau_2": [
+        "deploiement/Dockerfile",
+        "deploiement/requirements-surfaces.txt",
+        ".dockerignore",
+        ".gitattributes",
+        "requirements.lock",
+        "requirements.txt"
+      ],
+      "copy_hors_anneau_1": [
+        "deploiement/requirements-surfaces.txt"
+      ],
+      "definition": "les six COPY de deploiement/Dockerfile (l. 30, 35-39) : cinq forment l'anneau 1, le produit qui tourne ; la sixieme (deploiement/requirements-surfaces.txt) entre dans l'image mais est consommee au build par le pip install de la l. 31, et est donc hachee en anneau 2 comme recette.",
+      "ensemble": "les fichiers SUIVIS par git sous ces prefixes. Le contexte de build est reduit au meme ensemble par .dockerignore, sans quoi les __pycache__/ presents sur le poste entreraient dans l'image et ce manifeste attesterait un autre objet que celui qui part."
+    },
+    "produit": "moteur-rapprochement",
+    "regles": {
+      "blob_git": "sha1('blob <n>\\0' + octets) — verifiable par git rev-parse HEAD:<chemin>",
+      "hachage": "sha256 des OCTETS BRUTS du fichier, sans normalisation des fins de ligne : un lecteur doit retrouver le chiffre avec sha256sum. .gitattributes (* -text) interdit a git de traduire au checkout.",
+      "sceau_de_lot": "sha256 des lignes '<chemin> <sha256>' triees, jointes par \\n",
+      "sceau_du_corps": "sha256 de json.dumps(corps, sort_keys=True, ensure_ascii=False, separators=(',', ':')) en UTF-8. C'est LUI le sceau publie : il ne couvre PAS l'empreinte de tete, qui est datee par construction et perimerait le sceau au commit suivant."
+    }
+  },
+  "empreinte_de_tete": {
+    "arbre": "337ea27ac1356dc18b62c9fd8db7a632852ece51",
+    "branche": "main",
+    "commit": "a160b968490c2bb042c4bdd689d977bf73fa6f90",
+    "n_commits": 1,
+    "note": "etat de tete au moment du calcul. NON couvert par sceau_du_corps : il change a chaque commit sans qu'aucun contenu produit ne change, et un sceau irreproductible ne prouve rien (cf. tools/empreinte_artefact.py)."
+  },
+  "sceau_du_corps": "cd790f717f74165f7bbcce998fd8e4cb9ffcf534491bdf4ec25a7cb4aba055d2"
+}

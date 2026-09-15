@@ -1,0 +1,199 @@
+{# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+   Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+   Tous droits réservés / All rights reserved.
+   Composant du démonstrateur « moteur-rapprochement ».
+   Reproduction, modification ou redistribution interdites sans autorisation écrite. #}
+{# LE DOSSIER TECHNIQUE COMPLET — la transparence radicale, entière.
+   Rien n'y est édulcoré, et l'ordre n'est pas décoratif : le critère gelé `O5` exige que le
+   verdict soit publié EN TÊTE, avant tout détail favorable. C'est ce que fait cette page.
+   Le concurrent y est NOMMÉ : une comparaison anonyme ne se reproduit pas, et la loyauté demande
+   que l'infériorité éventuelle soit affichée — c'est ici qu'elle l'est. #}
+{% extends "base.html" %}
+
+{% block titre %}Dossier technique complet{% endblock %}
+{% block description %}Le verdict interne, les cibles, les asymétries déclarées et les réserves — publiés intégralement.{% endblock %}
+{% block classe_body %}sombre{% endblock %}
+
+{% block liens %}
+  <a href="/">← Accueil</a>
+  <a class="btn btn-fantome" href="/salle-des-machines">← Retour à la salle des machines</a>
+{% endblock %}
+
+{% block contenu %}
+<div class="wrap">
+
+  <section class="sdm-titre">
+    <h1>Dossier technique complet</h1>
+    <p class="sous">Tout ce que le banc d'essai a mesuré, y compris ce qui ne nous avantage
+      pas, publié sans retrait ni adoucissement. Les surfaces de vente présentent le résultat ;
+      cette page présente la mesure.</p>
+  </section>
+
+  {# ---------------- LE VERDICT, EN TÊTE (critère O5) ---------------- #}
+  <section class="panneau" style="border-left:3px solid var(--doubt-lite)">
+    <div class="entete">
+      <h2>Verdict de l'artefact de banc, publié avant tout détail favorable</h2>
+      <span class="tag">critère O5</span>
+    </div>
+    <div class="ligne-verdict">
+      <span class="etiquette haute">{{ v.verdict_global.statut }}</span>
+      <p>C'est le statut que notre propre banc d'essai attribue à cette campagne de mesure.
+        Il consigne que <b>{{ v.verdict_global.cibles_en_echec | length }}</b> des cibles
+        internes que nous nous étions fixées ne sont pas atteintes :
+        <b>{{ v.verdict_global.cibles_en_echec | join(', ') }}</b>. Nous le publions ici plutôt
+        que de le laisser découvrir dans le fichier.</p>
+    </div>
+    <p class="note-discrete">
+      Ce verdict porte sur l'atteinte de <em>nos</em> objectifs internes, pas sur le
+      fonctionnement du moteur. La position face à l'état de l'art, elle, est tenue et mesurée
+      — voir la cible {{ v.cibles[2].code }} ci-dessous.
+    </p>
+  </section>
+
+  {# ---------------- Le banc, systèmes NOMMÉS ---------------- #}
+  <section class="panneau">
+    <div class="entete">
+      <h2>Comparaison chiffrée, systèmes nommés</h2>
+      <span class="tag">Splink v{{ v.versions.splink }} · convention {{ v.moteur.convention }}</span>
+    </div>
+    <div class="defilable">
+      <table class="banc">
+        <thead>
+          <tr><th>système</th><th>point de fonctionnement</th><th>précision</th><th>rappel</th><th>F1</th></tr>
+        </thead>
+        <tbody>
+          <tr class="nous">
+            <td>{{ v.moteur.libelle_technique }}</td>
+            <td><code>{{ v.moteur.point }}</code></td>
+            <td>{{ v.moteur.precision | nombre }}</td>
+            <td>{{ v.moteur.rappel | nombre }}</td>
+            <td>{{ v.moteur.f1 | nombre }}</td>
+          </tr>
+          <tr>
+            <td>{{ v.splink_defaut.libelle_technique }}</td>
+            <td><code>{{ v.splink_defaut.point }}</code></td>
+            <td>{{ v.splink_defaut.precision | nombre }}</td>
+            <td>{{ v.splink_defaut.rappel | nombre }}</td>
+            <td>{{ v.splink_defaut.f1 | nombre }}</td>
+          </tr>
+          <tr>
+            <td>{{ v.splink_reference.libelle_technique }}<small>comparateur retenu pour l'écart</small></td>
+            <td><code>{{ v.splink_reference.point }}</code></td>
+            <td>{{ v.splink_reference.precision | nombre }}</td>
+            <td>{{ v.splink_reference.rappel | nombre }}</td>
+            <td>{{ v.splink_reference.f1 | nombre }}</td>
+          </tr>
+          <tr>
+            <td>{{ v.baseline.libelle_technique }}</td>
+            <td><code>{{ v.baseline.point }}</code></td>
+            <td>{{ v.baseline.precision | nombre }}</td>
+            <td>{{ v.baseline.rappel | nombre }}</td>
+            <td>{{ v.baseline.f1 | nombre }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="parite">
+      <span class="pastille-parite">À parité</span>
+      <span>Écart de F1 face à la meilleure configuration de Splink
+        ({{ v.splink_reference.f1 | nombre }}) : <b>{{ v.parite.ecart_f1 | signe }}</b>.
+        Test de McNemar, p&nbsp;=&nbsp;{{ v.parite.mcnemar_p | nombre(3) }}.</span>
+    </div>
+    <p class="note-discrete">
+      Qualificatif gelé avant mesure, cité verbatim : «&nbsp;{{ v.parite.qualificatif }}&nbsp;».<br>
+      Règle du comparateur, gelée avant mesure : {{ v.parite.regle_du_comparateur }}
+    </p>
+  </section>
+
+  {# ---------------- Les cibles internes ---------------- #}
+  <section class="panneau">
+    <div class="entete"><h2>Nos cibles internes, et leur verdict</h2></div>
+    {% for cible in v.cibles %}
+    <div class="ligne-verdict">
+      {% if cible.atteinte %}
+      <span class="etiquette ok">Atteinte</span>
+      {% else %}
+      <span class="etiquette haute">Non atteinte</span>
+      {% endif %}
+      <p>
+        <b>{{ cible.code }} — {{ cible.libelle }}.</b>
+        Cible fixée à {{ (cible.seuil * 100) | nombre(0) }} points, mesuré
+        <b>{{ cible.en_points | signe(1) }}</b> points
+        ({{ cible.reference_metrique }} {{ cible.valeur_moteur | nombre }} pour le moteur
+        contre {{ cible.reference_valeur | nombre }} pour <code>{{ cible.reference }}</code>).
+      </p>
+    </div>
+    {% if cible.enonce %}
+    <p class="note-discrete">Énoncé pré-enregistré, verbatim : {{ cible.enonce }}</p>
+    {% endif %}
+    {% endfor %}
+  </section>
+
+  {# ---------------- La revue du doute, avec la distinction obligatoire ---------------- #}
+  <section class="panneau">
+    <div class="entete"><h2>Plafond de la revue de zone grise par IA</h2></div>
+    <div class="grand-nombre">{{ v.revue.plafond }}&nbsp;<span>/ {{ v.revue.n_zone_grise }}</span></div>
+    <p style="color:var(--on-dark-2);font-size:14px;margin-top:12px">
+      Sur {{ v.revue.n_zone_grise }} paires en zone grise,
+      <b style="color:var(--on-dark)">{{ v.revue.plafond }}</b> sont de vraies paires. Chaque
+      paire restituée vaudrait {{ v.revue.valeur_d_une_paire_en_rappel | nombre(4) }} de rappel.
+      Sur {{ v.revue.n_instruites }} paires instruites, le delta mesuré vaut
+      {{ v.revue.delta_rappel | nombre(1) }} en rappel et {{ v.revue.delta_f1 | nombre(1) }} en F1.
+    </p>
+    <div class="ligne-verdict" style="margin-top:8px">
+      <span class="etiquette neutre">Contribution nulle</span>
+      {# La Vitrine promet que l'apport de l'IA est « mesuré et publié tel quel dans le
+         dossier technique » et y renvoie : c'est ICI que la promesse atterrit, et elle
+         n'atterrissait nulle part tant que ce bloc ne prononçait pas le mot. On écrit « le
+         seul apport que ce build MESURE », et non « ce que l'IA a trouvé » — l'artefact dit
+         qu'aucun adjudicateur n'a été joint (300 paires tentées, 0 adjugée), et la
+         distinction citée juste en dessous existe pour empêcher la seconde lecture. #}
+      <p>C'est le seul apport de l'IA que ce build mesure, et il est publié tel quel.
+        <b>La distinction est obligatoire et n'est pas gommée</b> — texte de l'artefact, cité
+        verbatim :</p>
+    </div>
+    <p class="note-discrete">{{ v.revue.distinction }}</p>
+  </section>
+
+  {# ---------------- Les asymétries déclarées ---------------- #}
+  <section class="panneau">
+    <div class="entete">
+      <h2>Asymétries déclarées de la comparaison</h2>
+      <span class="tag">{{ v.asymetries | length }} déclarées</span>
+    </div>
+    <ul class="asymetries">
+      {% for a in v.asymetries %}
+      <li class="{{ a.favorise }}">
+        <span class="qui">{% if a.favorise == 'moteur_maison' %}nous avantage{% elif a.favorise == 'splink' %}avantage Splink{% elif a.favorise == 'baselines' %}avantage les baselines{% elif a.favorise == 'symetrique' %}symétrique{% else %}indéterminé{% endif %}</span>
+        <b>{{ a.code }}</b> — {{ a.quelle }}
+        {% if a.parade %}<span class="mesure-asym">Parade : {{ a.parade }}</span>{% endif %}
+        {% if a.mesure and a.mesure.note %}<span class="mesure-asym">{{ a.mesure.note }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  {# ---------------- Les réserves, toutes ---------------- #}
+  <section class="reserves">
+    <h2>Réserves méthodologiques, publiées intégralement</h2>
+    <ul>
+      {% for limite in v.reserves %}
+      <li>{% if limite is mapping %}<b>{{ limite.get('code', '') }}</b> {{ limite.get('quelle') or limite.get('libelle') or limite.get('texte') or limite }}{% else %}{{ limite }}{% endif %}</li>
+      {% endfor %}
+      <li><b>Position assumée</b> — nous ne sommes pas supérieurs à l'état de l'art, et nous ne
+        le prétendons pas. La valeur est ailleurs : souveraineté, transparence, et une décision
+        qui se relit.</li>
+    </ul>
+    <p class="note-discrete">
+      Point de fonctionnement : Tμ = {{ v.point.t_mu | nombre(3) }},
+      Tλ = {{ v.point.t_lambda | nombre(3) }}, zone grise {{ v.point.taille_zone_grise }} paires
+      pour un budget visé de {{ v.point.budget_vise }}, dimensionné sur
+      {{ v.point.n_paires_notees | entier }} paires notées. Statut du point :
+      {% if v.point.provisoire %}PROVISOIRE ({{ v.point.gap }}){% else %}définitif{% endif %}.
+    </p>
+  </section>
+
+  <p style="margin:26px 0 0"><a class="btn btn-fantome" href="/salle-des-machines">← Retour à la salle des machines</a></p>
+
+</div>
+{% endblock %}

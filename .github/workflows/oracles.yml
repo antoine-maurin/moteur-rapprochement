@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+# Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+# Tous droits réservés / All rights reserved.
+# Composant du démonstrateur « moteur-rapprochement ».
+# Reproduction, modification ou redistribution interdites sans autorisation écrite.
+
+# Job d'oracles -- moteur-rapprochement
+#
+# ETAT, ecrit ici pour qu'on ne le decouvre pas ailleurs : ce depot n'a AUCUN remote
+# (`git remote -v` ne rend rien). GitHub Actions ne lira donc pas ce fichier tant qu'un
+# remote n'existe pas, et ce workflow n'a a ce jour AUCUNE execution. Il est versionne
+# parce qu'il doit vivre avec le code qu'il eprouve -- pas pour qu'on puisse ecrire
+# « CI verte » quelque part. La preuve que ces etapes passent est donnee par
+# `lancer_ci.bat`, qui appelle le MEME `tools/job_ci.py`.
+#
+# Ce fichier ne connait NI pytest, NI les selections de tests, NI les variables du job :
+# il provisionne la machine, puis appelle le script. Les deux voies ne peuvent donc pas
+# diverger -- il n'existe nulle part ailleurs ou ecrire une etape.
+#
+# windows-latest, et pas une matrice : c'est le seul systeme ou cette suite est observee
+# verte. Un job Linux `continue-on-error` serait du vert decoratif ; Linux est consigne
+# comme item ouvert nomme dans ENV_SETUP_README.md.
+
+name: oracles
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  complet:
+    name: Oracles executables sur un checkout nu
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Node est une dependance de TEST : les oracles de prose executent
+      # src/surfaces/statique/logique.js sous Node, plutot que d'en rejouer une replique
+      # Python. Sans lui ils sauteraient proprement et le job serait vert a vide -- c'est
+      # exactement ce que MR_NODE_REQUIS, pose par tools/job_ci.py, transforme en echec.
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      # Le profil `complet` joue `tests/` en entier : la machine doit porter les dependances
+      # epinglees du produit, a l'identique du .venv d'install.bat.
+      - name: Dependances (requirements.lock)
+        run: python -m pip install --require-hashes -r requirements.lock
+
+      - name: Job (profil complet)
+        run: python tools/job_ci.py --profil complet

@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+# Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+# Tous droits réservés / All rights reserved.
+# Composant du démonstrateur « moteur-rapprochement ».
+# Reproduction, modification ou redistribution interdites sans autorisation écrite.
+
+# Environnement (recree par install.bat depuis requirements.lock — jamais versionne)
+.venv/
+
+# Caches Python / pytest
+__pycache__/
+*.py[cod]
+.pytest_cache/

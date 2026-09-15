@@ -1,0 +1,91 @@
+{
+ "_lisez_moi": "Seuils DIMS-v2, RE-DERIVES sur FX_001 V1.2 apres le retrait de la passe SDX_NOM. Ils ne sont PAS recopies de la mesure informelle anterieure du scoreur : celle-ci portait sur l'ensemble candidat a trois passes, qui n'existe plus. Cet artefact est l'evenement de build qui solde la dette 12.1 du verdict DIMS. Seuils PROVISOIRES : ils placent un volume de revue, ils ne pretendent pas etre optimaux, et aucune valeur cible de qualite n'y entre.",
+ "cc1": {
+  "modules_importes": [
+   "engine"
+  ],
+  "note": "ce programme n'importe pas le scoreur et ne charge jamais ground_truth : le dimensionnement est non supervise par CONSTRUCTION, pas par promesse",
+  "verite_terrain_lue": false
+ },
+ "configuration_moteur": {
+  "longueur_prefixe": 4,
+  "note_amont": "les seuils AMONT sont les placeholders : le dimensionnement lit la distribution de R, qui ne depend pas des seuils",
+  "passes_blocking": [
+   "CP",
+   "PREF"
+  ],
+  "passes_retirees_du_defaut": {
+   "SDX_NOM": {
+    "decide_par": "ARCHI — acte d'architecture, non arbitré par la surface d'exécution",
+    "direction_du_biais": "moteur_maison",
+    "effet_attendu": "réduit l'ensemble candidat sans toucher au rappel de blocking ; ne peut que retirer des faux positifs offerts à la décision",
+    "motif": "contribution marginale nulle mesurée par le scoreur : la passe apportait 5 079 paires candidates et pas une seule vraie paire qu'une autre passe n'apportait déjà",
+    "retiree_en": "banc de comparaison",
+    "reversible": "oui — passer passes=('CP', 'SDX_NOM', 'PREF') rétablit le comportement",
+    "statut": "choisie_apres_lecture_verite_terrain"
+   }
+  },
+  "t_lambda_amont": -8.0,
+  "t_mu_amont": 8.0
+ },
+ "derivation": {
+  "empreinte_distribution_r": "40fb250f01237a62d1b8d47f3b2ee886e7da9b8b610eb9ecdbb88bea0cd5a53e",
+  "entree": "la seule liste des poids_match (R) des correspondances du moteur ; aucune autre information de la correspondance n'entre dans le calcul",
+  "module": "engine.threshold_sizing.dimensionne_depuis_correspondances",
+  "n_paires_notees": 5932,
+  "nature": "RE-RUN du module threshold_sizing, jamais une constante recopiee",
+  "reproductible_par": "relancer tools/derive_dimensions.py sur la meme fixture et le meme commit de moteur redonne ces seuils au bit pres",
+  "statistiques_r": {
+   "max": 38.10929741,
+   "mediane": -9.516737845,
+   "min": -20.538704789,
+   "moyenne": -8.307177207157283,
+   "n": 5932,
+   "n_valeurs_distinctes": 354,
+   "q05": -14.704642625,
+   "q25": -13.232140015,
+   "q75": -6.440415749,
+   "q95": 1.944438108
+  }
+ },
+ "estimation_em": {
+  "convergence": true,
+  "iterations": 65,
+  "note": "l'estimation EM est NON SUPERVISEE : aucune etiquette n'y entre, donc aucune fuite de verite terrain n'est possible a cette etape",
+  "repli": false
+ },
+ "gap": "calibration différée",
+ "objectif": "O0b",
+ "provenance": {
+  "branche": "main",
+  "budget": {
+   "debit_par_minute": 60.0,
+   "duree_minutes": 5.0,
+   "statut": "PROVISOIRE : le debit reel de la revue de zone grise n'est pas mesure",
+   "valeur": 300
+  },
+  "commit_engine": "a160b968490c2bb042c4bdd689d977bf73fa6f90",
+  "fixture": {
+   "chemin_relatif_repo": "fixtures/FIXTURE_PACK_GT_V1_2.json",
+   "content_sha256_attendu": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2",
+   "content_sha256_recalcule": "66f627edb37022dcecab04dae9c327b342d8dfbb785533ffe8017919000117a2"
+  },
+  "graine_em": "U-B2::E-DEC::EM::seed-0001",
+  "version_python": "3.12.14"
+ },
+ "seuils_dimensions": {
+  "budget_atteint": 301,
+  "budget_sature": false,
+  "budget_vise": 300,
+  "ecart_au_budget": 1,
+  "frontiere": 0.0,
+  "methode": "bande emboitee la plus proche du budget, ordonnee par distance a la frontiere ; a egalite d'ecart, la plus petite bande",
+  "motif_repli": null,
+  "provisoire": true,
+  "repli": false,
+  "t_lambda": -2.681884167,
+  "t_mu": 2.650183265,
+  "taille_zone_grise": 301
+ },
+ "statut": "PROVISOIRE"
+}

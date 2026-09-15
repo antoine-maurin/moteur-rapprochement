@@ -1,0 +1,214 @@
+{# SPDX-License-Identifier: LicenseRef-AntoineMaurin-Proprietary
+   Copyright © 2026 Antoine Maurin — https://antoine-maurin.com
+   Tous droits réservés / All rights reserved.
+   Composant du démonstrateur « moteur-rapprochement ».
+   Reproduction, modification ou redistribution interdites sans autorisation écrite. #}
+{# LA SALLE DES MACHINES — surface de VENTE technique (briefing de clôture, point 1).
+   Elle publie la performance DU MOTEUR, seule : plus de tableau comparatif, plus de nom de
+   concurrent, plus de « au niveau des meilleurs », aucune comparaison au marché. Ce qui
+   relève du détail R&D — verdict interne, cibles chiffrées, comparaison nommée, asymétries
+   déclarées, réserves complètes — n'est pas supprimé : il vit INTACT dans le dossier
+   technique, à un clic clairement visible, et cette page dit qu'il y est. La transparence
+   n'est pas cachée, elle est rangée là où elle sert.
+   Ce qui reste ici et qui n'est PAS une comparaison : l'encart du scoreur indépendant. Il ne
+   compare rien à personne — il dit qui compte les points, et c'est de la confiance.
+   Aucun chiffre n'est écrit dans ce gabarit : tout vient de `v`. #}
+{% extends "base.html" %}
+{% set moteur = v.moteur %}
+
+{% block titre %}Comment ça marche, et pourquoi vous pouvez faire confiance{% endblock %}
+{% block description %}Des résultats mesurés honnêtement, recomptés par un programme indépendant du moteur, et reproductibles à l'octet près.{% endblock %}
+{% block classe_body %}sombre{% endblock %}
+
+{% block liens %}
+  <a href="/">← Accueil</a>
+  <a href="/bac-a-sable">Essayer</a>
+  <a class="btn btn-fantome" href="/dossier-technique">Détails techniques complets</a>
+{% endblock %}
+
+{% block contenu %}
+<div class="wrap">
+
+  <section class="sdm-titre">
+    <h1>Comment ça marche, et pourquoi vous pouvez faire confiance.</h1>
+    <p class="sous">Des résultats mesurés honnêtement, recomptés par un programme indépendant
+      du moteur, et reproductibles à l'octet près.</p>
+
+    <div class="independance">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="9" r="7"/><path d="M6 9l2 2 4-4.5"/></svg>
+      <p><b>Le moteur ne note pas sa propre copie.</b> Il décide sans jamais voir les bonnes
+        réponses, connues à l'avance :
+        {% if not v.independance.verite_terrain_lue_au_dimensionnement %}
+        le programme qui règle ses seuils ne les charge à aucun moment, si bien qu'il n'a pas
+        accès à ce qu'il faudrait pour tricher.
+        {% else %}
+        <b>attention : l'artefact déclare une lecture des réponses au réglage des seuils.</b>
+        {% endif %}
+        Un second programme, <b>séparé du moteur</b>, recompte ensuite ce qu'il a décidé. Les
+        chiffres ci-dessous viennent de ce programme-là.</p>
+    </div>
+  </section>
+
+  {# ---------------- La performance du moteur, SEULE ----------------
+     Trois métriques, celles du moteur, sans comparaison d'aucune sorte. Les trois sont
+     publiées et non pas la seule qui flatte : une page qui ne montrerait que le rappel
+     laisserait croire que la précision n'a pas été mesurée. #}
+  <section class="panneau">
+    <div class="entete">
+      <h2>Ce que le moteur obtient, mesuré</h2>
+      <span class="tag">jeu de mesure figé · convention {{ moteur.convention }}</span>
+    </div>
+    <div class="defilable">
+      <table class="banc explique">
+        <thead>
+          <tr><th>mesure</th><th>ce qu'elle veut dire</th><th>valeur</th></tr>
+        </thead>
+        <tbody>
+          <tr class="nous">
+            <td>rappel</td>
+            <td>la part des vrais doublons que le moteur retrouve</td>
+            <td>{{ moteur.rappel | nombre }}</td>
+          </tr>
+          <tr>
+            <td>précision</td>
+            <td>la part de ses rapprochements qui sont justes</td>
+            <td>{{ moteur.precision | nombre }}</td>
+          </tr>
+          <tr>
+            <td>F1</td>
+            <td>les deux précédentes en un seul nombre, aucune sacrifiée à l'autre</td>
+            <td>{{ moteur.f1 | nombre }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {# L'identifiant interne du point de fonctionnement — `point_2_budget_de_revue_egal` —
+       a été retiré de cette page : c'est du snake_case de code, sur une surface de vente. Il
+       reste au dossier technique, où il est attendu et où il rend la mesure reproductible.
+       Ce qui compte ici, un prospect le lit : le réglage précède la mesure. #}
+    <p class="note-discrete">
+      Point de fonctionnement fixé avant la mesure, sur
+      {{ moteur.n_candidates | entier }} paires examinées.
+    </p>
+  </section>
+
+  {# ---------------- La phrase de lecture simple (briefing, point 1) ----------------
+     DEUX GRANDEURS, séparées à l'écran, et il faut qu'elles le restent.
+
+     La première est une MESURE : le rappel du moteur, lu du banc ci-dessus et tronqué à
+     l'entier inférieur — 0,9262 donne « environ 92 % », jamais « 93 % ». Une promesse qui
+     sous-estime reste tenue.
+
+     La seconde n'est pas une mesure et ne prétend pas en être une : le 100 % dit que la
+     DÉCISION reste entière entre les mains de l'utilisateur. Le moteur tranche seul
+     l'essentiel, il ne devine pas le reste — il le présente — et c'est l'utilisateur qui
+     arbitre. Rien ici n'affirme que le moteur atteindrait 100 % ; la page dit qui TIENT la
+     complétude, pas qui l'atteint. Le « 6 / 301 » du dossier technique borne le rappel du
+     moteur seul : autre grandeur, rien à recouper.
+
+     La clause finale disait « ce contrôle couvre toutes vos données ». Elle promettait une
+     COUVERTURE que la mesure ne soutient pas — l'arbitrage humain ne voit que la zone grise,
+     et les paires perdues au blocking ne lui sont jamais soumises. « S'adapte à vos règles »
+     est vrai et vérifiable : les règles de décision sont paramétrables, et c'est de cela que
+     le sur-mesure parle. L'angle commercial est le même, l'affirmation ne dépasse plus.
+
+     C'est pourquoi les deux phrases sont sur deux lignes étiquetées, et non cousues en une.
+     Le lecteur doit voir d'un coup d'œil laquelle est mesurée et laquelle décrit le
+     dispositif. Le 100 vient du modèle, marqué `completude` : aucun gabarit n'écrit de
+     nombre, et c'est le SEUL pourcentage de la page qui ne soit pas une mesure — un oracle
+     vérifie que ce marquage reste unique. #}
+  <section class="lecture-simple">
+    <p class="part-moteur">
+      <span class="qui">Le moteur, mesuré</span>
+      Le moteur retrouve seul environ
+      <b>{{ v.chiffre_affiche.pourcent_entier | pourcent(0) }} des doublons</b>.
+    </p>
+    <p class="part-vous">
+      <span class="qui">Vous, aux commandes</span>
+      Les cas de doute, il ne devine pas : il vous les présente, et c'est vous qui tranchez.
+      <b>Le <span class="completude">{{ v.controle_humain.completude_pourcent | pourcent(0) }}</span>,
+      c'est vous qui le tenez</b> — et sur mesure, ce contrôle s'adapte à vos règles.
+    </p>
+  </section>
+
+  {# ---------------- Le doute, dit comme une force ---------------- #}
+  <div class="deux-colonnes">
+    {# « Il ne signale que ce qui mérite un œil humain » était FAUX : sur les paires mises de
+       côté, la très grande majorité ne sont pas des doublons. La vérité vend aussi bien —
+       le moteur tranche seul l'immense majorité des cas, et préfère demander plutôt que de
+       risquer une fusion erronée. Le rapport « plafond sur zone grise » est un chiffre de
+       R&D : il part au dossier technique. #}
+    <section class="panneau">
+      <div class="entete"><h2>Le moteur tranche, et sait s'arrêter</h2></div>
+      <p style="color:var(--on-dark-2);font-size:15px">
+        Le moteur tranche seul l'immense majorité des cas. Dans le doute, il préfère vous
+        soumettre la fiche plutôt que de risquer une fusion erronée.
+      </p>
+      {# « les quelques cas » sous-estimait la charge, et « le budget que VOUS vous fixez »
+         promettait un réglage que rien ne propose encore (le dossier technique le déclare :
+         le budget de revue est celui qu'a retenu le moteur). On donne le chiffre réel, lu de
+         l'artefact, et on décrit le mécanisme sans promettre la commande. #}
+      <p style="color:var(--on-dark-2);font-size:14px;margin-top:12px">
+        Leur nombre n'est pas laissé au hasard : il est <b>dimensionné à l'avance</b> par un
+        budget de revue. Sur ce jeu de mesure, le budget retenu met de côté
+        <b>{{ v.demonstration.population.repartition_verdicts.ZONE_GRISE | entier }} paires</b>
+        sur {{ v.demonstration.population.n_paires_candidates | entier }} — vous ne relisez
+        pas un fichier, vous arbitrez une file bornée, et vous savez sa taille avant de
+        commencer. Et une fusion erronée coûte plus cher qu'un doublon qui subsiste : c'est
+        pourquoi il s'abstient plutôt que de deviner.
+      </p>
+    </section>
+
+    <section class="panneau">
+      <div class="entete"><h2>Le même calcul, deux fois le même résultat</h2></div>
+      <div class="empreinte">
+        <span class="vert">une graine</span> &nbsp;→&nbsp; génération → rapprochement → preuve
+        &nbsp;→&nbsp; <span class="vert">{{ v.reproductibilite.empreinte_e2e[:16] }}…</span>
+      </div>
+      {# « relancé sur une AUTRE MACHINE » n'a jamais été mesuré : ce que l'artefact atteste,
+         c'est que deux exécutions donnent la même empreinte. On dit ce qui est mesuré, et
+         rien de plus — une affirmation falsifiable et invitante appelle exactement le
+         lecteur qui ira la falsifier. #}
+      <p style="color:var(--on-dark-2);font-size:13.5px;margin-top:12px">
+        Relancé, le même calcul donne exactement le même résultat, à l'octet près. Deux
+        exécutions du banc donnent-elles la même empreinte ?
+        <b style="color:var(--on-dark)">{{ v.reproductibilite.determinisme_identique | booleen }}</b>.
+        Rien ne dépend du hasard ni du jour.
+      </p>
+      {# « commit … » tout court laissait croire à l'état courant du dépôt. C'est le commit
+         auquel l'artefact affiché a été PRODUIT, et il ne bouge qu'à la régénération — le
+         dire évite qu'un lecteur le compare au dépôt et conclue à une incohérence. #}
+      <p class="note-discrete">
+        Version {{ v.reproductibilite.version_python }} ·
+        empreinte du jeu de test {{ v.reproductibilite.empreinte_fixture[:12] }}… ·
+        mesures produites au commit {{ v.reproductibilite.commit[:12] }}
+      </p>
+    </section>
+  </div>
+
+  {# ---------------- Une réserve, tournée vers l'offre ---------------- #}
+  <section class="reserves">
+    <h2>Ce que ces chiffres disent, et ce qu'ils ne disent pas</h2>
+    <ul>
+      {# « représentatif » est un qualificatif que rien n'établit — et que les fiches montrées
+         contredisent (elles sortent d'un générateur, avec ses combinaisons improbables). On
+         dit ce que le jeu EST : fabriqué, publié, rejouable. C'est plus fort, et vrai. #}
+      <li><b>Ces chiffres portent sur un jeu de test fabriqué</b> — des fiches produites par
+        un générateur, dont la vérité est donc connue à l'avance, ce qui est la condition pour
+        pouvoir mesurer quoi que ce soit. Sur vos données, nous mesurons avant de vous
+        promettre quoi que ce soit — c'est le point de départ de toute proposition.</li>
+    </ul>
+    {# Le sommaire du dossier est nommé ligne par ligne, y compris la comparaison chiffrée que
+       cette page ne porte plus. Sans cette phrase, le déplacement se lirait comme un
+       escamotage ; avec elle, un évaluateur sait exactement ce qu'il trouvera et où. #}
+    <p class="note-discrete">
+      Le détail complet — le verdict interne de notre banc d'essai, les cibles que nous nous
+      étions fixées, la comparaison chiffrée avec les outils de référence et les autres
+      approches, les {{ v.asymetries | length }} asymétries déclarées de cette comparaison et
+      les {{ v.reserves | length }} réserves méthodologiques — est publié intégralement, sans
+      rien retirer, dans le <a href="/dossier-technique">dossier technique complet</a>.
+    </p>
+  </section>
+
+</div>
+{% endblock %}

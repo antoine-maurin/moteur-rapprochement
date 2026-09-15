@@ -1,0 +1,64 @@
+{
+  "_lisez_moi": "Seuils Tmu/Tlambda dimensionnes sur la distribution de R. PROVISOIRES : ils placent une zone grise non vide pour alimenter la revue de zone grise ; ils ne pretendent PAS etre optimaux. La calibration fine des taux d'erreur releve du scoreur, sur un jeu de calibration DISTINCT du jeu d'evaluation. Aucune verite terrain n'entre dans ce calcul.",
+  "budget_revue": {
+    "debit_par_minute": 60.0,
+    "derivation": "debit_par_minute x duree_minutes",
+    "duree_minutes": 5.0,
+    "statut": "PROVISOIRE : le debit reel de la revue de zone grise n'est pas mesurable tant qu'elle n'est pas construite. Seul ce couple de constantes changera quand elle le sera.",
+    "valeur": 300
+  },
+  "effet": {
+    "budget_sature": false,
+    "ecart_au_budget": -52,
+    "repartition_apres": {
+      "MATCH": 228,
+      "NON_MATCH": 21305,
+      "ZONE_GRISE": 248
+    },
+    "repartition_avant": {
+      "MATCH": 229,
+      "NON_MATCH": 21550,
+      "ZONE_GRISE": 2
+    },
+    "zone_grise_apres": 248,
+    "zone_grise_avant": 2
+  },
+  "gap": "calibration différée",
+  "parametres_provisoires": [
+    "t_mu",
+    "t_lambda",
+    "budget_revue",
+    "debit_revue_par_minute",
+    "duree_revue_minutes"
+  ],
+  "population_demonstration": {
+    "graine": "SP_CYCLE_001::GEN-01::seed-0001",
+    "n_entites": 400,
+    "n_paires_candidates": 21781,
+    "n_records": 590,
+    "source": "generateur GEN_001, population BULK"
+  },
+  "seuils_dimensionnes": {
+    "frontiere": 0.0,
+    "methode": "bande emboitee la plus proche du budget, ordonnee par distance a la frontiere ; a egalite d'ecart, la plus petite bande",
+    "t_lambda": -24.528007741,
+    "t_mu": 16.874619418
+  },
+  "seuils_placeholder_precedents": {
+    "t_lambda": -8.0,
+    "t_mu": 8.0
+  },
+  "statistiques_r": {
+    "max": 53.549715238,
+    "mediane": -41.326802362,
+    "min": -51.388931294,
+    "moyenne": -39.62086036568046,
+    "n": 21781,
+    "n_valeurs_distinctes": 185,
+    "q05": -51.050434815,
+    "q25": -41.326802362,
+    "q75": -37.969029199,
+    "q95": -28.353259654
+  },
+  "statut": "PROVISOIRE"
+}
